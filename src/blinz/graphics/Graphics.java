@@ -255,11 +255,14 @@ public class Graphics {
      * @param width
      * @param height
      */
-    public final void setViewport(int x, int y, int width, int height) {
+    public final void enterViewport(int x, int y, int width, int height) {
         viewPort.setBounds(x, y, width, height);
         fixViewport();
         gl.glViewport(fixedViewport.getX(), fixedViewport.getY(),
                 fixedViewport.getWidth(), fixedViewport.getHeight());
+        gl.glLoadIdentity();
+        gl.glOrtho(0.0f, fixedViewport.getWidth(), fixedViewport.getHeight(),
+                0.0f, -1.0f, 1.0f);
         viewPortOn = true;
     }
 
