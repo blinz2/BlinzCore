@@ -69,32 +69,32 @@ public abstract class Screen {
     final void generateBounds() {
         switch (screenType) {
             case FULL_SCREEN:
-                bounds.setBounds(0, 0, Display.getWidth(), Display.getHeight());
+                bounds.setBounds(0, 0, Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight());
                 break;
             case TOP_SCREEN:
-                bounds.setBounds(0, Display.getHeight() / 2,
-                        Display.getWidth(), Display.getHeight() / 2);
+                bounds.setBounds(0, Display.getDrawingAreaHeight() / 2,
+                        Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight() / 2);
                 break;
             case BOTTOM_SCREEN:
-                bounds.setBounds(0, 0, Display.getWidth(), Display.getHeight() / 2);
+                bounds.setBounds(0, 0, Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight() / 2);
                 break;
             case LEFT_SCREEN:
-                bounds.setBounds(0, 0, Display.getWidth() / 2, Display.getHeight());
+                bounds.setBounds(0, 0, Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight());
                 break;
             case TOP_LEFT_SCREEN:
-                bounds.setBounds(0, Display.getHeight() / 2,
-                        Display.getWidth() / 2, Display.getHeight() / 2);
+                bounds.setBounds(0, Display.getDrawingAreaHeight() / 2,
+                        Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
                 break;
             case TOP_RIGHT_SCREEN:
-                bounds.setBounds(Display.getWidth() / 2, Display.getHeight() / 2,
-                        Display.getWidth() / 2, Display.getHeight() / 2);
+                bounds.setBounds(Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2,
+                        Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
                 break;
             case BOTTOM_LEFT_SCREEN:
-                bounds.setBounds(0, 0, Display.getWidth() / 2, Display.getHeight() / 2);
+                bounds.setBounds(0, 0, Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
                 break;
             case BOTTOM_RIGHT_SCREEN:
-                bounds.setBounds(Display.getWidth() / 2, 0,
-                        Display.getWidth() / 2, Display.getHeight() / 2);
+                bounds.setBounds(Display.getDrawingAreaWidth() / 2, 0,
+                        Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
                 break;
         }
     }

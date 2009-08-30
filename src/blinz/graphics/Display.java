@@ -165,6 +165,24 @@ public class Display {
     }
 
     /**
+     * Represents the actual drawing area width available, croping of the title
+     * bar and edges around the window if in window mode. Still accurate in full
+     * screen mode.
+     */
+    public final static int getDrawingAreaWidth() {
+        return canvasListener.drawingArea.width;
+    }
+
+    /**
+     * Represents the actual drawing area height available, croping of the title
+     * bar and edges around the window if in window mode. Still accurate in full
+     * screen mode.
+     */
+    public final static int getDrawingAreaHeight() {
+        return canvasListener.drawingArea.height;
+    }
+
+    /**
      * Returns a Size object representing the size of the Display.
      * @return a new Size object representing the size of the Display.
      */
@@ -326,6 +344,11 @@ class GraphicsThread implements Runnable {
  */
 class CanvasListener implements GLEventListener {
 
+    /**
+     * Represents the actual drawing area available, croping of the title bar and edges
+     * around the window if in window mode. Still accurate in full screen mode.
+     */
+    final Size drawingArea = new Size();
     final Vector<Screen> screens = new Vector<Screen>();
 
     @Override
@@ -361,6 +384,7 @@ class CanvasListener implements GLEventListener {
         gl.glEnable(GL.GL_BLEND);
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
         gl.glHint(GL.GL_LINE_SMOOTH_HINT, GL.GL_DONT_CARE);
+        drawingArea.setSize(drawable.getWidth(), drawable.getHeight());
     }
 
     @Override
@@ -373,5 +397,6 @@ class CanvasListener implements GLEventListener {
         gl.glEnable(GL.GL_BLEND);
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
         gl.glHint(GL.GL_LINE_SMOOTH_HINT, GL.GL_DONT_CARE);
+        drawingArea.setSize(drawable.getWidth(), drawable.getHeight());
     }
 }

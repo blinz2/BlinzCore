@@ -55,16 +55,20 @@ public class Graphics {
 
     public final void fillPolygon(Polygon polygon) {
         gl.glBegin(GL.GL_POLYGON);
-        for (int i = 0; i < polygon.size(); i++) {
-            gl.glVertex2i(polygon.get(i).x, polygon.get(i).y);
+        {
+            for (int i = 0; i < polygon.size(); i++) {
+                gl.glVertex2i(polygon.get(i).x, polygon.get(i).y);
+            }
         }
         gl.glEnd();
     }
 
     public final void drawLine(int x1, int y1, int x2, int y2) {
         gl.glBegin(GL.GL_LINES);
-        gl.glVertex2i(x1, y1);
-        gl.glVertex2i(x2, y2);
+        {
+            gl.glVertex2i(x1, y1);
+            gl.glVertex2i(x2, y2);
+        }
         gl.glEnd();
     }
 
@@ -74,11 +78,13 @@ public class Graphics {
 
     public final void drawRect(int x1, int y1, int x2, int y2) {
         gl.glBegin(GL.GL_LINE_STRIP);
-        gl.glVertex2i(x1, y1);
-        gl.glVertex2i(x2, y1);
-        gl.glVertex2i(x2, y2);
-        gl.glVertex2i(x1, y2);
-        gl.glVertex2i(x1, y1);
+        {
+            gl.glVertex2i(x1, y1);
+            gl.glVertex2i(x2, y1);
+            gl.glVertex2i(x2, y2);
+            gl.glVertex2i(x1, y2);
+            gl.glVertex2i(x1, y1);
+        }
         gl.glEnd();
 
     }
@@ -351,38 +357,34 @@ public class Graphics {
         //handle y and height of the view port
         {
             //translate the y
-            {
-                //if view port sticks off the right of the screen
-                if (i.getY() + i.getHeight() > screenBounds.getHeight()) {
-                    //if the whole view port is to the right of the screen
-                    if (i.getY() > screenBounds.getHeight()) {
-                        i.setBounds(0, 0, 0, 0);
-                        return;
-                    }
 
-                    i.modHeight(-((i.getY() + i.getHeight()) - screenBounds.getHeight()));
-                }
-                //if view port sticks off the left of the screen
-                if (i.getY() < 0) {
-                    //if the whole view port is to the left of the screen
-                    if (i.getY() + i.getHeight() < 0) {
-                        i.setBounds(0, 0, 0, 0);
-                        return;
-                    }
-                    viewPortTransMod.setY(-i.getY());
-                    i.setY(0);
+            //if view port sticks off the right of the screen
+            if (i.getY() + i.getHeight() > screenBounds.getHeight()) {
+                //if the whole view port is to the right of the screen
+                if (i.getY() > screenBounds.getHeight()) {
+                    i.setBounds(0, 0, 0, 0);
+                    return;
                 }
 
-
-                //invert the y axis and start it at 0 plus height of screen
-                i.setY((screenBounds.getHeight() - i.getY()) - i.getHeight());
+                i.modHeight(-((i.getY() + i.getHeight()) - screenBounds.getHeight()));
             }
+            //if view port sticks off the left of the screen
+            if (i.getY() < 0) {
+                //if the whole view port is to the left of the screen
+                if (i.getY() + i.getHeight() < 0) {
+                    i.setBounds(0, 0, 0, 0);
+                    return;
+                }
+                viewPortTransMod.setY(-i.getY());
+                i.setY(0);
+            }
+
+            //invert the y axis and start it at 0 plus height of screen
+            i.setY((screenBounds.getHeight() - i.getY()) - i.getHeight());
         }
 
-        fixedViewport.modY(screenBounds.getY());
+
         i.modX(screenBounds.getX());
         i.modY(screenBounds.getY());
-        System.out.println(fixedViewport.getX() + ", " + fixedViewport.getY() +
-                ", " + fixedViewport.getWidth() + ", " + fixedViewport.getHeight());
     }
 }
