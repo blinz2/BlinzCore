@@ -170,20 +170,19 @@ public class Graphics {
         texture.bind();
 
         gl.glBegin(GL.GL_QUADS);
-        {
-            //Top Left
-            gl.glTexCoord2f(t.left(), t.top());
-            gl.glVertex3i(x1, y1, 0);
-            //Top Right
-            gl.glTexCoord2f(t.right(), t.top());
-            gl.glVertex3i(x2, y1, 0);
-            //Bottom Right
-            gl.glTexCoord2f(t.right(), t.bottom());
-            gl.glVertex3i(x2, y2, 0);
-            //Bottom Left
-            gl.glTexCoord2f(t.left(), t.bottom());
-            gl.glVertex3i(x1, y2, 0);
-        }
+        //Top Left
+        gl.glTexCoord2f(t.left(), t.top());
+        gl.glVertex3i(x1, y1, 0);
+        //Top Right
+        gl.glTexCoord2f(t.right(), t.top());
+        gl.glVertex3i(x2, y1, 0);
+        //Bottom Right
+        gl.glTexCoord2f(t.right(), t.bottom());
+        gl.glVertex3i(x2, y2, 0);
+        //Bottom Left
+        gl.glTexCoord2f(t.left(), t.bottom());
+        gl.glVertex3i(x1, y2, 0);
+
         gl.glEnd();
 
         gl.glDisable(GL.GL_TEXTURE_2D);
@@ -207,8 +206,7 @@ public class Graphics {
     }
 
     /**
-     * Draws the specified String with the specified font with the the bottom
-     * left corner as the point of origin.
+     * Draws the specified String the the bottom left corner as the point of origin.
      * @param string
      * @param x
      * @param y
@@ -255,11 +253,14 @@ public class Graphics {
      * @param width
      * @param height
      */
-    public final void setViewport(int x, int y, int width, int height) {
+    public final void enterViewport(int x, int y, int width, int height) {
         viewPort.setBounds(x, y, width, height);
         fixViewport();
         gl.glViewport(fixedViewport.getX(), fixedViewport.getY(),
                 fixedViewport.getWidth(), fixedViewport.getHeight());
+        gl.glLoadIdentity();
+        gl.glOrtho(0.0f, fixedViewport.getWidth(), fixedViewport.getHeight(),
+                0.0f, -1.0f, 1.0f);
         viewPortOn = true;
     }
 
@@ -349,30 +350,8 @@ public class Graphics {
         {
             //translate the y
             {
-                //if view port sticks off the right of the screen
-                if (i.getY() + i.getHeight() > screenBounds.getHeight()) {
-                    //if the whole view port is to the right of the screen
-                    if (i.getY() > screenBounds.getHeight()) {
-                        i.setBounds(0, 0, 0, 0);
-                        return;
-                    }
 
-                    i.modHeight(-((i.getY() + i.getHeight()) - screenBounds.getHeight()));
-                }
-                //if view port sticks off the left of the screen
-                if (i.getY() < 0) {
-                    //if the whole view port is to the left of the screen
-                    if (i.getY() + i.getHeight() < 0) {
-                        i.setBounds(0, 0, 0, 0);
-                        return;
-                    }
-                    viewPortTransMod.setY(-i.getY());
-                    i.setY(0);
-                }
-
-
-                //invert the y axis and start it at 0 plus height of screen
-                i.setY((screenBounds.getHeight() - i.getY()) - i.getHeight());
+                i.modY(i.getHeight());
             }
         }
 
