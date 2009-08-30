@@ -26,9 +26,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCanvas;
@@ -257,6 +260,23 @@ public class Display {
     }
 
     /**
+     * Sets the image that will appear on the taskbar representation of this application
+     * and at the top left corner of the window in window mode.
+     * @param path - location of the desired image
+     */
+    public final static void setIcon(String path) {
+        java.awt.Image i = null;
+        try {
+            i = ImageIO.read(new File(path));
+        } catch (IOException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        window.setIconImage(i);
+
+    }
+
+    /**
      * This method is of no interest to users of this API, it exist only for
      * passing an internal object from one package to another. Ideally this would
      * not be publically accessable and hopefully will not be in future releases.
@@ -269,6 +289,7 @@ public class Display {
         runnable.canvas.addKeyListener((KeyListener) UserInput.getContext());
         runnable.canvas.addMouseMotionListener((MouseMotionListener) UserInput.getContext());
         runnable.canvas.addMouseListener((MouseListener) UserInput.getContext());
+
     }
 }
 
