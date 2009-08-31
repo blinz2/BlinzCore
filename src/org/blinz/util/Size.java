@@ -18,48 +18,101 @@ package org.blinz.util;
 
 /**
  *
- * @author gary
+ * @author Blinz Project
  */
 public class Size {
 
     public int width = 0,  height = 0;
 
+    /**
+     * Creates a new Size with dimensions defaulting to 0.
+     */
     public Size() {
     }
 
+    /**
+     * Creates a new Size with the dimensions of the given Size.
+     * @param size
+     */
     public Size(Size size) {
         width = size.width;
         height = size.height;
     }
 
+    /**
+     * Creates a new Size with the given dimensions.
+     * @param width
+     * @param height
+     */
     public Size(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
-    public int getWidth(){
+    /**
+     * Gets the width attribute of this Size.
+     * @return width
+     */
+    public int getWidth() {
         return width;
     }
 
-    public int getHeight(){
+    /**
+     * Gets the height attribute of this Size.
+     * @return height
+     */
+    public int getHeight() {
         return height;
     }
 
-    public void setWidth(int width) {
+    /**
+     * Sets the width of this size to the given value.
+     * @param width
+     */
+    public final void setWidth(int width) {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    /**
+     * Sets the height of this size to the given value.
+     * @param height
+     */
+    public final void setHeight(int height) {
         this.height = height;
     }
 
-    public void setSize(int width, int height) {
+    /**
+     * Sets the dimensions of this Size to that of the given values.
+     * @param width
+     * @param height
+     */
+    public final void setSize(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
-    public void setSize(Size size) {
+    /**
+     * Sets the dimensions of this Size to that of the given Size.
+     * @param size
+     */
+    public final void setSize(Size size) {
         width = size.width;
         height = size.height;
+    }
+
+    /**
+     * Adds mod to width.
+     * @param mod
+     */
+    public final void modWidth(int mod) {
+        width += mod;
+    }
+
+    /**
+     * Adds mod to height.
+     * @param mod
+     */
+    public final void modHeight(int mod) {
+        height += mod;
     }
 }
