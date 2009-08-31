@@ -19,8 +19,10 @@ package org.blinz.input;
 import org.blinz.graphics.Display;
 
 /**
- *
- * @author gary
+ * UserInput allows initialization and basic access to the current state of the
+ * input system through static method calls. It includes methods to determine the
+ * currents state of the keyboard and mouse.
+ * @author Blinz Project
  */
 public final class UserInput {
 
