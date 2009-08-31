@@ -14,52 +14,45 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.util;
+package net.blinz.input;
+
+import net.blinz.util.Position;
 
 /**
  *
  * @author gary
  */
-public class Size {
+public class MouseEvent {
 
-    public int width = 0,  height = 0;
+    public static final int CLICK = 0;
+    public static final int PRESS = 1;
+    private int button;
+    private int clicks;
+    private Position cursorLocation;
 
-    public Size() {
+    MouseEvent(int button, int clicks, Position loc) {
+        this.button = button;
+        this.clicks = clicks;
+        cursorLocation = loc;
     }
 
-    public Size(Size size) {
-        width = size.width;
-        height = size.height;
+    public final int getButton() {
+        return button;
     }
 
-    public Size(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public final int getClickCount() {
+        return clicks;
     }
 
-    public int getWidth(){
-        return width;
+    public final int getCursorX() {
+        return cursorLocation.x;
     }
 
-    public int getHeight(){
-        return height;
+    public final int getCursorY() {
+        return cursorLocation.y;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setSize(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-
-    public void setSize(Size size) {
-        width = size.width;
-        height = size.height;
+    public final Position getCursorLocation() {
+        return new Position(cursorLocation);
     }
 }

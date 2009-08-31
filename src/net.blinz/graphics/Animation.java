@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.graphics;
+package net.blinz.graphics;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -80,7 +80,7 @@ public class Animation {
 
     /**
      * Removes the specified Image object from this Animation.
-     * @param imagePath
+     * @param image
      */
     public final void removeImage(Image image) {
         toRemove.add(image);

@@ -14,9 +14,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.input;
+package net.blinz.input;
 
-import blinz.util.Position;
+import net.blinz.util.Position;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -32,10 +32,10 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
 
     private final boolean[] keysPressed = new boolean[526];
     private final boolean[] mouseButtonsPressed = new boolean[20];
-    private final ArrayList<blinz.input.MouseListener> mouseListeners =
-            new ArrayList<blinz.input.MouseListener>();
-    private final ArrayList<blinz.input.KeyListener> keyListeners =
-            new ArrayList<blinz.input.KeyListener>();
+    private final ArrayList<net.blinz.input.MouseListener> mouseListeners =
+            new ArrayList<net.blinz.input.MouseListener>();
+    private final ArrayList<net.blinz.input.KeyListener> keyListeners =
+            new ArrayList<net.blinz.input.KeyListener>();
     private final Position cursorLocation = new Position();
 
     InputListener() {
@@ -43,14 +43,14 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        for (blinz.input.KeyListener listener : keyListeners) {
+        for (net.blinz.input.KeyListener listener : keyListeners) {
             listener.keyTyped(e.getKeyCode());
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        for (blinz.input.KeyListener listener : keyListeners) {
+        for (net.blinz.input.KeyListener listener : keyListeners) {
             listener.keyPressed(e.getKeyCode());
         }
         keysPressed[e.getKeyCode()] = true;
@@ -58,7 +58,7 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        for (blinz.input.KeyListener listener : keyListeners) {
+        for (net.blinz.input.KeyListener listener : keyListeners) {
             listener.keyReleased(e.getKeyCode());
         }
         keysPressed[e.getKeyCode()] = false;
@@ -66,14 +66,14 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for (blinz.input.MouseListener listener : mouseListeners) {
+        for (net.blinz.input.MouseListener listener : mouseListeners) {
             listener.buttonClick(e.getButton(), e.getClickCount(), e.getX(), e.getY());
         }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for (blinz.input.MouseListener listener : mouseListeners) {
+        for (net.blinz.input.MouseListener listener : mouseListeners) {
             listener.buttonPress(e.getButton(), e.getX(), e.getY());
         }
         mouseButtonsPressed[e.getButton()] = true;
@@ -81,7 +81,7 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        for (blinz.input.MouseListener listener : mouseListeners) {
+        for (net.blinz.input.MouseListener listener : mouseListeners) {
             listener.buttonRelease(e.getButton(), e.getX(), e.getY());
         }
         mouseButtonsPressed[e.getButton()] = false;
@@ -115,19 +115,19 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
         return mouseButtonsPressed;
     }
 
-    final void addMouseListener(blinz.input.MouseListener listener) {
+    final void addMouseListener(net.blinz.input.MouseListener listener) {
         mouseListeners.add(listener);
     }
 
-    final void addKeyListener(blinz.input.KeyListener listener) {
+    final void addKeyListener(net.blinz.input.KeyListener listener) {
         keyListeners.add(listener);
     }
 
-    final void removeMouseListener(blinz.input.MouseListener listener) {
+    final void removeMouseListener(net.blinz.input.MouseListener listener) {
         mouseListeners.remove(listener);
     }
 
-    final void removeKeyListener(blinz.input.KeyListener listener) {
+    final void removeKeyListener(net.blinz.input.KeyListener listener) {
         keyListeners.remove(listener);
     }
 }

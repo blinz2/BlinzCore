@@ -14,25 +14,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.util;
+package net.blinz.input;
 
 /**
  *
- * @author gary
+ * @author Gary
  */
-public final class AndTrigger extends SuperTrigger {
+public interface MouseListener {
 
-    /**
-     * Evaluates this AndTriggers sub-Triggers.
-     * @return - if all Triggers are true it returns true.
-     */
-    @Override
-    public final boolean evaluate() {
-        for (Trigger trigger : triggers) {
-            if(!trigger.evaluate()) {
-                return false;
-            }
-        }
-        return true;
-    }
+    public abstract void buttonClick(int buttonNumber, int numberOfClicks, int cursorX, int cursorY);
+
+    public abstract void buttonPress(int buttonNumber, int cursorX, int cursorY);
+
+    public abstract void buttonRelease(int buttonNumber, int cursorX, int cursorY);
 }

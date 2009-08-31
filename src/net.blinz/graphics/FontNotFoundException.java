@@ -14,43 +14,26 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.graphics;
-
-import java.io.IOException;
-import java.util.Vector;
+package net.blinz.graphics;
 
 /**
- * 
- * @author Gary
+ * An exception thrown when a requested font is not found.
+ * @author Blinz Project
  */
-public final class ImageLoader {
+public class FontNotFoundException extends Exception {
 
     /**
-     * Catalog of existing ImageStubs
+     * Creates a new instance of FontNotFoundException without detail message.
      */
-    private static final Vector<ImageStub> stubs = new Vector<ImageStub>();
+    public FontNotFoundException() {
+    }
+
 
     /**
-     * Returns an image object associated with the given path;
-     * @param String path
-     * @return Image
+     * Constructs an instance of FontNotFoundException with the specified detail message.
+     * @param msg the detail message.
      */
-    public final static Image loadImage(String path) throws IOException {
-
-        for (ImageStub s : stubs) {
-            if (s.getPath().equals(path)) {
-                s.dependentCount++;
-                Image image = new Image(s);
-                return image;
-            }
-        }
-
-        ImageStub stub = new ImageStub(path);
-        stubs.add(stub);
-
-        Image image = new Image(stub);
-
-        return image;
+    public FontNotFoundException(String msg) {
+        super(msg);
     }
 }
-

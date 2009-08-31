@@ -14,45 +14,39 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.input;
+package net.blinz.input;
 
-import blinz.util.Position;
+import net.blinz.util.Trigger;
 
 /**
  *
  * @author gary
  */
-public class MouseEvent {
+public class InputTrigger extends Trigger {
 
-    public static final int CLICK = 0;
-    public static final int PRESS = 1;
-    private int button;
-    private int clicks;
-    private Position cursorLocation;
+    public static final int MOUSE = 0;
+    public static final int KEYBOARD = 1;
+    private int deviceType = KEYBOARD;
+    private int buttonID;
 
-    MouseEvent(int button, int clicks, Position loc) {
-        this.button = button;
-        this.clicks = clicks;
-        cursorLocation = loc;
+    public InputTrigger() {
     }
 
-    public final int getButton() {
-        return button;
+    public InputTrigger(int deviceType, int buttonID) {
+        this.deviceType = deviceType;
+        this.buttonID = buttonID;
     }
 
-    public final int getClickCount() {
-        return clicks;
+    @Override
+    protected boolean evaluate() {
+        if (deviceType == MOUSE) {
+            return UserInput.mouseButtonPressed(buttonID);
+        } else if (deviceType == KEYBOARD) {
+            return UserInput.keyPressed(buttonID);
+        } else {
+            return false;
+        }
     }
 
-    public final int getCursorX() {
-        return cursorLocation.x;
-    }
 
-    public final int getCursorY() {
-        return cursorLocation.y;
-    }
-
-    public final Position getCursorLocation() {
-        return new Position(cursorLocation);
-    }
 }

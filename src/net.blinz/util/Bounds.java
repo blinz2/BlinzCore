@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.util;
+package net.blinz.util;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +76,8 @@ public class Bounds {
 
     /**
      * Sets the coordinates of this Bounds to the given coordinates.
-     * @param location
+     * @param x
+     * @param y
      */
     public final void setPosition(int x, int y) {
         this.x = x;
@@ -154,7 +155,7 @@ public class Bounds {
      * @param y1
      * @param x2
      * @param y2
-     * @return
+     * @return true if given line intersects this Bounds
      */
     public final boolean intersectsLine(int x1, int y1, int x2, int y2) {
         return contains(x1, y1) || contains(x2, y2);

@@ -14,10 +14,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.graphics;
+package net.blinz.graphics;
 
-import blinz.util.Size;
-import blinz.input.UserInput;
+import net.blinz.graphics.*;
+import net.blinz.util.Size;
+import net.blinz.input.UserInput;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Window;

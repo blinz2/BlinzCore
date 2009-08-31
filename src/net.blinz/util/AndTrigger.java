@@ -14,36 +14,25 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.graphics;
-
-import blinz.util.Position;
-import java.util.ArrayList;
+package net.blinz.util;
 
 /**
  *
  * @author gary
  */
-public final class Polygon {
+public final class AndTrigger extends SuperTrigger {
 
-    ArrayList<Position> points = new ArrayList<Position>();
-
-    public final void addPoint(Position loc) {
-        points.add(new Position(loc));
-    }
-
-    public final void addPoint(int x, int y) {
-        points.add(new Position(x, y));
-    }
-
-    public final void addPointByReference(Position loc) {
-        points.add(loc);
-    }
-
-    public final Position get(int i) {
-        return points.get(i);
-    }
-
-    public final int size(){
-        return points.size();
+    /**
+     * Evaluates this AndTriggers sub-Triggers.
+     * @return - if all Triggers are true it returns true.
+     */
+    @Override
+    public final boolean evaluate() {
+        for (Trigger trigger : triggers) {
+            if(!trigger.evaluate()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

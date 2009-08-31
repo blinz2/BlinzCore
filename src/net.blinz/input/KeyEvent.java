@@ -14,39 +14,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.input;
-
-import blinz.util.Trigger;
+package net.blinz.input;
 
 /**
  *
  * @author gary
  */
-public class InputTrigger extends Trigger {
+public class KeyEvent {
 
-    public static final int MOUSE = 0;
-    public static final int KEYBOARD = 1;
-    private int deviceType = KEYBOARD;
-    private int buttonID;
+    private int key;
 
-    public InputTrigger() {
+    public final int getKey() {
+        return key;
     }
-
-    public InputTrigger(int deviceType, int buttonID) {
-        this.deviceType = deviceType;
-        this.buttonID = buttonID;
-    }
-
-    @Override
-    protected boolean evaluate() {
-        if (deviceType == MOUSE) {
-            return UserInput.mouseButtonPressed(buttonID);
-        } else if (deviceType == KEYBOARD) {
-            return UserInput.keyPressed(buttonID);
-        } else {
-            return false;
-        }
-    }
-
-
 }

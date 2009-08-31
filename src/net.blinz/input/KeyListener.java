@@ -14,17 +14,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.input;
+package net.blinz.input;
 
 /**
  *
  * @author gary
  */
-public class KeyEvent {
+public interface KeyListener {
 
-    private int key;
+    public void keyPressed(int key);
 
-    public final int getKey() {
-        return key;
-    }
+    public void keyReleased(int key);
+
+    public void keyTyped(int key);
 }

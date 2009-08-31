@@ -14,41 +14,27 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.util;
+package net.blinz.util;
 
 /**
  *
  * @author gary
  */
-public class Position3D {
+public class Position {
 
     public int x = 0,  y = 0;
-    public double z = 0;
 
-    public Position3D() {
+    public Position() {
     }
 
-    public Position3D(int x, int y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    public Position3D(int x, int y) {
+    public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Position3D(Position3D location) {
-        x = location.x;
-        y = location.y;
-        z = location.z;
-    }
-
-    public final void setPosition(int x, int y, double z) {
-        setX(x);
-        setY(y);
-        setZ(z);
+    public Position(Position position) {
+        x = position.x;
+        y = position.y;
     }
 
     public final void setPosition(int x, int y) {
@@ -56,8 +42,8 @@ public class Position3D {
         setY(y);
     }
 
-    public final void setPosition(Position3D position) {
-        setPosition(position.x, position.y, position.z);
+    public final void setPosition(Position position) {
+        setPosition(position.x, position.y);
     }
 
     public final void setX(int x) {
@@ -68,10 +54,6 @@ public class Position3D {
         this.y = y;
     }
 
-    public final void setZ(double z) {
-        this.z = z;
-    }
-
     public final int getX() {
         return x;
     }
@@ -80,19 +62,11 @@ public class Position3D {
         return y;
     }
 
-    public final double getZ() {
-        return z;
-    }
-
     public final void modX(int mod) {
         x += mod;
     }
 
     public final void modY(int mod) {
         y += mod;
-    }
-
-    public final void modZ(int mod) {
-        z += mod;
     }
 }

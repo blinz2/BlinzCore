@@ -14,11 +14,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.graphics;
+package net.blinz.graphics;
 
-import blinz.util.Bounds;
-import blinz.util.Position;
-import blinz.util.Size;
+import net.blinz.util.Bounds;
+import net.blinz.util.Position;
+import net.blinz.util.Size;
 import com.sun.opengl.util.j2d.TextRenderer;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
@@ -193,7 +193,7 @@ public class Graphics {
      *
      * Note: loc1 refers to the top left corner of the image and loc2
      * refers to the bottom right.
-     * @param animation
+     * @param image
      * @param loc1
      * @param loc2
      */
@@ -206,7 +206,7 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param animation
+     * @param image
      * @param x1
      * @param y1
      * @param x2
@@ -310,7 +310,6 @@ public class Graphics {
      * @param string - String to be drawn
      * @param x - x location that string will be drawn at
      * @param y - y location that string will be drawn at
-     * @param font - Font the String will be drawn with
      */
     public final void drawString(String string, int x, int y) {
         drawString(string, x, y, font);

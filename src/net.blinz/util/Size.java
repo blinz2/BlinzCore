@@ -14,35 +14,52 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.util;
+package net.blinz.util;
 
 /**
  *
  * @author gary
  */
-public abstract class Trigger {
+public class Size {
 
-    private boolean enabled = true;
+    public int width = 0,  height = 0;
 
-    /**
-     * This method enables the Trigger, if enabled it can return true.
-     * Enabled by default.
-     */
-    public void enable() {
-        enabled = true;
+    public Size() {
     }
 
-    /**
-     * This method enables the Trigger, if disabled cannot can return true.
-     * Enabled by default.
-     */
-    public void disable() {
-        enabled = false;
+    public Size(Size size) {
+        width = size.width;
+        height = size.height;
     }
 
-    public final boolean condition() {
-        return evaluate() && enabled;
+    public Size(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
-    protected abstract boolean evaluate();
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public void setSize(Size size) {
+        width = size.width;
+        height = size.height;
+    }
 }

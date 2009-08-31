@@ -14,17 +14,35 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.input;
+package net.blinz.util;
 
 /**
  *
  * @author gary
  */
-public interface KeyListener {
+public abstract class Trigger {
 
-    public void keyPressed(int key);
+    private boolean enabled = true;
 
-    public void keyReleased(int key);
+    /**
+     * This method enables the Trigger, if enabled it can return true.
+     * Enabled by default.
+     */
+    public void enable() {
+        enabled = true;
+    }
 
-    public void keyTyped(int key);
+    /**
+     * This method enables the Trigger, if disabled cannot can return true.
+     * Enabled by default.
+     */
+    public void disable() {
+        enabled = false;
+    }
+
+    public final boolean condition() {
+        return evaluate() && enabled;
+    }
+
+    protected abstract boolean evaluate();
 }

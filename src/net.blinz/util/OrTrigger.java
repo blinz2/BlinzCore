@@ -14,17 +14,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package blinz.input;
+package net.blinz.util;
 
 /**
  *
- * @author Gary
+ * @author gary
  */
-public interface MouseListener {
+public class OrTrigger extends SuperTrigger {
 
-    public abstract void buttonClick(int buttonNumber, int numberOfClicks, int cursorX, int cursorY);
-
-    public abstract void buttonPress(int buttonNumber, int cursorX, int cursorY);
-
-    public abstract void buttonRelease(int buttonNumber, int cursorX, int cursorY);
+    public boolean evaluate() {
+        for (Trigger trigger : triggers) {
+            if (trigger.evaluate()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
