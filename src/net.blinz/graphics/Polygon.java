@@ -21,11 +21,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author gary
+ * @author Blinz Project
  */
 public final class Polygon {
 
-    ArrayList<Position> points = new ArrayList<Position>();
+    private ArrayList<Position> points = new ArrayList<Position>();
 
     public final void addPoint(Position loc) {
         points.add(new Position(loc));
