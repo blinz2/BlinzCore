@@ -17,8 +17,8 @@
 package org.blinz.util;
 
 /**
- *
- * @author gary
+ * Abstract class that wraps and evaluates boolean statements.
+ * @author Trigger
  */
 public abstract class Trigger {
 
@@ -28,7 +28,7 @@ public abstract class Trigger {
      * This method enables the Trigger, if enabled it can return true.
      * Enabled by default.
      */
-    public void enable() {
+    public final void enable() {
         enabled = true;
     }
 
@@ -36,13 +36,21 @@ public abstract class Trigger {
      * This method enables the Trigger, if disabled cannot can return true.
      * Enabled by default.
      */
-    public void disable() {
+    public final void disable() {
         enabled = false;
     }
 
+    /**
+     * Checks this Trigger's condition.
+     * @return true if this Trigger's condition evaluates to true, false otherwise
+     */
     public final boolean condition() {
         return evaluate() && enabled;
     }
 
+    /**
+     * 
+     * @return true if this Trigger's condition is true, false otherwise
+     */
     protected abstract boolean evaluate();
 }
