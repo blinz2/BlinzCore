@@ -17,82 +17,93 @@
 package org.blinz.util;
 
 /**
- *
- * @author gary
+ * Class for holding 3 dimensional coordinates.
+ * @author Blinz Project
  */
-public class Position3D {
+public class Position3D extends Position {
 
-    public int x = 0,  y = 0;
+    /**
+     * Z coordinate of this Position.
+     */
     public double z = 0;
 
+    /**
+     * Default constructer without parameters, location defaults to (0, 0).
+     */
     public Position3D() {
     }
 
+    /**
+     * Creates a new Position with the given coordinates.
+     * @param x
+     * @param y
+     */
+    public Position3D(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * Creates a new Position with the given coordinates.
+     * @param x
+     * @param y
+     */
     public Position3D(int x, int y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    public Position3D(int x, int y) {
-        this.x = x;
-        this.y = y;
+    /**
+     * Creates a new Position with the values of position.
+     * @param position
+     */
+    public Position3D(Position3D position) {
+        x = position.x;
+        y = position.y;
+        z = position.z;
     }
 
-    public Position3D(Position3D location) {
-        x = location.x;
-        y = location.y;
-        z = location.z;
-    }
-
+    /**
+     * Sets this Positions coordinate to that of the given coordinates.
+     * @param x
+     * @param y
+     */
     public final void setPosition(int x, int y, double z) {
         setX(x);
         setY(y);
         setZ(z);
     }
 
-    public final void setPosition(int x, int y) {
-        setX(x);
-        setY(y);
-    }
-
-    public final void setPosition(Position3D position) {
+    /**
+     * Sets this Positions coordinates to that of the given Position.
+     * @param position
+     */
+    public final void setPosition3D(Position3D position) {
         setPosition(position.x, position.y, position.z);
     }
 
-    public final void setX(int x) {
-        this.x = x;
-    }
-
-    public final void setY(int y) {
-        this.y = y;
-    }
-
+    /**
+     * Sets the z coordinate of this Position to the given value.
+     * @param z
+     */
     public final void setZ(double z) {
         this.z = z;
     }
 
-    public final int getX() {
-        return x;
-    }
-
-    public final int getY() {
-        return y;
-    }
-
+    /**
+     * Gets the z coordinate of this Position.
+     * @return z
+     */
     public final double getZ() {
         return z;
     }
 
-    public final void modX(int mod) {
-        x += mod;
-    }
-
-    public final void modY(int mod) {
-        y += mod;
-    }
-
-    public final void modZ(int mod) {
+    /**
+     * Adds mod to this Position's z coordinate.
+     * @param mod
+     */
+    public final void modZ(double mod) {
         z += mod;
     }
 }
