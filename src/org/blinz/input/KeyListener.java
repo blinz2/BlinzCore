@@ -17,14 +17,26 @@
 package org.blinz.input;
 
 /**
- *
- * @author gary
+ * Interface with the methods for key events pressed, released, and typed.
+ * @author Blinz Project
  */
 public interface KeyListener {
 
+    /**
+     * Called when a key is pressed.
+     * @param key id to be run against relevant possiblities from the Key class
+     */
     public void keyPressed(int key);
 
+    /**
+     * Called when a key is released.
+     * @param key id to be run against relevant possiblities from the Key class
+     */
     public void keyReleased(int key);
 
+    /**
+     * Called when a key is typed.
+     * @param key id to be run against relevant possiblities from the Key class
+     */
     public void keyTyped(int key);
 }
