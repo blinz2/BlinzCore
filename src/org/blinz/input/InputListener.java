@@ -115,18 +115,38 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
         return mouseButtonsPressed;
     }
 
+    /**
+     * Adds the given Blinz MouseListener to the InputListener to be updated about
+     * the activities of the mouse.
+     * @param listener
+     */
     final void addMouseListener(org.blinz.input.MouseListener listener) {
         mouseListeners.add(listener);
     }
 
+    /**
+     * Adds the given Blinz KeyListener to the InputListener to be updated about
+     * activity on the keyboard.
+     * @param listener
+     */
     final void addKeyListener(org.blinz.input.KeyListener listener) {
         keyListeners.add(listener);
     }
 
+    /**
+     * Removes the specified Blinz MouseListener from the InputListener so that
+     * it will no longer be updated.
+     * @param listener
+     */
     final void removeMouseListener(org.blinz.input.MouseListener listener) {
         mouseListeners.remove(listener);
     }
 
+    /**
+     * Removes the specified Blinz KeyListener from the InputListener so that
+     * it will no longer be updated.
+     * @param listener
+     */
     final void removeKeyListener(org.blinz.input.KeyListener listener) {
         keyListeners.remove(listener);
     }
