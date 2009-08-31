@@ -19,8 +19,8 @@ package org.blinz.input;
 import org.blinz.util.Trigger;
 
 /**
- *
- * @author gary
+ * A Trigger that checks for set input states and events.
+ * @author Blinz Project
  */
 public class InputTrigger extends Trigger {
 
@@ -32,21 +32,48 @@ public class InputTrigger extends Trigger {
     public InputTrigger() {
     }
 
+    /**
+     * Accepts a device type and the buttonID to determine what it checks.
+     *
+     * Example:
+     *          new InputTrigger(InputTrigger.KEYBOARD, Key.KEY_G);
+     *
+     * @param deviceType
+     * @param buttonID
+     */
     public InputTrigger(int deviceType, int buttonID) {
         this.deviceType = deviceType;
         this.buttonID = buttonID;
     }
 
-    @Override
-    protected boolean evaluate() {
-        if (deviceType == MOUSE) {
-            return UserInput.mouseButtonPressed(buttonID);
-        } else if (deviceType == KEYBOARD) {
-            return UserInput.keyPressed(buttonID);
-        } else {
-            return false;
-        }
+    /**
+     * Sets the input state to be checked when the condition of this Trigger is
+     * evaluated.
+     * 
+     * Example:
+     *          new InputTrigger(InputTrigger.KEYBOARD, Key.KEY_G);
+     *
+     * @param deviceType
+     * @param buttonID
+     */
+    public final void setTrigger(int deviceType, int buttonID) {
+        this.deviceType = deviceType;
+        this.buttonID = buttonID;
     }
 
-
+    /**
+     * Evaluates the set input state.
+     * @return true if the button is pressed, false otherwise.
+     */
+    @Override
+    protected boolean evaluate() {
+        switch (deviceType) {
+            case MOUSE:
+                return UserInput.mouseButtonPressed(buttonID);
+            case KEYBOARD:
+                return UserInput.keyPressed(buttonID);
+            default:
+                return false;
+        }
+    }
 }
