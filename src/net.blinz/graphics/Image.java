@@ -39,7 +39,7 @@ public final class Image {
 
     /**
      * Constructor for instances of Image.
-     * @param stub - takes the ImageStub and represents it.
+     * @param stub takes the ImageStub and represents it.
      */
     Image (ImageStub stub) {
         this.stub = stub;
@@ -71,7 +71,7 @@ public final class Image {
     }
 
     /**
-     *
+     * Gets the path to this Image in storage.
      * @return path to this Images location in storage.
      */
     public String getPath() {
@@ -87,7 +87,7 @@ public final class Image {
     }
 
     /**
-     *
+     * Gets the ImageStub that contains necessary objects to draw the image.
      * @return the ImageStub that this Image represents.
      */
     final ImageStub getImageStub() {
@@ -95,6 +95,10 @@ public final class Image {
     }
 }
 
+/**
+ * Contains the objects used to implement image support.
+ * @author Blinz Project
+ */
 final class ImageStub {
 
     int dependentCount = 1;
