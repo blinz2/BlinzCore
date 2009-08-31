@@ -14,10 +14,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.graphics;
+package org.blinz.graphics;
 
-import net.blinz.util.Size;
-import net.blinz.input.UserInput;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Window;
@@ -37,6 +35,8 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
+import org.blinz.util.Size;
+import org.blinz.input.UserInput;
 
 /**
  * Class for cleating and manipulating a window for drawing to the screen.
@@ -373,9 +373,6 @@ class CanvasListener implements GLEventListener {
 
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-        for (Screen screen : screens) {
-            screen.generateBounds();
-        }
         GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);

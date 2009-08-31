@@ -14,15 +14,15 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.graphics;
+package org.blinz.graphics;
 
-import net.blinz.util.Size;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import org.blinz.util.Size;
 
 /**
  * Image class, instances represent images stored in file. To create an Image use

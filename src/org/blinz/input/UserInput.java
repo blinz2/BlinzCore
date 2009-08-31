@@ -14,9 +14,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.input;
+package org.blinz.input;
 
-import net.blinz.graphics.Display;
+import org.blinz.graphics.Display;
 
 /**
  *

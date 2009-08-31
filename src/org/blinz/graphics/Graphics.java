@@ -14,16 +14,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.graphics;
+package org.blinz.graphics;
 
-import net.blinz.util.Bounds;
-import net.blinz.util.Position;
-import net.blinz.util.Size;
 import com.sun.opengl.util.j2d.TextRenderer;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+import org.blinz.util.Position;
+import org.blinz.util.Bounds;
+import org.blinz.util.Size;
 
 /**
  * Graphics class contains methods for drawing to the screen.

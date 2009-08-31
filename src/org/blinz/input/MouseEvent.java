@@ -14,36 +14,45 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.graphics;
+package org.blinz.input;
 
-import net.blinz.util.Position;
-import java.util.ArrayList;
+import org.blinz.util.Position;
 
 /**
  *
- * @author Blinz Project
+ * @author gary
  */
-public final class Polygon {
+public class MouseEvent {
 
-    private ArrayList<Position> points = new ArrayList<Position>();
+    public static final int CLICK = 0;
+    public static final int PRESS = 1;
+    private int button;
+    private int clicks;
+    private Position cursorLocation;
 
-    public final void addPoint(Position loc) {
-        points.add(new Position(loc));
+    MouseEvent(int button, int clicks, Position loc) {
+        this.button = button;
+        this.clicks = clicks;
+        cursorLocation = loc;
     }
 
-    public final void addPoint(int x, int y) {
-        points.add(new Position(x, y));
+    public final int getButton() {
+        return button;
     }
 
-    public final void addPointByReference(Position loc) {
-        points.add(loc);
+    public final int getClickCount() {
+        return clicks;
     }
 
-    public final Position get(int i) {
-        return points.get(i);
+    public final int getCursorX() {
+        return cursorLocation.x;
     }
 
-    public final int size(){
-        return points.size();
+    public final int getCursorY() {
+        return cursorLocation.y;
+    }
+
+    public final Position getCursorLocation() {
+        return new Position(cursorLocation);
     }
 }

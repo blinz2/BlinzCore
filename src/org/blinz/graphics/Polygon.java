@@ -14,26 +14,36 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.graphics;
+package org.blinz.graphics;
+
+import org.blinz.util.Position;
+import java.util.ArrayList;
 
 /**
- * An exception thrown when a requested font is not found.
+ *
  * @author Blinz Project
  */
-public class FontNotFoundException extends Exception {
+public final class Polygon {
 
-    /**
-     * Creates a new instance of FontNotFoundException without detail message.
-     */
-    public FontNotFoundException() {
+    private ArrayList<Position> points = new ArrayList<Position>();
+
+    public final void addPoint(Position loc) {
+        points.add(new Position(loc));
     }
 
+    public final void addPoint(int x, int y) {
+        points.add(new Position(x, y));
+    }
 
-    /**
-     * Constructs an instance of FontNotFoundException with the specified detail message.
-     * @param msg the detail message.
-     */
-    public FontNotFoundException(String msg) {
-        super(msg);
+    public final void addPointByReference(Position loc) {
+        points.add(loc);
+    }
+
+    public final Position get(int i) {
+        return points.get(i);
+    }
+
+    public final int size(){
+        return points.size();
     }
 }

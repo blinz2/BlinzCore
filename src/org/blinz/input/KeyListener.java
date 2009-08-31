@@ -14,20 +14,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.util;
+package org.blinz.input;
 
 /**
  *
  * @author gary
  */
-public class OrTrigger extends SuperTrigger {
+public interface KeyListener {
 
-    public boolean evaluate() {
-        for (Trigger trigger : triggers) {
-            if (trigger.evaluate()) {
-                return true;
-            }
-        }
-        return false;
-    }
+    public void keyPressed(int key);
+
+    public void keyReleased(int key);
+
+    public void keyTyped(int key);
 }

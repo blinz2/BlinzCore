@@ -14,35 +14,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.util;
+package org.blinz.util;
 
 /**
  *
  * @author gary
  */
-public abstract class Trigger {
+public class OrTrigger extends SuperTrigger {
 
-    private boolean enabled = true;
-
-    /**
-     * This method enables the Trigger, if enabled it can return true.
-     * Enabled by default.
-     */
-    public void enable() {
-        enabled = true;
+    public boolean evaluate() {
+        for (Trigger trigger : triggers) {
+            if (trigger.evaluate()) {
+                return true;
+            }
+        }
+        return false;
     }
-
-    /**
-     * This method enables the Trigger, if disabled cannot can return true.
-     * Enabled by default.
-     */
-    public void disable() {
-        enabled = false;
-    }
-
-    public final boolean condition() {
-        return evaluate() && enabled;
-    }
-
-    protected abstract boolean evaluate();
 }

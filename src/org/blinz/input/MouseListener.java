@@ -14,17 +14,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.input;
+package org.blinz.input;
 
 /**
  *
- * @author gary
+ * @author Gary
  */
-public interface KeyListener {
+public interface MouseListener {
 
-    public void keyPressed(int key);
+    public abstract void buttonClick(int buttonNumber, int numberOfClicks, int cursorX, int cursorY);
 
-    public void keyReleased(int key);
+    public abstract void buttonPress(int buttonNumber, int cursorX, int cursorY);
 
-    public void keyTyped(int key);
+    public abstract void buttonRelease(int buttonNumber, int cursorX, int cursorY);
 }

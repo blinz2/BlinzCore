@@ -14,9 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.graphics;
-
-import net.blinz.*;
+package org.blinz.graphics;
 
 /**
  * Color class used to represent various colors using RGB values.

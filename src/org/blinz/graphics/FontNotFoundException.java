@@ -14,17 +14,26 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.input;
+package org.blinz.graphics;
 
 /**
- *
- * @author Gary
+ * An exception thrown when a requested font is not found.
+ * @author Blinz Project
  */
-public interface MouseListener {
+public class FontNotFoundException extends Exception {
 
-    public abstract void buttonClick(int buttonNumber, int numberOfClicks, int cursorX, int cursorY);
+    /**
+     * Creates a new instance of FontNotFoundException without detail message.
+     */
+    public FontNotFoundException() {
+    }
 
-    public abstract void buttonPress(int buttonNumber, int cursorX, int cursorY);
 
-    public abstract void buttonRelease(int buttonNumber, int cursorX, int cursorY);
+    /**
+     * Constructs an instance of FontNotFoundException with the specified detail message.
+     * @param msg the detail message.
+     */
+    public FontNotFoundException(String msg) {
+        super(msg);
+    }
 }

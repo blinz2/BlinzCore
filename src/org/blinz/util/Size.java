@@ -14,39 +14,52 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.blinz.input;
-
-import net.blinz.util.Trigger;
+package org.blinz.util;
 
 /**
  *
  * @author gary
  */
-public class InputTrigger extends Trigger {
+public class Size {
 
-    public static final int MOUSE = 0;
-    public static final int KEYBOARD = 1;
-    private int deviceType = KEYBOARD;
-    private int buttonID;
+    public int width = 0,  height = 0;
 
-    public InputTrigger() {
+    public Size() {
     }
 
-    public InputTrigger(int deviceType, int buttonID) {
-        this.deviceType = deviceType;
-        this.buttonID = buttonID;
+    public Size(Size size) {
+        width = size.width;
+        height = size.height;
     }
 
-    @Override
-    protected boolean evaluate() {
-        if (deviceType == MOUSE) {
-            return UserInput.mouseButtonPressed(buttonID);
-        } else if (deviceType == KEYBOARD) {
-            return UserInput.keyPressed(buttonID);
-        } else {
-            return false;
-        }
+    public Size(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
+    public int getWidth(){
+        return width;
+    }
 
+    public int getHeight(){
+        return height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public void setSize(Size size) {
+        width = size.width;
+        height = size.height;
+    }
 }
