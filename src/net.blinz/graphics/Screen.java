@@ -21,7 +21,7 @@ import javax.media.opengl.GLAutoDrawable;
 
 /**
  *
- * @author gary
+ * @author Blinz Project
  */
 public abstract class Screen {
 
@@ -58,15 +58,22 @@ public abstract class Screen {
         return bounds.getHeight();
     }
 
+    /**
+     * Draw this Screen.
+     * @param gl - context for this Screen.
+     */
     final void draw(GLAutoDrawable gl) {
-        generateBounds();
+        computeBounds();
         graphics.setContext(gl);
         graphics.setScreenBounds(bounds);
         graphics.load();
         draw(graphics);
     }
 
-    final void generateBounds() {
+    /**
+     * Calculates the bounds of this Screen according to its screen type.
+     */
+    private final void computeBounds() {
         switch (screenType) {
             case FULL_SCREEN:
                 bounds.setBounds(0, 0, Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight());
