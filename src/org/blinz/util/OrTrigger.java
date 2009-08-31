@@ -17,11 +17,16 @@
 package org.blinz.util;
 
 /**
- *
- * @author gary
+ * Class to or together multiple Triggers.
+ * @author Blinz Project
  */
 public class OrTrigger extends SuperTrigger {
 
+    /**
+     * Checks to see if any of the Triggers return true.
+     * @return true if any of the triggers return true, false otherwise
+     */
+    @Override
     public boolean evaluate() {
         for (Trigger trigger : triggers) {
             if (trigger.evaluate()) {
