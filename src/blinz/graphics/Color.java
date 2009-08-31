@@ -57,6 +57,14 @@ public class Color {
     }
 
     /**
+     * Sets the drawing color to the color represented by the passed Color object.
+     * @param color
+     */
+    public final void setColor(Color color) {
+        setColor(color.red, color.green, color.blue);
+    }
+
+    /**
      * Sets the red value of the RGB values in this Color object to the given value.
      * @param red - red value in this Color's RGB
      */
