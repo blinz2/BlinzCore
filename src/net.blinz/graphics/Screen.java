@@ -20,7 +20,8 @@ import net.blinz.util.Bounds;
 import javax.media.opengl.GLAutoDrawable;
 
 /**
- *
+ * Screen class is necessary to draw to the Display. Screen class allows dividing 
+ * the display into section such as top right or bottom left.
  * @author Blinz Project
  */
 public abstract class Screen {
@@ -38,6 +39,15 @@ public abstract class Screen {
     private final Bounds bounds = new Bounds();
     private final Graphics graphics = new Graphics();
 
+    /**
+     * Sets the screen type out of a variety of types such as top left or bottom
+     * right.
+     *
+     * Example:
+     *          screen.setScreenType(Screen.TOP_RIGHT_SCREEN);
+     * 
+     * @param type int
+     */
     public final void setScreenType(int type) {
         screenType = type;
     }
@@ -60,7 +70,7 @@ public abstract class Screen {
 
     /**
      * Draw this Screen.
-     * @param gl - context for this Screen.
+     * @param gl context for this Screen.
      */
     final void draw(GLAutoDrawable gl) {
         computeBounds();
