@@ -19,7 +19,8 @@ package net.blinz.graphics;
 import com.sun.opengl.util.j2d.TextRenderer;
 
 /**
- *
+ * Instances of this class representing various desired fonts are given to the Graphics
+ * class to determine how to draw text.
  * @author Blinz Project
  */
 public final class Font {

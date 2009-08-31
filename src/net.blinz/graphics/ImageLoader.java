@@ -21,7 +21,7 @@ import java.util.Vector;
 
 /**
  * 
- * @author Gary
+ * @author Blinz Project
  */
 public final class ImageLoader {
 

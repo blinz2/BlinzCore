@@ -16,7 +16,6 @@
  */
 package net.blinz.graphics;
 
-import net.blinz.graphics.*;
 import net.blinz.util.Size;
 import net.blinz.input.UserInput;
 import java.awt.Dimension;
@@ -40,7 +39,7 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 
 /**
- *
+ * Class for cleating and manipulating a window for drawing to the screen.
  * @author Blinz Project
  */
 public class Display {

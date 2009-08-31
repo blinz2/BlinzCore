@@ -16,7 +16,6 @@
  */
 package net.blinz.graphics;
 
-import net.blinz.graphics.*;
 import net.blinz.util.Size;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureIO;
@@ -28,7 +27,7 @@ import javax.imageio.ImageIO;
 /**
  * Image class, instances represent images stored in file. To create an Image use
  * ImageLoader.
- * @author BlinzProject
+ * @author Blinz Project
  */
 public final class Image {
 

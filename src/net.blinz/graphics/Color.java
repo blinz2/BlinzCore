@@ -19,8 +19,8 @@ package net.blinz.graphics;
 import net.blinz.*;
 
 /**
- *
- * @author gary
+ * Color class used to represent various colors using RGB values.
+ * @author Blinz Project
  */
 public class Color {
 

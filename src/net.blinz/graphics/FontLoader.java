@@ -19,7 +19,7 @@ package net.blinz.graphics;
 import java.util.Vector;
 
 /**
- *
+ * Class used to load fonts for drawing text with the Graphics class.
  * @author Blinz Project
  */
 public class FontLoader {
