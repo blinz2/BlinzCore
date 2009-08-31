@@ -19,8 +19,8 @@ package org.blinz.util;
 import java.util.ArrayList;
 
 /**
- *
- * @author gary
+ * An abstract Trigger for combining many triggers.
+ * @author Blinz Project
  */
 public abstract class SuperTrigger extends Trigger {
 
