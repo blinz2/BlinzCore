@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author gary
+ * @author Blinz Project
  */
 public class Bounds {
 
@@ -30,37 +30,75 @@ public class Bounds {
     int x = 0;
     int y = 0;
 
+    /**
+     * Default constructor with no parameters, does nothing.
+     */
     public Bounds() {
     }
 
+    /**
+     * Creates a new Bounds with the specified coordinates and dimensions.
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public Bounds(int x, int y, int width, int height) {
         setBounds(x, y, width, height);
     }
 
+    /**
+     * Creates a new Bounds with attributes of the given Bounds.
+     * @param bounds
+     */
     public Bounds(Bounds bounds) {
         setBounds(bounds);
     }
 
+    /**
+     * Gets the x of this Bounds.
+     * @return x
+     */
     public final int getX() {
         return x;
     }
 
+    /**
+     * Gets the y of this Bounds.
+     * @return y
+     */
     public final int getY() {
         return y;
     }
 
+    /**
+     * Gets the width of this Bounds.
+     * @return width
+     */
     public final int getWidth() {
         return width;
     }
 
+    /**
+     * Gets the height of this Bounds.
+     * @return height
+     */
     public final int getHeight() {
         return height;
     }
 
+    /**
+     * Sets the x of this Bounds.
+     * @param x
+     */
     public final void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Sets the y of this Bounds.
+     * @param y
+     */
     public final void setY(int y) {
         this.y = y;
     }
@@ -84,10 +122,18 @@ public class Bounds {
         this.y = y;
     }
 
+    /**
+     * Sets the width of this Bounds.
+     * @param width
+     */
     public final void setWidth(int width) {
         this.width = width;
     }
 
+    /**
+     * Sets the height of this Bounds.
+     * @param height
+     */
     public final void setHeight(int height) {
         this.height = height;
     }
@@ -110,18 +156,34 @@ public class Bounds {
         setSize(size.width, size.height);
     }
 
+    /**
+     * Addes xMod to the current x.
+     * @param xMod
+     */
     public final void modX(int xMod) {
         x += xMod;
     }
 
+    /**
+     * Adds yMod to the current y.
+     * @param yMod
+     */
     public final void modY(int yMod) {
         y += yMod;
     }
 
+    /**
+     * Adds widthMod to the current width.
+     * @param widthMod
+     */
     public final void modWidth(int widthMod) {
         width += widthMod;
     }
 
+    /**
+     * Adds heightMod to the current height.
+     * @param heightMod
+     */
     public final void modHeight(int heightMod) {
         height += heightMod;
     }
@@ -161,39 +223,66 @@ public class Bounds {
         return contains(x1, y1) || contains(x2, y2);
     }
 
+    /**
+     * Returns true if it intersects the given Bounds.
+     * @param bounds
+     * @return
+     */
     public final boolean intersects(Bounds bounds) {
         return bounds.width > 0 && bounds.height > 0 && width > 0 && height > 0 &&
                 bounds.x < x + width && bounds.x + bounds.width > x && bounds.y < y + height &&
                 bounds.y + bounds.height > y;
     }
 
+    /**
+     * Static method that takes two bounds and checks to see if they intersect.
+     * @param x1
+     * @param x2
+     * @param y1
+     * @param y2
+     * @param width1
+     * @param width2
+     * @param height1
+     * @param height2
+     * @return true if the given bounds intersect
+     */
     public static final boolean intersects(int x1, int x2, int y1, int y2, int width1, int width2, int height1, int height2) {
         return width1 > 0 && height1 > 0 && width2 > 0 && height2 > 0 &&
                 x1 < x2 + width2 && x1 + width1 > x2 &&
                 y1 < y2 + height2 && y1 + height1 > y2;
     }
 
+    /**
+     * Checks to see if the given bounds intersects with this.
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @return true if the given bounds intersects with this, false otherwise
+     */
     public final boolean intersects(int x, int y, int width, int height) {
         return width > 0 && height > 0 && this.width > 0 && this.height > 0 &&
                 x < this.x + this.width && x + width > this.x &&
                 y < this.y + this.height && y + height > this.y;
     }
 
+    /**
+     * Checks to see if the given point is within this Bounds.
+     * @param x
+     * @param y
+     * @return true if this Bounds contains the given point, false otherwise
+     */
     public final boolean contains(int x, int y) {
         return width > 0 && height > 0 && x >= this.x && x < this.x + width &&
                 y >= this.y && y < this.y + height;
     }
 
+    /**
+     * Checks to see if the given Position is within this Bounds.
+     * @param loc
+     * @return true if this Bounds contains the given Position, false otherwise
+     */
     public final boolean contains(Position loc) {
         return contains(loc.x, loc.y);
-    }
-
-    @Override
-    protected void finalize() {
-        try {
-            super.finalize();
-        } catch (Throwable ex) {
-            Logger.getLogger(Bounds.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }
