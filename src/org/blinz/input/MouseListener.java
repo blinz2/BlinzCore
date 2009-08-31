@@ -17,14 +17,33 @@
 package org.blinz.input;
 
 /**
- *
- * @author Gary
+ * Interface with the methods for mouse events pressed, released, and clicked.
+ * @author Blinz Project
  */
 public interface MouseListener {
 
-    public abstract void buttonClick(int buttonNumber, int numberOfClicks, int cursorX, int cursorY);
+    /**
+     * Called when a key is clicked.
+     * @param buttonNumber id to be run against relevant possiblities from the Key class
+     * @param clickCount number of times the button was clicked
+     * @param x x coordinate of the location the mouse was clicked at
+     * @param y y coordinate of the location the mouse was clicked at
+     */
+    public void buttonClick(int buttonNumber, int clickCount, int cursorX, int cursorY);
 
-    public abstract void buttonPress(int buttonNumber, int cursorX, int cursorY);
+    /**
+     * Called when a key is pressed.
+     * @param buttonNumber id to be run against relevant possiblities from the Key class
+     * @param x x coordinate of the location the mouse was clicked at
+     * @param y y coordinate of the location the mouse was clicked at
+     */
+    public void buttonPress(int buttonNumber, int cursorX, int cursorY);
 
-    public abstract void buttonRelease(int buttonNumber, int cursorX, int cursorY);
+    /**
+     * Called when a key is released.
+     * @param buttonNumber id to be run against relevant possiblities from the Key class
+     * @param x x coordinate of the location the mouse was clicked at
+     * @param y y coordinate of the location the mouse was clicked at
+     */
+    public void buttonRelease(int buttonNumber, int cursorX, int cursorY);
 }
