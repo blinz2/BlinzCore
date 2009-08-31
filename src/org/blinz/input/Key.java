@@ -19,8 +19,8 @@ package org.blinz.input;
 import java.awt.event.KeyEvent;
 
 /**
- *
- * @author gary
+ * Class contains the index of all possible keys in this API.
+ * @author Blinz Project
  */
 public final class Key {
 
