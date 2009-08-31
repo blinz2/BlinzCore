@@ -26,24 +26,24 @@ public interface MouseListener {
      * Called when a key is clicked.
      * @param buttonNumber id to be run against relevant possiblities from the Key class
      * @param clickCount number of times the button was clicked
-     * @param x x coordinate of the location the mouse was clicked at
-     * @param y y coordinate of the location the mouse was clicked at
+     * @param cursorX x coordinate of the location the mouse was clicked at
+     * @param cursorY y coordinate of the location the mouse was clicked at
      */
     public void buttonClick(int buttonNumber, int clickCount, int cursorX, int cursorY);
 
     /**
      * Called when a key is pressed.
      * @param buttonNumber id to be run against relevant possiblities from the Key class
-     * @param x x coordinate of the location the mouse was clicked at
-     * @param y y coordinate of the location the mouse was clicked at
+     * @param cursorX x coordinate of the location the mouse was clicked at
+     * @param cursorY y coordinate of the location the mouse was clicked at
      */
     public void buttonPress(int buttonNumber, int cursorX, int cursorY);
 
     /**
      * Called when a key is released.
      * @param buttonNumber id to be run against relevant possiblities from the Key class
-     * @param x x coordinate of the location the mouse was clicked at
-     * @param y y coordinate of the location the mouse was clicked at
+     * @param cursorX x coordinate of the location the mouse was clicked at
+     * @param cursorY y coordinate of the location the mouse was clicked at
      */
     public void buttonRelease(int buttonNumber, int cursorX, int cursorY);
 }

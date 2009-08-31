@@ -226,7 +226,7 @@ public class Bounds {
     /**
      * Returns true if it intersects the given Bounds.
      * @param bounds
-     * @return
+     * @return true if the given Bounds intersects this, false otherwise.
      */
     public final boolean intersects(Bounds bounds) {
         return bounds.width > 0 && bounds.height > 0 && width > 0 && height > 0 &&
