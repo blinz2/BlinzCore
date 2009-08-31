@@ -16,34 +16,62 @@
  */
 package org.blinz.graphics;
 
+import java.util.Vector;
 import org.blinz.util.Position;
-import java.util.ArrayList;
 
 /**
- *
+ * Polygon stores a series of points, each being connected to the previous with
+ * the exception of the last one which is connected to the first.
  * @author Blinz Project
  */
 public final class Polygon {
 
-    private ArrayList<Position> points = new ArrayList<Position>();
+    /**
+     * List storing points on the polygon.
+     */
+    private Vector<Position> points = new Vector<Position>();
 
+    /**
+     * Adds the specified point to the last spot on the list.
+     * @param loc
+     */
     public final void addPoint(Position loc) {
         points.add(new Position(loc));
     }
 
+    /**
+     * Adds the specified point to the last spot on the list.
+     * @param x
+     * @param y
+     */
     public final void addPoint(int x, int y) {
         points.add(new Position(x, y));
     }
 
+    /**
+     * Adds the specified point to the last spot on the list by reference so that
+     * the point can be changed without adding and removing (a) point(s) from the
+     * Polygon.
+     * @param loc
+     */
     public final void addPointByReference(Position loc) {
         points.add(loc);
     }
 
-    public final Position get(int i) {
-        return points.get(i);
+    /**
+     * Gests the point at the specified index.
+     * @param index
+     * @return the point at index
+     */
+    public final Position get(int index) {
+        return points.get(index);
     }
 
-    public final int size(){
+    /**
+     * Returns the number of points in the Polygon.
+     * @return int - number of points in the Polygon.
+     */
+    public final int size() {
         return points.size();
     }
 }
