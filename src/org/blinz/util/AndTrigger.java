@@ -17,8 +17,8 @@
 package org.blinz.util;
 
 /**
- *
- * @author gary
+ * Used to and many Triggers together.
+ * @author Blinz Project
  */
 public final class AndTrigger extends SuperTrigger {
 
