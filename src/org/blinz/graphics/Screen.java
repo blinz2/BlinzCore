@@ -116,5 +116,9 @@ public abstract class Screen {
         }
     }
 
+    /**
+     * Draw the desired screen.
+     * @param graphics
+     */
     protected abstract void draw(Graphics graphics);
 }
