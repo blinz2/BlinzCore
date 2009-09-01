@@ -16,9 +16,6 @@
  */
 package org.blinz.util;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Blinz Project
