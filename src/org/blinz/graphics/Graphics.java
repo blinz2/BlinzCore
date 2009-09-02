@@ -287,10 +287,11 @@ public class Graphics {
     public final void drawString(String string, int x, int y, Font font) {
         TextRenderer r = font.stub.getRenderer();
         r.setColor(color.getRedf(), color.getGreenf(), color.getBluef(), 1f);
-        y = screenBounds.getHeight() - y;
         if (viewPortOn) {
+            y = fixedViewport.getHeight() - y;
             r.beginRendering(fixedViewport.getWidth(), fixedViewport.getHeight());
         } else {
+            y = screenBounds.getHeight() - y;
             r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
         }
         r.draw(string, x, y);
