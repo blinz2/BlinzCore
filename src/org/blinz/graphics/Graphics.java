@@ -288,7 +288,11 @@ public class Graphics {
         TextRenderer r = font.stub.getRenderer();
         r.setColor(color.getRedf(), color.getGreenf(), color.getBluef(), 1f);
         y = screenBounds.getHeight() - y;
-        r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
+        if (viewPortOn) {
+            r.beginRendering(fixedViewport.getWidth(), fixedViewport.getHeight());
+        } else {
+            r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
+        }
         r.draw(string, x, y);
         r.endRendering();
     }
@@ -346,6 +350,10 @@ public class Graphics {
     /**
      * Sets the bounds within the current screen which things will be drawn,
      * outside of it everything will be cut off.
+     *
+     * IMPORTANT: Nesting viewports is not currently supported but may be in the
+     * future, please exit the viewport when you're done.
+     *
      * @param x
      * @param y
      * @param width
@@ -359,6 +367,7 @@ public class Graphics {
         gl.glLoadIdentity();
         gl.glOrtho(0.0f, fixedViewport.getWidth(), fixedViewport.getHeight(),
                 0.0f, -1.0f, 1.0f);
+        gl.glTranslated(viewPortTransMod.x, viewPortTransMod.y, 0);
         viewPortOn = true;
     }
 
@@ -376,18 +385,6 @@ public class Graphics {
      */
     final void setScreenBounds(Bounds bounds) {
         screenBounds.setBounds(bounds);
-        if (viewPortOn) {
-            fixViewport();
-            gl.glViewport(fixedViewport.getX(), fixedViewport.getY(),
-                    fixedViewport.getWidth(), fixedViewport.getHeight());
-            gl.glOrtho(0.0f, fixedViewport.getWidth(), fixedViewport.getHeight(),
-                    0.0f, -1.0f, 1.0f);
-        } else {
-            gl.glViewport(screenBounds.getX(), screenBounds.getY(),
-                    screenBounds.getWidth(), screenBounds.getHeight());
-            gl.glOrtho(0.0f, screenBounds.getWidth(), screenBounds.getHeight(), 0.0f,
-                    -1.0f, 1.0f);
-        }
     }
 
     /**
