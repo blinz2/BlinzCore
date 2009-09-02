@@ -38,11 +38,12 @@ import javax.media.opengl.GLEventListener;
 import org.blinz.util.Size;
 import org.blinz.input.UserInput;
 
+
 /**
  * Class for cleating and manipulating a window for drawing to the screen.
  * @author Blinz Project
  */
-public class Display {
+public class ScreenManager {
 
     private static Window window;
     private static final Dimension size = new Dimension(800, 600);
@@ -99,7 +100,7 @@ public class Display {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                Display.close();
+                ScreenManager.close();
             }
         });
         if (UserInput.isInitialized()) {
@@ -117,15 +118,15 @@ public class Display {
     }
 
     /**
-     * Indicates whether or not the Display has been initialized.
-     * @return - true if the Display is active, false if it is not.
+     * Indicates whether or not the screen has been initialized.
+     * @return - true if the screen is active, false if it is not.
      */
     public final static boolean isInitialized() {
         return isInitialized;
     }
 
     /**
-     * Adds the specified Screen to the Display to be drawn until the Display stops
+     * Adds the specified Screen to the screen to be drawn until the screen stops
      * or the Screen is removed.
      * @param screen
      */
@@ -134,7 +135,7 @@ public class Display {
     }
 
     /**
-     * Removes the specified Screen from the Display, the Screen will no longer be
+     * Removes the specified Screen from the screen, the Screen will no longer be
      * drawn.
      * @param screen
      */
@@ -143,8 +144,8 @@ public class Display {
     }
 
     /**
-     * Returns the width of the Display.
-     * @return - width of Display
+     * Returns the width of the screen.
+     * @return - width of screen
      */
     public final static int getWidth() {
         if (window == null) {
@@ -154,8 +155,8 @@ public class Display {
     }
 
     /**
-     * Returns the height of the Display.
-     * @return - height of Display
+     * Returns the height of the screen.
+     * @return - height of screen
      */
     public final static int getHeight() {
         if (window == null) {
@@ -183,8 +184,8 @@ public class Display {
     }
 
     /**
-     * Returns a Size object representing the size of the Display.
-     * @return a new Size object representing the size of the Display.
+     * Returns a Size object representing the size of the screen.
+     * @return a new Size object representing the size of the screen.
      */
     public final static Size getSize() {
         if (window == null) {
@@ -194,7 +195,7 @@ public class Display {
     }
 
     /**
-     * Sets the width of Display to the given value.
+     * Sets the width of screen to the given value.
      * @param width
      */
     public final static void setWidth(int width) {
@@ -205,7 +206,7 @@ public class Display {
     }
 
     /**
-     * Sets the height of Display to the given value.
+     * Sets the height of screen to the given value.
      * @param height
      */
     public final static void setHeight(int height) {
@@ -216,7 +217,7 @@ public class Display {
     }
 
     /**
-     * Sets the width and height of Display to the given values.
+     * Sets the width and height of screen to the given values.
      * @param width 
      * @param height
      */
@@ -233,7 +234,7 @@ public class Display {
      * @param title
      */
     public final static void setTitle(String title) {
-        Display.title = title;
+        ScreenManager.title = title;
         if (window instanceof Frame) {
             ((Frame) window).setTitle(title);
         }
@@ -287,7 +288,7 @@ public class Display {
         try {
             i = ImageIO.read(new File(path));
         } catch (IOException ex) {
-            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScreenManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         window.setIconImage(i);
@@ -310,7 +311,6 @@ public class Display {
 
     }
 }
-
 /**
  * The runnable implementation for the graphics thread.
  * @author Blinz Project

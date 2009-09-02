@@ -16,7 +16,7 @@
  */
 package org.blinz.input;
 
-import org.blinz.graphics.Display;
+import org.blinz.graphics.ScreenManager;
 
 /**
  * UserInput allows initialization and basic access to the current state of the
@@ -37,8 +37,8 @@ public final class UserInput {
             return;
         }
         isInitialized = true;
-        if (Display.isInitialized()) {
-            Display.setInputContext(listener);
+        if (ScreenManager.isInitialized()) {
+            ScreenManager.setInputContext(listener);
         }
     }
 

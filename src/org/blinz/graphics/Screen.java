@@ -86,32 +86,32 @@ public abstract class Screen {
     private final void computeBounds() {
         switch (screenType) {
             case FULL_SCREEN:
-                bounds.setBounds(0, 0, Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight());
+                bounds.setBounds(0, 0, ScreenManager.getDrawingAreaWidth(), ScreenManager.getDrawingAreaHeight());
                 break;
             case TOP_SCREEN:
-                bounds.setBounds(0, Display.getDrawingAreaHeight() / 2,
-                        Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight() / 2);
+                bounds.setBounds(0, ScreenManager.getDrawingAreaHeight() / 2,
+                        ScreenManager.getDrawingAreaWidth(), ScreenManager.getDrawingAreaHeight() / 2);
                 break;
             case BOTTOM_SCREEN:
-                bounds.setBounds(0, 0, Display.getDrawingAreaWidth(), Display.getDrawingAreaHeight() / 2);
+                bounds.setBounds(0, 0, ScreenManager.getDrawingAreaWidth(), ScreenManager.getDrawingAreaHeight() / 2);
                 break;
             case LEFT_SCREEN:
-                bounds.setBounds(0, 0, Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight());
+                bounds.setBounds(0, 0, ScreenManager.getDrawingAreaWidth() / 2, ScreenManager.getDrawingAreaHeight());
                 break;
             case TOP_LEFT_SCREEN:
-                bounds.setBounds(0, Display.getDrawingAreaHeight() / 2,
-                        Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
+                bounds.setBounds(0, ScreenManager.getDrawingAreaHeight() / 2,
+                        ScreenManager.getDrawingAreaWidth() / 2, ScreenManager.getDrawingAreaHeight() / 2);
                 break;
             case TOP_RIGHT_SCREEN:
-                bounds.setBounds(Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2,
-                        Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
+                bounds.setBounds(ScreenManager.getDrawingAreaWidth() / 2, ScreenManager.getDrawingAreaHeight() / 2,
+                        ScreenManager.getDrawingAreaWidth() / 2, ScreenManager.getDrawingAreaHeight() / 2);
                 break;
             case BOTTOM_LEFT_SCREEN:
-                bounds.setBounds(0, 0, Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
+                bounds.setBounds(0, 0, ScreenManager.getDrawingAreaWidth() / 2, ScreenManager.getDrawingAreaHeight() / 2);
                 break;
             case BOTTOM_RIGHT_SCREEN:
-                bounds.setBounds(Display.getDrawingAreaWidth() / 2, 0,
-                        Display.getDrawingAreaWidth() / 2, Display.getDrawingAreaHeight() / 2);
+                bounds.setBounds(ScreenManager.getDrawingAreaWidth() / 2, 0,
+                        ScreenManager.getDrawingAreaWidth() / 2, ScreenManager.getDrawingAreaHeight() / 2);
                 break;
         }
     }
