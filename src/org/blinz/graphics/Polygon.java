@@ -32,7 +32,7 @@ public final class Polygon {
     private Vector<Position> points = new Vector<Position>();
 
     /**
-     * Adds the specified point to the last spot on the list.
+     * Adds a copy of the specified point to the last spot on the list.
      * @param loc
      */
     public final void addPoint(Position loc) {
@@ -49,9 +49,7 @@ public final class Polygon {
     }
 
     /**
-     * Adds the specified point to the last spot on the list by reference so that
-     * the point can be changed without adding and removing (a) point(s) from the
-     * Polygon.
+     * Adds the specified point to the last spot on the list by reference.
      * @param loc
      */
     public final void addPointByReference(Position loc) {
