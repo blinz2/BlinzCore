@@ -38,7 +38,6 @@ import javax.media.opengl.GLEventListener;
 import org.blinz.util.Size;
 import org.blinz.input.UserInput;
 
-
 /**
  * Class for cleating and manipulating a window for drawing to the screen.
  * @author Blinz Project
@@ -311,6 +310,7 @@ public class ScreenManager {
 
     }
 }
+
 /**
  * The runnable implementation for the graphics thread.
  * @author Blinz Project
