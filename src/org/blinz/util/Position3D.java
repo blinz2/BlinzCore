@@ -25,7 +25,7 @@ public class Position3D extends Position {
     /**
      * Z coordinate of this Position.
      */
-    public double z = 0;
+    public float z = 0;
 
     /**
      * Default constructer without parameters, location defaults to (0, 0).
@@ -48,7 +48,7 @@ public class Position3D extends Position {
      * @param x
      * @param y
      */
-    public Position3D(int x, int y, double z) {
+    public Position3D(int x, int y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -69,7 +69,7 @@ public class Position3D extends Position {
      * @param x
      * @param y
      */
-    public final void setPosition(int x, int y, double z) {
+    public final void setPosition(int x, int y, float z) {
         setX(x);
         setY(y);
         setZ(z);
@@ -87,7 +87,7 @@ public class Position3D extends Position {
      * Sets the z coordinate of this Position to the given value.
      * @param z
      */
-    public final void setZ(double z) {
+    public final void setZ(float z) {
         this.z = z;
     }
 
