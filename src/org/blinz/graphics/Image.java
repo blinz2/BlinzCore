@@ -16,12 +16,6 @@
  */
 package org.blinz.graphics;
 
-import com.sun.opengl.util.texture.Texture;
-import com.sun.opengl.util.texture.TextureIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import org.blinz.util.Size;
 
 /**
@@ -92,69 +86,5 @@ public final class Image {
      */
     final ImageStub getImageStub() {
         return stub;
-    }
-}
-
-/**
- * Contains the objects used to implement image support.
- * @author Blinz Project
- */
-final class ImageStub {
-
-    int dependentCount = 1;
-    private String path;
-    private Texture texture;
-    private int width, height;
-    private BufferedImage bufferedImage;
-
-    ImageStub(String path) throws IOException {
-        this.path = path;
-        load();
-    }
-
-    /**
-     *
-     * @return the path to this image.
-     */
-    final String getPath() {
-        return path;
-    }
-
-    /**
-     *
-     * @return the width of the image this ImageStub represents.
-     */
-    final int getWidth() {
-        return width;
-    }
-
-    /**
-     *
-     * @return the height of the image this ImageStub represents.
-     */
-    final int getHeight() {
-        return height;
-    }
-
-    /**
-     *
-     * @return the JOGL Texture representation of the image this ImageStub represents.
-     */
-    final Texture getTexture() {
-        if (texture == null) {
-            texture = (Texture) TextureIO.newTexture(bufferedImage, true);
-            bufferedImage = null;
-        }
-        return texture;
-    }
-
-    /**
-     * Loads the image from storage.
-     * @throws IOException
-     */
-    private final void load() throws IOException {
-        bufferedImage = ImageIO.read(new File(path));
-        width = bufferedImage.getWidth();
-        height = bufferedImage.getHeight();
     }
 }

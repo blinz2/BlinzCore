@@ -71,7 +71,7 @@ public class ScreenManager {
         if (isInitialized) {
             return;
         }
-
+        
         isInitialized = true;
 
         if (window != null) {
