@@ -67,4 +67,13 @@ public final class ImageLoader {
         }
         System.out.println(stubs.size());
     }
+
+    /**
+     * Dumps the image data stored in memory.
+     */
+    static final void dumpImageData() {
+        for (ImageStub stub : stubs) {
+            stub.dumpImage();
+        }
+    }
 }

@@ -246,6 +246,7 @@ public class ScreenManager {
         runnable.isRunning = false;
         window = null;
         closeRequested = true;
+        ImageLoader.dumpImageData();
     }
 
     /**

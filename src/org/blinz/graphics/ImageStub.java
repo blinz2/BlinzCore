@@ -86,6 +86,14 @@ final class ImageStub {
     }
 
     /**
+     * Dumps the object representing the image.
+     */
+    final void dumpImage() {
+        texture = null;
+        bufferedImage = null;
+    }
+
+    /**
      * Loads the image from storage.
      * @throws IOException
      */
