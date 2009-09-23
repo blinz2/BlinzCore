@@ -326,8 +326,13 @@ class GraphicsThread implements Runnable {
 
     @Override
     public void run() {
+        long lastImageClearTime = System.currentTimeMillis();
         while (isRunning) {
             canvas.display();
+            if (System.currentTimeMillis() - lastImageClearTime > 30000) {
+                ImageLoader.clearImages();
+                lastImageClearTime = System.currentTimeMillis();
+            }
             try {
                 Thread.sleep(15);
             } catch (InterruptedException ex) {

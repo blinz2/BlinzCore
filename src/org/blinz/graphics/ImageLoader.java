@@ -52,5 +52,19 @@ public final class ImageLoader {
 
         return image;
     }
-}
 
+    /**
+     * Removes Images that are no longer in use.
+     */
+    static final void clearImages() {
+        System.out.println(stubs.size());
+        for (int i = 0; i < stubs.size();) {
+            if (stubs.get(i).dependentCount == 0) {
+                stubs.remove(i);
+            } else {
+                i++;
+            }
+        }
+        System.out.println(stubs.size());
+    }
+}
