@@ -121,4 +121,14 @@ public class Position {
     public final void modY(int mod) {
         y += mod;
     }
+
+    /**
+     * Adds the mods to their respective attributes.
+     * @param xMod
+     * @param yMod
+     */
+    public final void modPosition(int xMod, int yMod) {
+        x += xMod;
+        y += yMod;
+    }
 }
