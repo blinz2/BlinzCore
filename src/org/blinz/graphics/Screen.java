@@ -36,6 +36,7 @@ public abstract class Screen {
     public final static int BOTTOM_LEFT_SCREEN = 7;
     public final static int BOTTOM_RIGHT_SCREEN = 8;
     private int screenType = FULL_SCREEN;
+    private long cleanUpTimer = System.currentTimeMillis();
     private final Bounds bounds = new Bounds();
     private final Graphics graphics = new Graphics();
 
@@ -74,6 +75,9 @@ public abstract class Screen {
      */
     final void draw(GLAutoDrawable gl) {
         computeBounds();
+        if (System.currentTimeMillis() - cleanUpTimer > 10000) {
+            graphics.clean();
+        }
         graphics.setContext(gl);
         graphics.setScreenBounds(bounds);
         graphics.load();
