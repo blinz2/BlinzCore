@@ -21,6 +21,7 @@ import com.sun.opengl.util.texture.TextureIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -31,14 +32,21 @@ import javax.imageio.ImageIO;
  */
 final class ImageStub {
 
+    static final int LOCAL = 0;
+    static final int REMOTE = 1;
+    /**
+     * Denotes the type of source to be used for this stub, local or remote.
+     */
+    int type = LOCAL;
     int dependentCount = 1;
     private String path;
     private Texture texture;
     private int width, height;
     private BufferedImage bufferedImage;
 
-    ImageStub(String path) throws IOException {
+    ImageStub(String path, int type) throws IOException {
         this.path = path;
+        this.type = type;
         load();
     }
 
@@ -74,7 +82,11 @@ final class ImageStub {
         if (texture == null) {
             if (bufferedImage == null) {
                 try {
-                    bufferedImage = ImageIO.read(new File(path));
+                    if (type == LOCAL) {
+                        bufferedImage = ImageIO.read(new File(path));
+                    } else {
+                        bufferedImage = ImageIO.read(new URL(path));
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(ImageStub.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -98,7 +110,11 @@ final class ImageStub {
      * @throws IOException
      */
     private final void load() throws IOException {
-        bufferedImage = ImageIO.read(new File(path));
+        if (type == LOCAL) {
+            bufferedImage = ImageIO.read(new File(path));
+        } else {
+            bufferedImage = ImageIO.read(new URL(path));
+        }
         width = bufferedImage.getWidth();
         height = bufferedImage.getHeight();
         if (ScreenManager.isInitialized()) {
