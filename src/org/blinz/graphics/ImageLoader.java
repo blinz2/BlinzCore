@@ -54,21 +54,21 @@ public final class ImageLoader {
     }
 
     /**
-     * Returns an image object associated with the given path.
+     * Returns an image object associated with the given url.
      * @param path
      * @return Image
      */
-    public final static Image loadImageHTTP(String path) throws IOException {
+    public final static Image loadImageHTTP(String url) throws IOException {
 
         for (ImageStub s : stubs) {
-            if (s.getPath().equals(path) && s.type == ImageStub.HTTP) {
+            if (s.getPath().equals(url) && s.type == ImageStub.HTTP) {
                 s.dependentCount++;
                 Image image = new Image(s);
                 return image;
             }
         }
 
-        ImageStub stub = new ImageStub(path, ImageStub.HTTP);
+        ImageStub stub = new ImageStub(url, ImageStub.HTTP);
         stubs.add(stub);
 
         Image image = new Image(stub);
