@@ -33,7 +33,7 @@ import javax.imageio.ImageIO;
 final class ImageStub {
 
     static final int LOCAL = 0;
-    static final int REMOTE = 1;
+    static final int HTTP = 1;
     /**
      * Denotes the type of source to be used for this stub, local or remote.
      */

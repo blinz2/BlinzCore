@@ -58,17 +58,17 @@ public final class ImageLoader {
      * @param path
      * @return Image
      */
-    public final static Image loadRemoteImage(String path) throws IOException {
+    public final static Image loadImageHTTP(String path) throws IOException {
 
         for (ImageStub s : stubs) {
-            if (s.getPath().equals(path) && s.type == ImageStub.REMOTE) {
+            if (s.getPath().equals(path) && s.type == ImageStub.HTTP) {
                 s.dependentCount++;
                 Image image = new Image(s);
                 return image;
             }
         }
 
-        ImageStub stub = new ImageStub(path, ImageStub.REMOTE);
+        ImageStub stub = new ImageStub(path, ImageStub.HTTP);
         stubs.add(stub);
 
         Image image = new Image(stub);
