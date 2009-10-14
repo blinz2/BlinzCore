@@ -75,9 +75,6 @@ public abstract class Screen {
      */
     final void draw(GLAutoDrawable gl) {
         computeBounds();
-        if (System.currentTimeMillis() - cleanUpTimer > 10000) {
-            graphics.clean();
-        }
         graphics.setContext(gl);
         graphics.setScreenBounds(bounds);
         graphics.load();
