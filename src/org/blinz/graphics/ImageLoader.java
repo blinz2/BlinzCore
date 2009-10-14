@@ -64,7 +64,6 @@ public final class ImageLoader {
                 i++;
             }
         }
-        System.out.println(stubs.size());
     }
 
     /**
