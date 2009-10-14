@@ -46,4 +46,11 @@ public interface MouseListener {
      * @param cursorY y coordinate of the location the mouse was clicked at
      */
     public void buttonRelease(int buttonNumber, int cursorX, int cursorY);
+
+    /**
+     * Called when the mouse wheel is scrolled.
+     * @param number amount of clicks the mouse was scrolled, a negative number
+     * denotes an upwards scroll while a positive denotes a downwards scroll
+     */
+    public void wheelScroll(int number);
 }

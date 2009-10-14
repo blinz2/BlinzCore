@@ -21,6 +21,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import org.blinz.util.Position;
 
@@ -28,7 +30,7 @@ import org.blinz.util.Position;
  *
  * @author Gary
  */
-class InputListener implements KeyListener, MouseListener, MouseMotionListener {
+class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
     private final boolean[] keysPressed = new boolean[526];
     private final boolean[] mouseButtonsPressed = new boolean[20];
@@ -105,6 +107,13 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
     @Override
     public void mouseMoved(MouseEvent e) {
         cursorLocation.setPosition(e.getX(), e.getY());
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        for (org.blinz.input.MouseListener listener : mouseListeners) {
+            listener.wheelScroll(e.getUnitsToScroll());
+        }
     }
 
     final boolean[] getKeys() {
