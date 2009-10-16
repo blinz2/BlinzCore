@@ -21,14 +21,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import org.blinz.util.Position;
 
 /**
  *
- * @author Gary
+ * @author Blinz Project
  */
-class InputListener implements KeyListener, MouseListener, MouseMotionListener {
+class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
     private final boolean[] keysPressed = new boolean[526];
     private final boolean[] mouseButtonsPressed = new boolean[20];
@@ -36,6 +38,8 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
             new ArrayList<org.blinz.input.MouseListener>();
     private final ArrayList<org.blinz.input.KeyListener> keyListeners =
             new ArrayList<org.blinz.input.KeyListener>();
+    private final ArrayList<org.blinz.input.MouseWheelListener> mouseWheelListeners =
+            new ArrayList<org.blinz.input.MouseWheelListener>();
     private final Position cursorLocation = new Position();
 
     InputListener() {
@@ -107,6 +111,13 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
         cursorLocation.setPosition(e.getX(), e.getY());
     }
 
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        for (org.blinz.input.MouseWheelListener listener : mouseWheelListeners) {
+            listener.wheelScroll(e.getUnitsToScroll());
+        }
+    }
+
     final boolean[] getKeys() {
         return keysPressed;
     }
@@ -117,6 +128,15 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
 
     /**
      * Adds the given Blinz MouseListener to the InputListener to be updated about
+     * the activities of the mouse.
+     * @param listener
+     */
+    final void addMouseWheelListener(org.blinz.input.MouseWheelListener listener) {
+        mouseWheelListeners.add(listener);
+    }
+
+    /**
+     * Adds the given Blinz MouseWheelListener to the InputListener to be updated about
      * the activities of the mouse.
      * @param listener
      */
@@ -140,6 +160,15 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener {
      */
     final void removeMouseListener(org.blinz.input.MouseListener listener) {
         mouseListeners.remove(listener);
+    }
+
+    /**
+     * Removes the specified Blinz MouseListener from the InputListener so that
+     * it will no longer be updated.
+     * @param listener
+     */
+    final void removeMouseWheelListener(org.blinz.input.MouseWheelListener listener) {
+        mouseWheelListeners.remove(listener);
     }
 
     /**

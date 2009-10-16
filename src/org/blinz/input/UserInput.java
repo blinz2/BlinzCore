@@ -81,12 +81,21 @@ public final class UserInput {
     }
 
     /**
-     * Adds the specified KeyListener to the list of MouseListeners that
+     * Adds the specified MouseListener to the list of MouseListeners that
      * are to be informed of events correspoding to their methods.
      * @param mouseListener
      */
     public static final void addMouseListener(MouseListener mouseListener) {
         listener.addMouseListener(mouseListener);
+    }
+
+    /**
+     * Adds the specified MouseWheelListener to the list of MouseWheelListeners that
+     * are to be informed of events correspoding to their methods.
+     * @param mouseListener
+     */
+    public static final void addMouseWheelListener(MouseWheelListener mouseListener) {
+        listener.addMouseWheelListener(mouseListener);
     }
 
     /**
@@ -105,6 +114,15 @@ public final class UserInput {
      */
     public static final void removeMouseListener(MouseListener mouseListener) {
         listener.removeMouseListener(mouseListener);
+    }
+
+    /**
+     * Removes the specified MouseWheelListener from the list of MouseListeners that
+     * are to be informed of events correspoding to their methods.
+     * @param mouseListener
+     */
+    public static final void removeMouseWheelListener(MouseWheelListener mouseWheelListener) {
+        listener.removeMouseWheelListener(mouseWheelListener);
     }
 
     /**

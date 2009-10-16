@@ -38,14 +38,37 @@ public final class ImageLoader {
     public final static Image loadImage(String path) throws IOException {
 
         for (ImageStub s : stubs) {
-            if (s.getPath().equals(path)) {
+            if (s.getPath().equals(path) && s.type == ImageStub.LOCAL) {
                 s.dependentCount++;
                 Image image = new Image(s);
                 return image;
             }
         }
 
-        ImageStub stub = new ImageStub(path);
+        ImageStub stub = new ImageStub(path, ImageStub.LOCAL);
+        stubs.add(stub);
+
+        Image image = new Image(stub);
+
+        return image;
+    }
+
+    /**
+     * Returns an image object associated with the given url.
+     * @param path
+     * @return Image
+     */
+    public final static Image loadImageHTTP(String url) throws IOException {
+
+        for (ImageStub s : stubs) {
+            if (s.getPath().equals(url) && s.type == ImageStub.HTTP) {
+                s.dependentCount++;
+                Image image = new Image(s);
+                return image;
+            }
+        }
+
+        ImageStub stub = new ImageStub(url, ImageStub.HTTP);
         stubs.add(stub);
 
         Image image = new Image(stub);
@@ -64,7 +87,6 @@ public final class ImageLoader {
                 i++;
             }
         }
-        System.out.println(stubs.size());
     }
 
     /**

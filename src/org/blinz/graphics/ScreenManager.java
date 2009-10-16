@@ -22,6 +22,7 @@ import java.awt.Window;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -106,6 +107,7 @@ public class ScreenManager {
             window.addKeyListener((KeyListener) UserInput.getContext());
             window.addMouseMotionListener((MouseMotionListener) UserInput.getContext());
             window.addMouseListener((MouseListener) UserInput.getContext());
+            window.addMouseWheelListener((MouseWheelListener) UserInput.getContext());
             runnable.canvas.addKeyListener((KeyListener) UserInput.getContext());
             runnable.canvas.addMouseMotionListener((MouseMotionListener) UserInput.getContext());
             runnable.canvas.addMouseListener((MouseListener) UserInput.getContext());
@@ -305,6 +307,7 @@ public class ScreenManager {
         window.addKeyListener((KeyListener) o);
         window.addMouseMotionListener((MouseMotionListener) o);
         window.addMouseListener((MouseListener) o);
+        window.addMouseWheelListener((MouseWheelListener)o);
         runnable.canvas.addKeyListener((KeyListener) UserInput.getContext());
         runnable.canvas.addMouseMotionListener((MouseMotionListener) UserInput.getContext());
         runnable.canvas.addMouseListener((MouseListener) UserInput.getContext());
