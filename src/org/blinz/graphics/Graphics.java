@@ -19,6 +19,7 @@ package org.blinz.graphics;
 import com.sun.opengl.util.j2d.TextRenderer;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
+import java.util.ArrayList;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import org.blinz.util.Position;
@@ -31,16 +32,16 @@ import org.blinz.util.Size;
  */
 public class Graphics {
 
+    private final static ArrayList<Viewport> excessViewports = new ArrayList<Viewport>();
     private boolean viewPortOn = false;
-    private final Position viewPortTransMod = new Position();
-    private final Bounds viewPort = new Bounds();
+    private Viewport viewport = new Viewport();
     private final Bounds screenBounds = new Bounds();
-    private final Bounds fixedViewport = new Bounds();
     private final Color color = new Color();
     private Font font;
     private GL gl;
 
     Graphics() {
+        viewport.parent = screenBounds;
     }
 
     //PUBLIC METHODS------------------------------------------------------------
@@ -288,8 +289,8 @@ public class Graphics {
         TextRenderer r = font.stub.getRenderer();
         r.setColor(color.getRedf(), color.getGreenf(), color.getBluef(), 1f);
         if (viewPortOn) {
-            y = fixedViewport.getHeight() - y;
-            r.beginRendering(fixedViewport.getWidth(), fixedViewport.getHeight());
+            y = viewport.getHeight() - y;
+            r.beginRendering(viewport.getWidth(), viewport.getHeight());
         } else {
             y = screenBounds.getHeight() - y;
             r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
@@ -361,14 +362,21 @@ public class Graphics {
      * @param height
      */
     public final void enterViewport(int x, int y, int width, int height) {
-        viewPort.setBounds(x, y, width, height);
-        fixViewport();
-        gl.glViewport(fixedViewport.getX(), fixedViewport.getY(),
-                fixedViewport.getWidth(), fixedViewport.getHeight());
+        Viewport v = viewport;
+        viewport = fetchViewport();
+        if (v == null) {
+            viewport.parent = screenBounds;
+        } else {
+            viewport.parent = v;
+        }
+        viewport.setBounds(x, y, width, height);
+        viewport.fixViewport();
+        gl.glViewport(viewport.getX(), viewport.getY(),
+                viewport.getWidth(), viewport.getHeight());
         gl.glLoadIdentity();
-        gl.glOrtho(0.0f, fixedViewport.getWidth(), fixedViewport.getHeight(),
+        gl.glOrtho(0.0f, viewport.getWidth(), viewport.getHeight(),
                 0.0f, -1.0f, 1.0f);
-        gl.glTranslated(viewPortTransMod.x, viewPortTransMod.y, 0);
+        gl.glTranslated(viewport.getXTranslation(), viewport.getYTranslation(), 0);
         viewPortOn = true;
     }
 
@@ -376,7 +384,15 @@ public class Graphics {
      * Leaves the viewport and returns the scope to the whole screen.
      */
     public final void exitViewport() {
-        viewPortOn = false;
+        excessViewports.add(viewport);
+        if (viewport.parent instanceof Viewport) {
+            viewport = (Viewport) viewport.parent;
+        } else {
+            viewport = null;
+            viewPortOn = false;
+        }
+        System.out.println("Exiting viewport: " + screenBounds.getX() + ", " + screenBounds.getY() + ", " +
+                screenBounds.getWidth() + ", " + screenBounds.getHeight());
         load();
     }
 
@@ -402,10 +418,14 @@ public class Graphics {
     final void load() {
         gl.glLoadIdentity();
         if (viewPortOn) {
-            fixViewport();
-            gl.glViewport(fixedViewport.getX(), fixedViewport.getY(),
-                    fixedViewport.getWidth(), fixedViewport.getHeight());
-            gl.glOrtho(0.0f, fixedViewport.getWidth(), fixedViewport.getHeight(),
+            viewport.fixViewport();
+
+//            System.out.println(viewport.getX() + ", " + viewport.getY() + ", " +
+//                    viewport.getWidth() + ", " + viewport.getHeight());
+
+            gl.glViewport(viewport.getX(), viewport.getY(),
+                    viewport.getWidth(), viewport.getHeight());
+            gl.glOrtho(0.0f, viewport.getWidth(), viewport.getHeight(),
                     0.0f, -1.0f, 1.0f);
         } else {
             gl.glViewport(screenBounds.getX(), screenBounds.getY(),
@@ -417,73 +437,22 @@ public class Graphics {
     }
 
     /**
-     * Sets the fixedViewport object to bounds that do not go outside the Screen
-     * and compensates for the fact that OpenGL places the point of origin at the
-     * lower left corner of the viewport.
+     * Cleans out excess data being used, reduces memory use.
      */
-    private final void fixViewport() {
-        fixedViewport.setBounds(viewPort);
-        Bounds i = fixedViewport;
-        //reset view port translation mod
-        viewPortTransMod.setPosition(0, 0);
+    final void clean() {
+        excessViewports.trimToSize();
+        excessViewports.clear();
+    }
 
-        //handle x and width of the view port
-        {
-            //if view port sticks off the right of the screen
-            if (i.getX() + i.getWidth() > screenBounds.getWidth()) {
-                //if the whole view port is to the right of the screen
-                if (i.getX() > screenBounds.getWidth()) {
-                    i.setBounds(0, 0, 0, 0);
-                    return;
-                }
-
-                i.modWidth(-((i.getX() + i.getWidth()) - screenBounds.getWidth()));
-            }
-            //if view port sticks off the left of the screen
-            if (i.getX() < 0) {
-                //if the whole view port is to the left of the screen
-                if (i.getX() + i.getWidth() < 0) {
-                    i.setBounds(0, 0, 0, 0);
-                    return;
-                }
-                viewPortTransMod.setX(-i.getX());
-                i.setX(0);
-            }
-        }//end code for handling x and width
-
-
-
-        //handle y and height of the view port
-        {
-            //translate the y
-
-            //if view port sticks off the right of the screen
-            if (i.getY() + i.getHeight() > screenBounds.getHeight()) {
-                //if the whole view port is to the right of the screen
-                if (i.getY() > screenBounds.getHeight()) {
-                    i.setBounds(0, 0, 0, 0);
-                    return;
-                }
-
-                i.modHeight(-((i.getY() + i.getHeight()) - screenBounds.getHeight()));
-            }
-            //if view port sticks off the left of the screen
-            if (i.getY() < 0) {
-                //if the whole view port is to the left of the screen
-                if (i.getY() + i.getHeight() < 0) {
-                    i.setBounds(0, 0, 0, 0);
-                    return;
-                }
-                viewPortTransMod.setY(-i.getY());
-                i.setY(0);
-            }
-
-            //invert the y axis and start it at 0 plus height of screen
-            i.setY((screenBounds.getHeight() - i.getY()) - i.getHeight());
+    /**
+     *
+     * @return a Viewport object, reuses old Position objects when possible
+     */
+    private final Viewport fetchViewport() {
+        if (excessViewports.isEmpty()) {
+            return new Viewport();
+        } else {
+            return excessViewports.remove(0);
         }
-
-
-        i.modX(screenBounds.getX());
-        i.modY(screenBounds.getY());
     }
 }

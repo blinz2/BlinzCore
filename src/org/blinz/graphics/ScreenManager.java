@@ -325,10 +325,12 @@ class GraphicsThread implements Runnable {
     GLCanvas canvas;
     Window window;
 
+    static int round = 0;
     @Override
     public void run() {
         long lastImageClearTime = System.currentTimeMillis();
         while (isRunning) {
+            System.out.println("Round: " + round++);
             canvas.display();
             if (System.currentTimeMillis() - lastImageClearTime > 30000) {
                 ImageLoader.clearImages();
