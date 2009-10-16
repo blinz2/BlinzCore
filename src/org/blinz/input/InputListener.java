@@ -28,7 +28,7 @@ import org.blinz.util.Position;
 
 /**
  *
- * @author Gary
+ * @author Blinz Project
  */
 class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
@@ -38,6 +38,8 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener, 
             new ArrayList<org.blinz.input.MouseListener>();
     private final ArrayList<org.blinz.input.KeyListener> keyListeners =
             new ArrayList<org.blinz.input.KeyListener>();
+    private final ArrayList<org.blinz.input.MouseWheelListener> mouseWheelListeners =
+            new ArrayList<org.blinz.input.MouseWheelListener>();
     private final Position cursorLocation = new Position();
 
     InputListener() {
@@ -111,7 +113,7 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener, 
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        for (org.blinz.input.MouseListener listener : mouseListeners) {
+        for (org.blinz.input.MouseWheelListener listener : mouseWheelListeners) {
             listener.wheelScroll(e.getUnitsToScroll());
         }
     }
@@ -126,6 +128,15 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener, 
 
     /**
      * Adds the given Blinz MouseListener to the InputListener to be updated about
+     * the activities of the mouse.
+     * @param listener
+     */
+    final void addMouseWheelListener(org.blinz.input.MouseWheelListener listener) {
+        mouseWheelListeners.add(listener);
+    }
+
+    /**
+     * Adds the given Blinz MouseWheelListener to the InputListener to be updated about
      * the activities of the mouse.
      * @param listener
      */
@@ -149,6 +160,15 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener, 
      */
     final void removeMouseListener(org.blinz.input.MouseListener listener) {
         mouseListeners.remove(listener);
+    }
+
+    /**
+     * Removes the specified Blinz MouseListener from the InputListener so that
+     * it will no longer be updated.
+     * @param listener
+     */
+    final void removeMouseWheelListener(org.blinz.input.MouseWheelListener listener) {
+        mouseWheelListeners.remove(listener);
     }
 
     /**
