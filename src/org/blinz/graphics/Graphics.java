@@ -349,6 +349,28 @@ public class Graphics {
     }
 
     /**
+     * Gets the width of the Screen and/or viewport in which this currently draws.
+     * @return drawing area width
+     */
+    public final int getPaneWidth() {
+        if (viewport != null) {
+            return viewport.getWidth();
+        }
+        return screenBounds.getWidth();
+    }
+
+    /**
+     * Gets the height of the Screen and/or viewport in which this currently draws.
+     * @return drawing area height
+     */
+    public final int getPaneHeight() {
+        if (viewport != null) {
+            return viewport.getHeight();
+        }
+        return screenBounds.getHeight();
+    }
+
+    /**
      * Sets the bounds within the current screen which things will be drawn,
      * outside of it everything will be cut off.
      *
