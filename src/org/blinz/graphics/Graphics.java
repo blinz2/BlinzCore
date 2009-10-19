@@ -34,14 +34,13 @@ public class Graphics {
 
     private final static ArrayList<Viewport> excessViewports = new ArrayList<Viewport>();
     private boolean viewPortOn = false;
-    private Viewport viewport = new Viewport();
+    private Viewport viewport;
     private final Bounds screenBounds = new Bounds();
     private final Color color = new Color();
     private Font font;
     private GL gl;
 
     Graphics() {
-        viewport.parent = screenBounds;
     }
 
     //PUBLIC METHODS------------------------------------------------------------
@@ -369,7 +368,7 @@ public class Graphics {
         } else {
             viewport.parent = v;
         }
-        viewport.setBounds(x, y, width, height);
+        viewport.setViewport(x, y, width, height);
         viewport.fixViewport();
         gl.glViewport(viewport.getX(), viewport.getY(),
                 viewport.getWidth(), viewport.getHeight());
@@ -391,8 +390,6 @@ public class Graphics {
             viewport = null;
             viewPortOn = false;
         }
-        System.out.println("Exiting viewport: " + screenBounds.getX() + ", " + screenBounds.getY() + ", " +
-                screenBounds.getWidth() + ", " + screenBounds.getHeight());
         load();
     }
 
@@ -419,9 +416,6 @@ public class Graphics {
         gl.glLoadIdentity();
         if (viewPortOn) {
             viewport.fixViewport();
-
-//            System.out.println(viewport.getX() + ", " + viewport.getY() + ", " +
-//                    viewport.getWidth() + ", " + viewport.getHeight());
 
             gl.glViewport(viewport.getX(), viewport.getY(),
                     viewport.getWidth(), viewport.getHeight());

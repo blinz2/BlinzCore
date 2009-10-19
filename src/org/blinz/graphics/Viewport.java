@@ -30,6 +30,17 @@ class Viewport extends Bounds {
     private final Bounds bounds = new Bounds();
 
     /**
+     * Sets the bounds of this Viewport.
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
+    final void setViewport(int x, int y, int width, int height) {
+        bounds.setBounds(x, y, width, height);
+    }
+
+    /**
      * Sets the this object to bounds that do not go outside the Screen
      * and compensates for the fact that OpenGL places the point of origin at the
      * lower left corner of the viewport.
@@ -39,14 +50,13 @@ class Viewport extends Bounds {
             ((Viewport) parent).fixViewport();
             translation.modPosition(((Viewport) parent).getXTranslation(),
                     ((Viewport) parent).getYTranslation());
-            System.out.print("Parent is a Viewport:\t");
+        } else {
+            translation.setPosition(0, 0);
         }
-        System.out.println(parent.getX() + ", " + parent.getY() + ", " +
-                parent.getWidth() + ", " + parent.getHeight());
+
         this.setBounds(bounds);
         Bounds i = this;
         //reset view port translation mod
-        translation.setPosition(0, 0);
 
         //handle x and width of the view port
         {
