@@ -171,7 +171,7 @@ public class ScreenManager {
      * bar and edges around the window if in window mode. Still accurate in full
      * screen mode.
      */
-    public final static int getDrawingAreaWidth() {
+    public final static int getPaneWidth() {
         return canvasListener.drawingArea.width;
     }
 
@@ -180,7 +180,7 @@ public class ScreenManager {
      * bar and edges around the window if in window mode. Still accurate in full
      * screen mode.
      */
-    public final static int getDrawingAreaHeight() {
+    public final static int getPaneHeight() {
         return canvasListener.drawingArea.height;
     }
 
