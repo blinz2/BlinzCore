@@ -72,7 +72,7 @@ public class ScreenManager {
         if (isInitialized) {
             return;
         }
-        
+
         isInitialized = true;
 
         if (window != null) {
@@ -133,6 +133,9 @@ public class ScreenManager {
      */
     public final static void addScreen(Screen screen) {
         canvasListener.screens.add(screen);
+        UserInput.addKeyListener(screen.inputListener);
+        UserInput.addMouseListener(screen.inputListener);
+        UserInput.addMouseWheelListener(screen.inputListener);
     }
 
     /**
@@ -142,6 +145,9 @@ public class ScreenManager {
      */
     public final static void removeScreen(Screen screen) {
         canvasListener.screens.remove(screen);
+        UserInput.removeKeyListener(screen.inputListener);
+        UserInput.removeMouseListener(screen.inputListener);
+        UserInput.removeMouseWheelListener(screen.inputListener);
     }
 
     /**
@@ -307,7 +313,7 @@ public class ScreenManager {
         window.addKeyListener((KeyListener) o);
         window.addMouseMotionListener((MouseMotionListener) o);
         window.addMouseListener((MouseListener) o);
-        window.addMouseWheelListener((MouseWheelListener)o);
+        window.addMouseWheelListener((MouseWheelListener) o);
         runnable.canvas.addKeyListener((KeyListener) UserInput.getContext());
         runnable.canvas.addMouseMotionListener((MouseMotionListener) UserInput.getContext());
         runnable.canvas.addMouseListener((MouseListener) UserInput.getContext());
@@ -327,8 +333,8 @@ class GraphicsThread implements Runnable {
     boolean isRunning = true;
     GLCanvas canvas;
     Window window;
-
     static int round = 0;
+
     @Override
     public void run() {
         long lastImageClearTime = System.currentTimeMillis();
