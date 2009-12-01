@@ -39,6 +39,11 @@ public final class Barrier extends Task {
     }
 
     @Override
+    void drop() {
+        barrier = null;
+    }
+
+    @Override
     protected void run() {
         try {
             barrier.await();

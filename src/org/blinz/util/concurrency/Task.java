@@ -25,7 +25,6 @@ public abstract class Task {
     boolean moveOn = false;
     TaskExecuter taskProcessor;
 
-
     /**
      * Sets the move on flag for this Task telling all threads to skip over for
      * the rest of the duration of this loop.
@@ -50,7 +49,7 @@ public abstract class Task {
     /**
      * Dissassociates this Task with its current TaskExecuter.
      */
-    final void drop() {
+    void drop() {
         taskProcessor = null;
     }
 
@@ -66,7 +65,7 @@ public abstract class Task {
         run();
     }
 
-    void reset() {
+    final void reset() {
         moveOn = false;
     }
 

@@ -38,7 +38,7 @@ public final class TaskExecuter extends ParallelProcess {
     }
 
     @Override
-    final void update() {
+    protected final void update() {
         list.run();
     }
 }

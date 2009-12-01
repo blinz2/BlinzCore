@@ -31,7 +31,7 @@ public abstract class ParallelProcess {
     private boolean isRunning = true;
     private ThreadGroup group;
 
-    ParallelProcess(String threadName, int threadCount) {
+    public ParallelProcess(String threadName, int threadCount) {
         group = new ThreadGroup(threadName);
         threads = new TaskExecuter[threadCount];
         for (int i = 0; i < threads.length; i++) {
@@ -39,7 +39,7 @@ public abstract class ParallelProcess {
         }
     }
 
-    ParallelProcess(int threadCount) {
+    public ParallelProcess(int threadCount) {
         this("Task", threadCount);
     }
 
@@ -47,14 +47,14 @@ public abstract class ParallelProcess {
      *
      * @return the number of threads dedicated to processing this TaskProcessor
      */
-    final int getThreadCount() {
+    public final int getThreadCount() {
         return threads.length;
     }
 
     /**
      * Starts this Task.
      */
-    void start() {
+    public final void start() {
         isRunning = true;
         for (TaskExecuter t : threads) {
             t.start();
@@ -64,11 +64,11 @@ public abstract class ParallelProcess {
     /**
      * Tells the threads to stop updating after the current cycle.
      */
-    void stop() {
+    public final void stop() {
         isRunning = false;
     }
 
-    abstract void update();
+    protected abstract void update();
 
     private class TaskExecuter extends Thread {
 

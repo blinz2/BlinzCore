@@ -47,7 +47,7 @@ public final class TaskList extends Task {
      * Adds the given Task to this TaskExecuter to be executed in the future.
      * @param task
      */
-    final void add(Task task) {
+    public final void add(Task task) {
         tasksToAdd.add(task);
     }
 
@@ -55,7 +55,7 @@ public final class TaskList extends Task {
      * Removes the given Task and it will no longer be executed in the future.
      * @param task
      */
-    final void remove(Task task) {
+    public final void remove(Task task) {
         tasksToRemove.add(task);
     }
 
