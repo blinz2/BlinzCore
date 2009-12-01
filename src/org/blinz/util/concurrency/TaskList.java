@@ -27,12 +27,12 @@ public final class TaskList extends Task {
     private class TaskManager extends OnePassTask {
 
         @Override
-       protected void run() {
-            for (int i = tasksToRemove.size(); i > 0; i--) {
+        protected void run() {
+            for (int i = tasksToRemove.size() - 1; i > 0; i--) {
                 tasksToRemove.get(i).drop();
                 tasks.remove(tasksToRemove.remove(i));
             }
-            for (int i = tasksToAdd.size(); i > 0; i--) {
+            for (int i = tasksToAdd.size() - 1; i > 0; i--) {
                 tasks.get(i).init(taskProcessor);
                 tasks.add(tasksToAdd.remove(i));
             }
