@@ -27,7 +27,7 @@ public final class TaskList extends Task {
     private class TaskManager extends OnePassTask {
 
         @Override
-        void run() {
+       protected void run() {
             for (int i = tasksToRemove.size(); i > 0; i--) {
                 tasksToRemove.get(i).drop();
                 tasks.remove(tasksToRemove.remove(i));
@@ -60,7 +60,7 @@ public final class TaskList extends Task {
     }
 
     @Override
-    void run() {
+    protected void run() {
         if (!taskManager.moveOn) {
             taskManager.enter();
         }

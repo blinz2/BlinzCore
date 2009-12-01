@@ -39,7 +39,7 @@ public final class Barrier extends Task {
     }
 
     @Override
-    void run() {
+    protected void run() {
         try {
             barrier.await();
         } catch (InterruptedException ex) {

@@ -70,5 +70,5 @@ public abstract class Task {
         moveOn = false;
     }
 
-    abstract void run();
+    protected abstract void run();
 }
