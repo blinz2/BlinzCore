@@ -119,7 +119,7 @@ public final class UserInput {
     /**
      * Removes the specified MouseWheelListener from the list of MouseListeners that
      * are to be informed of events correspoding to their methods.
-     * @param mouseListener
+     * @param mouseWheelListener
      */
     public static final void removeMouseWheelListener(MouseWheelListener mouseWheelListener) {
         listener.removeMouseWheelListener(mouseWheelListener);

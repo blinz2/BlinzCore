@@ -25,7 +25,7 @@ package org.blinz.util.concurrency;
  *
  * @author Blinz
  */
-abstract class ParallelProcess {
+public abstract class ParallelProcess {
 
     private TaskExecuter[] threads;
     private boolean isRunning = true;

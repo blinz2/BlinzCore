@@ -9,7 +9,7 @@ package org.blinz.util.concurrency;
  * the extend.
  * @author Blinz
  */
-final class TaskExecuter extends ParallelProcess {
+public final class TaskExecuter extends ParallelProcess {
 
     private TaskList list = new TaskList();
 
@@ -25,7 +25,7 @@ final class TaskExecuter extends ParallelProcess {
      * Adds the given Task to this TaskExecuter to be executed in the future.
      * @param task
      */
-    final void addTask(Task task) {
+    public final void addTask(Task task) {
         list.add(task);
     }
 
@@ -33,12 +33,12 @@ final class TaskExecuter extends ParallelProcess {
      * Removes the given Task and it will no longer be executed in the future.
      * @param task
      */
-    final void removeTask(Task task) {
+    public final void removeTask(Task task) {
         list.remove(task);
     }
 
     @Override
-    void update() {
+    final void update() {
         list.run();
     }
 }

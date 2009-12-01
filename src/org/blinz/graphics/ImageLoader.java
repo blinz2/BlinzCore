@@ -55,7 +55,7 @@ public final class ImageLoader {
 
     /**
      * Returns an image object associated with the given url.
-     * @param path
+     * @param url
      * @return Image
      */
     public final static Image loadImageHTTP(String url) throws IOException {

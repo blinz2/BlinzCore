@@ -22,7 +22,7 @@ import java.util.Vector;
  * A Task that contains other Tasks for execution.
  * @author Blinz
  */
-final class TaskList extends Task {
+public final class TaskList extends Task {
 
     private class TaskManager extends OnePassTask {
 
@@ -59,6 +59,7 @@ final class TaskList extends Task {
         tasksToRemove.add(task);
     }
 
+    @Override
     void run() {
         if (!taskManager.moveOn) {
             taskManager.enter();

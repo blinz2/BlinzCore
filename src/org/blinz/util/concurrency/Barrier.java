@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * A barrier Task to halt execuetion until all threads have reached this Task.
  * @author Blinz
  */
-final class Barrier extends Task {
+public final class Barrier extends Task {
 
     CyclicBarrier barrier;
 

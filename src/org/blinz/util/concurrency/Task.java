@@ -17,13 +17,22 @@
 package org.blinz.util.concurrency;
 
 /**
- *
+ * A component of a process to be executed concurrently.
  * @author Blinz
  */
-abstract class Task {
+public abstract class Task {
 
     boolean moveOn = false;
     TaskExecuter taskProcessor;
+
+
+    /**
+     * Sets the move on flag for this Task telling all threads to skip over for
+     * the rest of the duration of this loop.
+     */
+    public final void setMoveOn() {
+        this.moveOn = true;
+    }
 
     /**
      * Initializes this Task for the TaskProcessor
@@ -59,10 +68,6 @@ abstract class Task {
 
     void reset() {
         moveOn = false;
-    }
-
-    final void setMoveOn() {
-        this.moveOn = true;
     }
 
     abstract void run();
