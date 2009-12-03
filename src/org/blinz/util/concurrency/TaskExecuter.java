@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  BlinzCore - core library of audio, video, and other essential classes.
+ *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 3 as
+ *  published by the Free Software Foundation.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.blinz.util.concurrency;
 
@@ -12,6 +24,7 @@ package org.blinz.util.concurrency;
 public final class TaskExecuter extends ParallelProcess {
 
     private TaskList list = new TaskList();
+    private Barrier barrier = new Barrier();
 
     public TaskExecuter(int threads) {
         this("TaskExecuter", threads);
@@ -19,6 +32,8 @@ public final class TaskExecuter extends ParallelProcess {
 
     public TaskExecuter(String name, int threads) {
         super(name, threads);
+        list.init(this);
+        barrier.init(this);
     }
 
     /**
@@ -39,6 +54,8 @@ public final class TaskExecuter extends ParallelProcess {
 
     @Override
     protected final void update() {
-        list.run();
+        list.prepare();
+        barrier.enter();
+        list.enter();
     }
 }

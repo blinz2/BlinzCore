@@ -27,15 +27,15 @@ package org.blinz.util.concurrency;
  */
 public abstract class ParallelProcess {
 
-    private TaskExecuter[] threads;
+    private ThreadRun[] threads;
     private boolean isRunning = true;
     private ThreadGroup group;
 
     public ParallelProcess(String threadName, int threadCount) {
         group = new ThreadGroup(threadName);
-        threads = new TaskExecuter[threadCount];
+        threads = new ThreadRun[threadCount];
         for (int i = 0; i < threads.length; i++) {
-            threads[i] = new TaskExecuter(this, group);
+            threads[i] = new ThreadRun(group);
         }
     }
 
@@ -56,7 +56,7 @@ public abstract class ParallelProcess {
      */
     public final void start() {
         isRunning = true;
-        for (TaskExecuter t : threads) {
+        for (ThreadRun t : threads) {
             t.start();
         }
     }
@@ -70,19 +70,16 @@ public abstract class ParallelProcess {
 
     protected abstract void update();
 
-    private class TaskExecuter extends Thread {
+    private class ThreadRun extends Thread {
 
-        private ParallelProcess task;
-
-        TaskExecuter(ParallelProcess t, ThreadGroup group) {
+        ThreadRun(ThreadGroup group) {
             super(group, group.getName());
-            task = t;
         }
 
         @Override
         public void run() {
-            while (task.isRunning) {
-                task.update();
+            while (isRunning) {
+                update();
             }
         }
     }

@@ -24,24 +24,10 @@ import java.util.Vector;
  */
 public final class TaskList extends Task {
 
-    private class TaskManager extends OnePassTask {
-
-        @Override
-        protected void run() {
-            for (int i = tasksToRemove.size() - 1; i > 0; i--) {
-                tasksToRemove.get(i).drop();
-                tasks.remove(tasksToRemove.remove(i));
-            }
-            for (int i = tasksToAdd.size() - 1; i > 0; i--) {
-                tasks.get(i).init(taskProcessor);
-                tasks.add(tasksToAdd.remove(i));
-            }
-        }
-    }
-    private TaskManager taskManager = new TaskManager();
-    private Vector<Task> tasksToAdd = new Vector<Task>();
-    private Vector<Task> tasksToRemove = new Vector<Task>();
-    private Vector<Task> tasks = new Vector<Task>();
+    private boolean tasksManaged = false;
+    private final Vector<Task> tasksToAdd = new Vector<Task>();
+    private final Vector<Task> tasksToRemove = new Vector<Task>();
+    private final Vector<Task> tasks = new Vector<Task>();
 
     /**
      * Adds the given Task to this TaskExecuter to be executed in the future.
@@ -61,17 +47,47 @@ public final class TaskList extends Task {
 
     @Override
     protected void run() {
-        if (!taskManager.moveOn) {
-            taskManager.enter();
-        }
-
+        tasksManaged = false;
         for (Task t : tasks) {
             if (!t.moveOn()) {
                 t.enter();
             }
         }
+    }
+
+    @Override
+    void prepare() {
+        if (tasksManaged()) {
+            super.prepare();
+            manageTasks();
+        }
+
+        //To be executed in parallel
         for (Task t : tasks) {
-            t.reset();
+            if (t.moveOn()) {
+                t.prepare();
+            }
+        }
+    }
+
+    private synchronized boolean tasksManaged() {
+        if (tasksManaged) {
+            return true;
+        } else {
+            tasksManaged = true;
+            return false;
+        }
+    }
+
+    private synchronized void manageTasks() {
+        for (int i = tasksToRemove.size() - 1; i > 0; i--) {
+            tasksToRemove.get(i).drop();
+            tasks.remove(tasksToRemove.remove(i));
+        }
+
+        for (int i = tasksToAdd.size() - 1; i > 0; i--) {
+            tasksToAdd.get(i).init(taskProcessor);
+            tasks.add(tasksToAdd.remove(i));
         }
     }
 }

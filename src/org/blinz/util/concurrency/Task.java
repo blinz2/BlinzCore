@@ -65,7 +65,10 @@ public abstract class Task {
         run();
     }
 
-    final void reset() {
+    /**
+     * Prepare the Task for execution.
+     */
+    void prepare() {
         moveOn = false;
     }
 
