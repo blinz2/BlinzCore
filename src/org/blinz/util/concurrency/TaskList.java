@@ -64,7 +64,7 @@ public final class TaskList extends Task {
 
         //To be executed in parallel
         for (Task t : tasks) {
-            if (t.moveOn()) {
+            if (!t.prepared()) {
                 t.prepare();
             }
         }

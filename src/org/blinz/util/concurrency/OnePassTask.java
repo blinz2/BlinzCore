@@ -27,7 +27,7 @@ public abstract class OnePassTask extends Task {
         if (moveOn) {
             return true;
         } else {
-            moveOn = true;
+            setMoveOn();
             return false;
         }
     }
