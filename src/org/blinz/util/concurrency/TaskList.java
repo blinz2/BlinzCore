@@ -62,7 +62,6 @@ public final class TaskList extends Task {
             manageTasks();
         }
 
-        //To be executed in parallel
         for (Task t : tasks) {
             if (!t.prepared()) {
                 t.prepare();
@@ -80,12 +79,12 @@ public final class TaskList extends Task {
     }
 
     private synchronized void manageTasks() {
-        for (int i = tasksToRemove.size() - 1; i > 0; i--) {
+        for (int i = tasksToRemove.size() - 1; i > -1; i--) {
             tasksToRemove.get(i).drop();
             tasks.remove(tasksToRemove.remove(i));
         }
 
-        for (int i = tasksToAdd.size() - 1; i > 0; i--) {
+        for (int i = tasksToAdd.size() - 1; i > -1; i--) {
             tasksToAdd.get(i).init(taskProcessor);
             tasks.add(tasksToAdd.remove(i));
         }
