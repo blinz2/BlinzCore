@@ -36,6 +36,13 @@ public abstract class Task {
     }
 
     /**
+     * Tells the TaskExecuter that this is the last round.
+     */
+    public final void stop() {
+        taskProcessor.stop();
+    }
+
+    /**
      * Initializes this Task for the TaskProcessor
      * @param threadCount
      * @return true if initialization suceeded, false otherwise.

@@ -16,6 +16,9 @@
  */
 package org.blinz.util.concurrency;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Contains an update method that is executed by however many threads there are
  * processors on the system.
@@ -66,6 +69,27 @@ public abstract class ParallelProcess {
      */
     public final void stop() {
         isRunning = false;
+    }
+
+    /**
+     * 
+     * @return true if this ParallelProcess is running, false otherwise.
+     */
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    /**
+     * Similar to Thread.join(), waits for all threads in this ParallelProcess to die.
+     */
+    public final void join() {
+        for (ThreadRun t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ParallelProcess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     protected abstract void update();
