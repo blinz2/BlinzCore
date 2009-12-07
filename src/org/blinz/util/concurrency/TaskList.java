@@ -62,9 +62,9 @@ public final class TaskList extends Task {
             manageTasks();
         }
 
-        for (Task t : tasks) {
-            if (!t.prepared()) {
-                t.prepare();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (!tasks.get(i).prepared()) {
+                tasks.get(i).prepare();
             }
         }
     }
