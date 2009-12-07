@@ -48,9 +48,9 @@ public final class TaskList extends Task {
     @Override
     protected void run() {
         tasksManaged = false;
-        for (Task t : tasks) {
-            if (!t.moveOn()) {
-                t.enter();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (!tasks.get(i).moveOn()) {
+                tasks.get(i).moveOn();
             }
         }
     }
