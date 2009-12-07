@@ -50,7 +50,7 @@ public final class TaskList extends Task {
         tasksManaged = false;
         for (int i = 0; i < tasks.size(); i++) {
             if (!tasks.get(i).moveOn()) {
-                tasks.get(i).moveOn();
+                tasks.get(i).enter();
             }
         }
     }
