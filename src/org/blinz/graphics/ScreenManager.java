@@ -58,12 +58,30 @@ public class ScreenManager {
     private static final CanvasListener canvasListener = new CanvasListener();
     private static boolean isFullscreen = false;
     private static boolean isInitialized = false;
-    private static boolean closeRequested = false;
     /**
      * Title to be displayed on the window title bar and/or on the taskbar for the
      * application.
      */
     private static String title = "";
+    private static final Vector<ScreenManagerListener> listeners = new Vector<ScreenManagerListener>();
+
+    /**
+     * Adds the given ScreenManagerListener to the ScreenManager to be notified at
+     * certain events.
+     * @param listener
+     */
+    public final static void addListener(ScreenManagerListener listener) {
+        listeners.add(listener);
+    }
+
+    /**
+     * Removes the given ScreenManagerListener from the ScreenManager to be notified 
+     * at certain events.
+     * @param listener
+     */
+    public final static void removeListener(ScreenManagerListener listener) {
+        listeners.remove(listener);
+    }
 
     /**
      * Initializes the display, if it already exists it will do nothing.
@@ -253,23 +271,10 @@ public class ScreenManager {
     public final static void close() {
         runnable.isRunning = false;
         window = null;
-        closeRequested = true;
         ImageLoader.dumpImageData();
-    }
-
-    /**
-     * Clears the close requested flag.
-     * Also returns wheter or not a request to close the application has been submited
-     * by closing the display.
-     * @return true if a request to close the application has been submitted, false
-     * otherwise.
-     */
-    public final static boolean clearCloseRequested() {
-        if (closeRequested) {
-            closeRequested = false;
-            return true;
+        for (int i = 0; i < listeners.size(); i++) {
+            listeners.get(i).close();
         }
-        return false;
     }
 
     /**
@@ -278,12 +283,8 @@ public class ScreenManager {
      * @return true if a request to close the application has been submitted, false
      * otherwise.
      */
-    public final static boolean closeRequested() {
-        if (closeRequested) {
-            closeRequested = false;
-            return true;
-        }
-        return false;
+    public final static boolean open() {
+        return !(window == null);
     }
 
     /**
