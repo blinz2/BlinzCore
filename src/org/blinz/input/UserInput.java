@@ -63,7 +63,7 @@ public final class UserInput {
      * Returns true if the specified mouse button is currently pressed, false if
      * it is not.
      *
-     * Supports up to 20 mouse buttons.
+     * Supports up to 50 mouse buttons.
      * @param button
      * @return true if the specified key is currently pressed.
      */
