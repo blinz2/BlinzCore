@@ -33,7 +33,7 @@ import org.blinz.util.Position;
 class InputListener implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
     private final boolean[] keysPressed = new boolean[526];
-    private final boolean[] mouseButtonsPressed = new boolean[20];
+    private final boolean[] mouseButtonsPressed = new boolean[50];
     private final ArrayList<org.blinz.input.MouseListener> mouseListeners =
             new ArrayList<org.blinz.input.MouseListener>();
     private final ArrayList<org.blinz.input.KeyListener> keyListeners =
