@@ -42,8 +42,7 @@ public class InputTrigger extends Trigger {
      * @param buttonID
      */
     public InputTrigger(int deviceType, int buttonID) {
-        this.deviceType = deviceType;
-        this.buttonID = buttonID;
+        setTrigger(deviceType, buttonID);
     }
 
     /**
