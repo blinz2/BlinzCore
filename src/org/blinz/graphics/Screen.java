@@ -58,9 +58,9 @@ public abstract class Screen {
         }
 
         @Override
-        public void wheelScroll(int number) {
+        public void wheelScroll(int number, int cursorX, int cursorY) {
             for (MouseWheelListener listener : mouseWheelListeners) {
-                listener.wheelScroll(number);
+                listener.wheelScroll(number, cursorX, cursorY);
             }
         }
 

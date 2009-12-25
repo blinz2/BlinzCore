@@ -114,7 +114,7 @@ class InputListener implements KeyListener, MouseListener, MouseMotionListener, 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         for (org.blinz.input.MouseWheelListener listener : mouseWheelListeners) {
-            listener.wheelScroll(e.getUnitsToScroll());
+            listener.wheelScroll(e.getUnitsToScroll(), e.getX(), e.getY());
         }
     }
 
