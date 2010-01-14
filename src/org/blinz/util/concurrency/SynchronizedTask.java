@@ -20,7 +20,7 @@ package org.blinz.util.concurrency;
  * A non-re-entrant task. To be used on Tasks that need be executed once per loop.
  * @author Blinz
  */
-public abstract class OnePassTask extends Task {
+public abstract class SynchronizedTask extends Task {
 
     @Override
     synchronized boolean moveOn() {

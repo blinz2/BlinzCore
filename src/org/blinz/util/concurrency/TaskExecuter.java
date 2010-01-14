@@ -26,10 +26,19 @@ public final class TaskExecuter extends ParallelProcess {
     private TaskList list = new TaskList();
     private Barrier barrier = new Barrier();
 
+    /**
+     *
+     * @param threads number of threads used for this TaskExecuter
+     */
     public TaskExecuter(int threads) {
         this("TaskExecuter", threads);
     }
 
+    /**
+     *
+     * @param name the name of the thread group used for this TaskExecuter
+     * @param threads number of threads used for this TaskExecuter
+     */
     public TaskExecuter(String name, int threads) {
         super(name, threads);
         list.init(this);
