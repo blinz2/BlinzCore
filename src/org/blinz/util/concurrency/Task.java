@@ -25,7 +25,7 @@ public abstract class Task {
     boolean moveOn = false;
     TaskExecuter taskProcessor;
     private boolean prepared = false;
-    
+
     /**
      * Sets the move on flag for this Task telling all threads to skip over for
      * the rest of the duration of this loop.
@@ -70,7 +70,7 @@ public abstract class Task {
         return moveOn;
     }
 
-    void enter() {
+    final void enter() {
         run();
     }
 

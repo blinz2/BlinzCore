@@ -56,8 +56,8 @@ public final class TaskList extends Task {
     }
 
     @Override
-    void prepare() {
-        if (tasksManaged()) {
+    final void prepare() {
+        if (!tasksManaged()) {
             super.prepare();
             manageTasks();
         }
@@ -69,7 +69,7 @@ public final class TaskList extends Task {
         }
     }
 
-    private synchronized boolean tasksManaged() {
+    private final synchronized boolean tasksManaged() {
         if (tasksManaged) {
             return true;
         } else {
@@ -78,7 +78,7 @@ public final class TaskList extends Task {
         }
     }
 
-    private synchronized void manageTasks() {
+    private final void manageTasks() {
         for (int i = tasksToRemove.size() - 1; i > -1; i--) {
             tasksToRemove.get(i).drop();
             tasks.remove(tasksToRemove.remove(i));
