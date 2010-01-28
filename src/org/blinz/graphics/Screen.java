@@ -156,6 +156,50 @@ public abstract class Screen {
     }
 
     /**
+     * Adds the given input listener as all applicible types of input listeners
+     * to be updated with this Zone.
+     *
+     * If the given listener is a KeyListener and a MouseListener but not a
+     * MouseWheelListener it will be passed to addKeyListener(listener) and
+     * addMouseListener(listener).
+     *
+     * @param listener
+     */
+    public final void addInputListener(Object listener) {
+        if (listener instanceof org.blinz.input.KeyListener) {
+            addKeyListener((org.blinz.input.KeyListener) listener);
+        }
+        if (listener instanceof org.blinz.input.MouseListener) {
+            addMouseListener((org.blinz.input.MouseListener) listener);
+        }
+        if (listener instanceof org.blinz.input.MouseWheelListener) {
+            addMouseWheelListener((org.blinz.input.MouseWheelListener) listener);
+        }
+    }
+
+    /**
+     * Removes the given input listener as all applicible types of input listeners
+     * from be updated with this Zone.
+     *
+     * If the given listener is a KeyListener and a MouseListener but not a
+     * MouseWheelListener it will be passed to removeKeyListener(listener) and
+     * removeMouseListener(listener).
+     *
+     * @param listener
+     */
+    public final void removeInputListener(Object listener) {
+        if (listener instanceof org.blinz.input.KeyListener) {
+            removeKeyListener((org.blinz.input.KeyListener) listener);
+        }
+        if (listener instanceof org.blinz.input.MouseListener) {
+            removeMouseListener((org.blinz.input.MouseListener) listener);
+        }
+        if (listener instanceof org.blinz.input.MouseWheelListener) {
+            removeMouseWheelListener((org.blinz.input.MouseWheelListener) listener);
+        }
+    }
+
+    /**
      * Removes the specified Blinz MouseListener from this Screen so that
      * it will no longer be updated by this Screen.
      * @param listener
