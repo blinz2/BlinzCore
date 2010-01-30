@@ -20,6 +20,7 @@ package org.blinz.util.concurrency;
  * A component of a process to be executed concurrently.
  * @author Blinz
  */
+@Deprecated
 public abstract class Task {
 
     boolean moveOn = false;

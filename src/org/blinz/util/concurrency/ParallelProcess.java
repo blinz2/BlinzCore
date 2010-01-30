@@ -28,6 +28,7 @@ import java.util.logging.Logger;
  *
  * @author Blinz
  */
+@Deprecated
 public abstract class ParallelProcess {
 
     private ThreadRun[] threads;
