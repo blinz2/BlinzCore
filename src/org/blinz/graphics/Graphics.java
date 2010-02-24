@@ -62,7 +62,7 @@ public class Graphics {
      * @param y2
      */
     public final void fillRect(int x1, int y1, int x2, int y2) {
-        gl.glRecti(x1, y1, x2, y2);
+        gl.glRecti(x1 - 1, y1 - 1, x2 + 1, y2 + 1);
     }
 
     /**
