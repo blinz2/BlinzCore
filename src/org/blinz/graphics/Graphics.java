@@ -294,7 +294,6 @@ public class Graphics {
             y = screenBounds.getHeight() - y;
             r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
         }
-        System.out.println(font.getSize());
         r.draw(string, x, y - font.getSize());
         r.endRendering();
     }
