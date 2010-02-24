@@ -294,7 +294,8 @@ public class Graphics {
             y = screenBounds.getHeight() - y;
             r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
         }
-        r.draw(string, x, y);
+        System.out.println(font.getSize());
+        r.draw(string, x, y - font.getSize());
         r.endRendering();
     }
 
@@ -462,7 +463,7 @@ public class Graphics {
 
     /**
      *
-     * @return a Viewport object, reuses old Position objects when possible
+     * @return a Viewport object, ` reuses old Position objects when possible
      */
     private final Viewport fetchViewport() {
         if (excessViewports.isEmpty()) {

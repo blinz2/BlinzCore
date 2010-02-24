@@ -27,7 +27,6 @@ public final class Font {
 
     FontStub stub;
     private String name;
-    private int size;
 
     Font() {
     }
@@ -45,7 +44,7 @@ public final class Font {
      * @return in representing the size of this font.
      */
     public int getSize() {
-        return size;
+        return stub.getSize();
     }
 
     /**
