@@ -22,10 +22,8 @@ package org.blinz.util;
  */
 public class Bounds {
 
-    int width = 0;
-    int height = 0;
-    int x = 0;
-    int y = 0;
+    public int width = 0, height = 0;
+    public int x = 0, y = 0;
 
     /**
      * Default constructor with no parameters, does nothing.
@@ -82,6 +80,22 @@ public class Bounds {
      */
     public final int getHeight() {
         return height;
+    }
+
+    /**
+     * Gets the x coordinate of the right side of this Bounds
+     * @return x2
+     */
+    public final int x2() {
+        return x + width;
+    }
+
+    /**
+     * Gets the y coordinate of the bottom of this Bounds
+     * @return y2
+     */
+    public final int y2() {
+        return y + height;
     }
 
     /**
@@ -226,9 +240,9 @@ public class Bounds {
      * @return true if the given Bounds intersects this, false otherwise.
      */
     public final boolean intersects(Bounds bounds) {
-        return bounds.width > 0 && bounds.height > 0 && width > 0 && height > 0 &&
-                bounds.x < x + width && bounds.x + bounds.width > x && bounds.y < y + height &&
-                bounds.y + bounds.height > y;
+        return bounds.width > 0 && bounds.height > 0 && width > 0 && height > 0
+                && bounds.x < x + width && bounds.x + bounds.width > x && bounds.y < y + height
+                && bounds.y + bounds.height > y;
     }
 
     /**
@@ -244,9 +258,9 @@ public class Bounds {
      * @return true if the given bounds intersect
      */
     public static final boolean intersects(int x1, int x2, int y1, int y2, int width1, int width2, int height1, int height2) {
-        return width1 > 0 && height1 > 0 && width2 > 0 && height2 > 0 &&
-                x1 < x2 + width2 && x1 + width1 > x2 &&
-                y1 < y2 + height2 && y1 + height1 > y2;
+        return width1 > 0 && height1 > 0 && width2 > 0 && height2 > 0
+                && x1 < x2 + width2 && x1 + width1 > x2
+                && y1 < y2 + height2 && y1 + height1 > y2;
     }
 
     /**
@@ -258,9 +272,9 @@ public class Bounds {
      * @return true if the given bounds intersects with this, false otherwise
      */
     public final boolean intersects(int x, int y, int width, int height) {
-        return width > 0 && height > 0 && this.width > 0 && this.height > 0 &&
-                x < this.x + this.width && x + width > this.x &&
-                y < this.y + this.height && y + height > this.y;
+        return width > 0 && height > 0 && this.width > 0 && this.height > 0
+                && x < this.x + this.width && x + width > this.x
+                && y < this.y + this.height && y + height > this.y;
     }
 
     /**
@@ -270,8 +284,8 @@ public class Bounds {
      * @return true if this Bounds contains the given point, false otherwise
      */
     public final boolean contains(int x, int y) {
-        return width > 0 && height > 0 && x >= this.x && x < this.x + width &&
-                y >= this.y && y < this.y + height;
+        return width > 0 && height > 0 && x >= this.x && x < this.x + width
+                && y >= this.y && y < this.y + height;
     }
 
     /**
