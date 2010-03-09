@@ -70,7 +70,7 @@ public class ScreenManager {
      * certain events.
      * @param listener
      */
-    public final static void addListener(ScreenManagerListener listener) {
+    public final static void addListener(final ScreenManagerListener listener) {
         listeners.add(listener);
     }
 
@@ -79,7 +79,7 @@ public class ScreenManager {
      * at certain events.
      * @param listener
      */
-    public final static void removeListener(ScreenManagerListener listener) {
+    public final static void removeListener(final ScreenManagerListener listener) {
         listeners.remove(listener);
     }
 
@@ -149,7 +149,7 @@ public class ScreenManager {
      * or the Screen is removed.
      * @param screen
      */
-    public final static void addScreen(Screen screen) {
+    public final static void addScreen(final Screen screen) {
         canvasListener.screens.add(screen);
         UserInput.addKeyListener(screen.inputListener);
         UserInput.addMouseListener(screen.inputListener);
@@ -161,7 +161,7 @@ public class ScreenManager {
      * drawn.
      * @param screen
      */
-    public final static void removeScreen(Screen screen) {
+    public final static void removeScreen(final Screen screen) {
         canvasListener.screens.remove(screen);
         UserInput.removeKeyListener(screen.inputListener);
         UserInput.removeMouseListener(screen.inputListener);
@@ -223,7 +223,8 @@ public class ScreenManager {
      * Sets the width of screen to the given value.
      * @param width
      */
-    public final static void setWidth(int width) {
+    public final static void setWidth(final int width) {
+        size.width = width;
         if (window == null) {
             return;
         }
@@ -234,7 +235,8 @@ public class ScreenManager {
      * Sets the height of screen to the given value.
      * @param height
      */
-    public final static void setHeight(int height) {
+    public final static void setHeight(final int height) {
+        size.height = height;
         if (window == null) {
             return;
         }
@@ -246,7 +248,8 @@ public class ScreenManager {
      * @param width 
      * @param height
      */
-    public final static void setSize(int width, int height) {
+    public final static void setSize(final int width, final int height) {
+        size.setSize(width, height);
         if (window == null) {
             return;
         }
