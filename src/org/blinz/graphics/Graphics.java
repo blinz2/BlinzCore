@@ -49,7 +49,7 @@ public class Graphics {
      * @param x
      * @param y
      */
-    public final void translate(int x, int y) {
+    public final void translate(final int x, final int y) {
         gl.glTranslated(x, y, 0);
     }
 
@@ -61,8 +61,8 @@ public class Graphics {
      * @param x2
      * @param y2
      */
-    public final void fillRect(int x1, int y1, int x2, int y2) {
-        gl.glRecti(x1 - 1, y1 - 1, x2 + 1, y2 + 1);
+    public final void fillRect(final int x1, final int y1, final int x2, final int y2) {
+        gl.glRecti(x1, y1, x2, y2);
     }
 
     /**
@@ -70,7 +70,7 @@ public class Graphics {
      * as the point of origin.
      * @param polygon
      */
-    public final void fillPolygon(Polygon polygon) {
+    public final void fillPolygon(final Polygon polygon) {
         gl.glBegin(GL.GL_POLYGON);
         {
             for (int i = 0; i < polygon.size(); i++) {
@@ -87,7 +87,7 @@ public class Graphics {
      * @param x2
      * @param y2
      */
-    public final void drawLine(int x1, int y1, int x2, int y2) {
+    public final void drawLine(final int x1, final int y1, final int x2, final int y2) {
         gl.glBegin(GL.GL_LINES);
         {
             gl.glVertex2i(x1, y1);
@@ -101,7 +101,7 @@ public class Graphics {
      * @param loc1 - a Position object representing the starting point of the line
      * @param loc2 - a Position object representing the end of the line
      */
-    public final void drawLine(Position loc1, Position loc2) {
+    public final void drawLine(final Position loc1, final Position loc2) {
         drawLine(loc1.x, loc1.y, loc2.x, loc2.y);
     }
 
@@ -113,7 +113,7 @@ public class Graphics {
      * @param x2
      * @param y2
      */
-    public final void drawRect(int x1, int y1, int x2, int y2) {
+    public final void drawRect(final int x1, final int y1, final int x2, final int y2) {
         gl.glBegin(GL.GL_LINE_STRIP);
         {
             gl.glVertex2i(x1, y1);
@@ -131,7 +131,7 @@ public class Graphics {
      * as the point of origin.
      * @param polygon
      */
-    public final void drawPolygon(Polygon polygon) {
+    public final void drawPolygon(final Polygon polygon) {
         gl.glBegin(GL.GL_LINE_STRIP);
         for (int i = 0; i < polygon.size(); i++) {
             gl.glVertex2i(polygon.get(i).x, polygon.get(i).y);
@@ -143,7 +143,7 @@ public class Graphics {
      * Sets the drawing color to the color represented by the passed Color object.
      * @param color
      */
-    public final void setColor(Color color) {
+    public final void setColor(final Color color) {
         setColor(color.red, color.green, color.blue);
     }
 
@@ -153,7 +153,7 @@ public class Graphics {
      * @param green
      * @param blue
      */
-    public final void setColor(int red, int green, int blue) {
+    public final void setColor(final int red, final int green, final int blue) {
         color.setColor(red, green, blue);
         gl.glColor3b(color.red, color.green, color.blue);
     }
@@ -170,7 +170,7 @@ public class Graphics {
      * @param x2
      * @param y2
      */
-    public final void drawAnimation(Animation animation, int x1, int y1, int x2, int y2) {
+    public final void drawAnimation(final Animation animation, final int x1, final int y1, final int x2, final int y2) {
         drawImage(animation.getImage(), x1, y1, x2, y2);
     }
 
@@ -184,7 +184,7 @@ public class Graphics {
      * @param loc1
      * @param loc2
      */
-    public final void drawAnimation(Animation animation, Position loc1, Position loc2) {
+    public final void drawAnimation(final Animation animation, final Position loc1, final Position loc2) {
         drawImage(animation.getImage(), loc1.x, loc1.y, loc2.x, loc2.y);
     }
 
@@ -197,8 +197,18 @@ public class Graphics {
      * @param loc1
      * @param loc2
      */
-    public final void drawImage(Image image, Position loc1, Position loc2) {
+    public final void drawImage(final Image image, final Position loc1, final Position loc2) {
         drawImage(image, loc1.x, loc1.y, loc2.x, loc2.y);
+    }
+
+    /**
+     * Draws the given Image on the screen across the given bounds.
+     *
+     * @param image
+     * @param bounds
+     */
+    public final void drawImage(final Image image, final Bounds bounds) {
+        drawImage(image, bounds.x, bounds.y, bounds.x2(), bounds.y2());
     }
 
     /**
@@ -212,7 +222,7 @@ public class Graphics {
      * @param x2
      * @param y2
      */
-    public final void drawImage(Image image, int x1, int y1, int x2, int y2) {
+    public final void drawImage(final Image image, final int x1, final int y1, final int x2, final int y2) {
         Texture texture = image.getImageStub().getTexture();
         TextureCoords t = texture.getImageTexCoords();
         gl.glPushMatrix();
@@ -259,11 +269,20 @@ public class Graphics {
     /**
      * Draws a rectangle, with loc representing the top left corner of the
      * rectangle.
-     * @param loc - Position object representing the top left corner of the rectangle
-     * @param size - Size object specifying how far to the right and down the rectangle will extend
+     * @param loc Position object representing the top left corner of the rectangle
+     * @param size Size object specifying how far to the right and down the rectangle will extend
      */
-    public final void fillRect(Position loc, Size size) {
-        fillRect(loc.x, loc.y, size.width, size.height);
+    public final void fillRect(final Position loc, final Size size) {
+        fillRect(loc.x, loc.y, loc.x + size.width, loc.y + size.height);
+    }
+
+    /**
+     * Draws a rectangle, with loc representing the top left corner of the
+     * rectangle.
+     * @param bounds - the bounds of the rectangle to be drawn
+     */
+    public final void fillRect(final Bounds bounds) {
+        fillRect(bounds.x, bounds.y, bounds.x2(), bounds.y2());
     }
 
     /**
@@ -272,8 +291,17 @@ public class Graphics {
      * @param loc - Position object representing the top left corner of the rectangle
      * @param size - Size object specifying how far to the right and down the rectangle will extend
      */
-    public final void drawRect(Position loc, Size size) {
-        drawRect(loc.x, loc.y, size.width, size.height);
+    public final void drawRect(final Position loc, final Size size) {
+        drawRect(loc.x, loc.y, loc.x + size.width, loc.y + size.height);
+    }
+
+    /**
+     * Draws a rectangle, with loc representing the top left corner of the
+     * rectangle.
+     * @param bounds - the bounds of the rectangle to be drawn
+     */
+    public final void drawRect(final Bounds bounds) {
+        drawRect(bounds.x, bounds.y, bounds.x2(), bounds.y2());
     }
 
     /**
@@ -284,7 +312,7 @@ public class Graphics {
      * @param y
      * @param font
      */
-    public final void drawString(String string, int x, int y, Font font) {
+    public final void drawString(final String string, int x, int y, final Font font) {
         TextRenderer r = font.stub.getRenderer();
         r.setColor(color.getRedf(), color.getGreenf(), color.getBluef(), 1f);
         if (viewPortOn) {
@@ -305,7 +333,7 @@ public class Graphics {
      * @param loc - Position object with the coordinates string will be drawn at
      * @param font - Font the String will be drawn with
      */
-    public final void drawString(String string, Position loc, Font font) {
+    public final void drawString(final String string, final Position loc, final Font font) {
         drawString(string, loc.x, loc.y, font);
     }
 
@@ -316,7 +344,7 @@ public class Graphics {
      * @param x - x location that string will be drawn at
      * @param y - y location that string will be drawn at
      */
-    public final void drawString(String string, int x, int y) {
+    public final void drawString(final String string, final int x, final int y) {
         drawString(string, x, y, font);
     }
 
@@ -326,7 +354,7 @@ public class Graphics {
      * @param string - String to be drawn
      * @param loc - Position object with the coordinates string will be drawn at
      */
-    public final void drawString(String string, Position loc) {
+    public final void drawString(final String string, final Position loc) {
         drawString(string, loc.x, loc.y, font);
     }
 
@@ -336,8 +364,8 @@ public class Graphics {
      * @param character
      * @return int - width of the given char
      */
-    public final int getCharWidth(char character) {
-        return Math.round(font.getCharWidth(character));
+    public final int getCharWidth(final char character) {
+        return font.getCharWidth(character);
     }
 
     /**
@@ -382,7 +410,7 @@ public class Graphics {
      * @param width
      * @param height
      */
-    public final void enterViewport(int x, int y, int width, int height) {
+    public final void enterViewport(final int x, final int y, final int width, final int height) {
         Viewport v = viewport;
         viewport = fetchViewport();
         if (v == null) {
@@ -419,7 +447,7 @@ public class Graphics {
      * Sets the bounds of the Screen this Graphics object belongs to and draws for.
      * @param bounds
      */
-    final void setScreenBounds(Bounds bounds) {
+    final void setScreenBounds(final Bounds bounds) {
         screenBounds.setBounds(bounds);
     }
 
@@ -427,7 +455,7 @@ public class Graphics {
      * Sets the GL context to be used for drawing.
      * @param drawable
      */
-    final void setContext(GLAutoDrawable drawable) {
+    final void setContext(final GLAutoDrawable drawable) {
         gl = drawable.getGL();
     }
 
