@@ -248,16 +248,16 @@ public class Bounds {
     /**
      * Static method that takes two bounds and checks to see if they intersect.
      * @param x1
-     * @param x2
      * @param y1
-     * @param y2
      * @param width1
-     * @param width2
      * @param height1
+     * @param x2
+     * @param y2
+     * @param width2
      * @param height2
      * @return true if the given bounds intersect
      */
-    public static final boolean intersects(int x1, int x2, int y1, int y2, int width1, int width2, int height1, int height2) {
+    public static final boolean intersects(int x1, int y1, int width1, int height1, int x2, int y2, int width2, int height2) {
         return width1 > 0 && height1 > 0 && width2 > 0 && height2 > 0
                 && x1 < x2 + width2 && x1 + width1 > x2
                 && y1 < y2 + height2 && y1 + height1 > y2;
