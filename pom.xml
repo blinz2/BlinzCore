@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.blinz</groupId>
+  <artifactId>BlinzCore</artifactId>
+  <packaging>jar</packaging>
+  <version>0.5.0</version>
+  <name>BlinzCore</name>
+  <url>http://68.234.174.40/blinz</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.opengl</groupId>
+      <artifactId>jogl</artifactId>
+      <version>1.1</version>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+   <plugins>
+    <plugin>
+     <groupId>org.apache.maven.plugins</groupId>
+     <artifactId>maven-compiler-plugin</artifactId>
+     <configuration>
+      <source>1.6</source>
+      <target>1.6</target>
+     </configuration>
+    </plugin>
+   </plugins>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>Blinz</id>
+      <url>scp://gary@68.234.174.40/var/www/localhost/htdocs/blinz/repo</url>
+    </repository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>Blinz</id>
+      <url>http://68.234.174.40/blinz/dependencies/repo</url>
+    </repository>
+  </repositories>
+</project>
