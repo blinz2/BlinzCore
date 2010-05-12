@@ -25,7 +25,7 @@ public class Position3D extends Position {
     /**
      * Z coordinate of this Position.
      */
-    public float z = 0;
+    public int z = 0;
 
     /**
      * Default constructer without parameters, location defaults to (0, 0).
@@ -48,7 +48,7 @@ public class Position3D extends Position {
      * @param x
      * @param y
      */
-    public Position3D(int x, int y, float z) {
+    public Position3D(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -56,12 +56,18 @@ public class Position3D extends Position {
 
     /**
      * Creates a new Position with the values of position.
-     * @param position
+     * @param position the new Position3D will take the values of this parameter
      */
-    public Position3D(Position3D position) {
-        x = position.x;
-        y = position.y;
-        z = position.z;
+    public Position3D(final Position position) {
+        setPosition(position);
+    }
+
+    /**
+     * Creates a new Position with the values of position.
+     * @param position the new Position3D will take the values of this parameter
+     */
+    public Position3D(final Position3D position) {
+        setPosition3D(position);
     }
 
     /**
@@ -69,14 +75,14 @@ public class Position3D extends Position {
      * @param x
      * @param y
      */
-    public final void setPosition(int x, int y, float z) {
+    public final void setPosition(final int x, final int y, final int z) {
         setX(x);
         setY(y);
         setZ(z);
     }
 
     /**
-     * Sets this Positions coordinates to that of the given Position.
+     * Sets this Position's coordinates to that of the given Position.
      * @param position
      */
     public final void setPosition3D(Position3D position) {
@@ -85,25 +91,25 @@ public class Position3D extends Position {
 
     /**
      * Sets the z coordinate of this Position to the given value.
-     * @param z
+     * @param z the z cooridinate of this Position
      */
-    public final void setZ(float z) {
+    public final void setZ(int z) {
         this.z = z;
     }
 
     /**
      * Gets the z coordinate of this Position.
-     * @return z
+     * @return the z cooridinate of this Position
      */
-    public final double getZ() {
+    public final int getZ() {
         return z;
     }
 
     /**
      * Adds mod to this Position's z coordinate.
-     * @param mod
+     * @param mod the amount to be added to the z value
      */
-    public final void modZ(double mod) {
+    public final void modZ(final int mod) {
         z += mod;
     }
 }
