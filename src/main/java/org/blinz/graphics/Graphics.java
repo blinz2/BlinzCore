@@ -159,7 +159,7 @@ public class Graphics {
     }
 
     /**
-     * Draws the current Image of the given Animation on the screen at the 
+     * Draws the current Image of the given Animation on the screen at the
      * given coordinates.
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
@@ -178,13 +178,69 @@ public class Graphics {
      * Draws the current Image of the given Animation on the screen at the
      * given coordinates.
      *
+     * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
+     * refer to the bottom right.
+     * @param animation
+     * @param bounds the bounds in which to draw the given animation
+     */
+    public final void drawAnimation(final Animation animation, final Bounds bounds) {
+        drawImage(animation.getImage(), bounds.x, bounds.y, bounds.x2(), bounds.y2());
+    }
+
+    /**
+     * Draws the current Image of the given Animation on the screen at the
+     * given coordinates.
+     *
+     * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
+     * refer to the bottom right.
+     * @param animation
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     */
+    public final void draw(final Animation animation, final int x1, final int y1, final int x2, final int y2) {
+        drawImage(animation.getImage(), x1, y1, x2, y2);
+    }
+
+    /**
+     * Draws the current Image of the given Animation on the screen at the
+     * given coordinates.
+     *
+     * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
+     * refer to the bottom right.
+     * @param animation
+     * @param bounds the bounds in which to draw the given animation
+     */
+    public final void draw(final Animation animation, final Bounds bounds) {
+        drawImage(animation.getImage(), bounds.x, bounds.y, bounds.x2(), bounds.y2());
+    }
+
+    /**
+     * Draws the current Image of the given Animation on the screen at the
+     * given coordinates.
+     *
      * Note: loc1 refers to the top left corner of the image and loc2
      * refers to the bottom right.
      * @param animation
-     * @param loc1
-     * @param loc2
+     * @param loc1 top left coordinate of the draw space
+     * @param loc2 bottom right coordinate of the draw space
      */
     public final void drawAnimation(final Animation animation, final Position loc1, final Position loc2) {
+        drawImage(animation.getImage(), loc1.x, loc1.y, loc2.x, loc2.y);
+    }
+
+    /**
+     * Draws the current Image of the given Animation on the screen at the
+     * given coordinates.
+     *
+     * Note: loc1 refers to the top left corner of the image and loc2
+     * refers to the bottom right.
+     * @param animation
+     * @param loc1 top left coordinate of the draw space
+     * @param loc2 bottom right coordinate of the draw space
+     */
+    public final void draw(final Animation animation, final Position loc1, final Position loc2) {
         drawImage(animation.getImage(), loc1.x, loc1.y, loc2.x, loc2.y);
     }
 
@@ -193,9 +249,9 @@ public class Graphics {
      *
      * Note: loc1 refers to the top left corner of the image and loc2
      * refers to the bottom right.
-     * @param image
-     * @param loc1
-     * @param loc2
+     * @param image the image to draw
+     * @param loc1 top left coordinate of the draw space
+     * @param loc2 bottom right coordinate of the draw space
      */
     public final void drawImage(final Image image, final Position loc1, final Position loc2) {
         drawImage(image, loc1.x, loc1.y, loc2.x, loc2.y);
@@ -204,10 +260,33 @@ public class Graphics {
     /**
      * Draws the given Image on the screen across the given bounds.
      *
-     * @param image
-     * @param bounds
+     * @param image the image to draw
+     * @param bounds the bounds in which to draw the image
      */
     public final void drawImage(final Image image, final Bounds bounds) {
+        drawImage(image, bounds.x, bounds.y, bounds.x2(), bounds.y2());
+    }
+
+    /**
+     * Draws the given Image on the screen at the given coordinates.
+     *
+     * Note: loc1 refers to the top left corner of the image and loc2
+     * refers to the bottom right.
+     * @param image the image to draw
+     * @param loc1 top left coordinate of the draw space
+     * @param loc2 bottom right coordinate of the draw space
+     */
+    public final void draw(final Image image, final Position loc1, final Position loc2) {
+        drawImage(image, loc1.x, loc1.y, loc2.x, loc2.y);
+    }
+
+    /**
+     * Draws the given Image on the screen across the given bounds.
+     *
+     * @param image the image to draw
+     * @param bounds the bounds in which to draw the image
+     */
+    public final void draw(final Image image, final Bounds bounds) {
         drawImage(image, bounds.x, bounds.y, bounds.x2(), bounds.y2());
     }
 
@@ -222,8 +301,23 @@ public class Graphics {
      * @param x2
      * @param y2
      */
+    public final void draw(final Image image, final int x1, final int y1, final int x2, final int y2) {
+        drawImage(image, x1, y1, x2, y2);
+    }
+
+    /**
+     * Draws the given Image on the screen at the given coordinates.
+     *
+     * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
+     * refer to the bottom right.
+     * @param image
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     */
     public final void drawImage(final Image image, final int x1, final int y1, final int x2, final int y2) {
-        Texture texture = image.getImageStub().getTexture();
+        final Texture texture = image.getImageStub().getTexture();
         TextureCoords t = texture.getImageTexCoords();
         gl.glPushMatrix();
         gl.glEnable(GL.GL_BLEND);
@@ -355,6 +449,60 @@ public class Graphics {
      * @param loc - Position object with the coordinates string will be drawn at
      */
     public final void drawString(final String string, final Position loc) {
+        drawString(string, loc.x, loc.y, font);
+    }
+
+    /**
+     * Draws the specified String with the specified font with the the bottom
+     * left corner as the point of origin.
+     * @param string
+     * @param x
+     * @param y
+     * @param font
+     */
+    public final void draw(final String string, int x, int y, final Font font) {
+        TextRenderer r = font.stub.getRenderer();
+        r.setColor(color.getRedf(), color.getGreenf(), color.getBluef(), 1f);
+        if (viewPortOn) {
+            y = viewport.getHeight() - y;
+            r.beginRendering(viewport.getWidth(), viewport.getHeight());
+        } else {
+            y = screenBounds.getHeight() - y;
+            r.beginRendering(screenBounds.getWidth(), screenBounds.getHeight());
+        }
+        r.draw(string, x, y - font.getSize());
+        r.endRendering();
+    }
+
+    /**
+     * Draws the specified String with the specified font with the the bottom
+     * left corner as the point of origin.
+     * @param string - String to be drawn
+     * @param loc - Position object with the coordinates string will be drawn at
+     * @param font - Font the String will be drawn with
+     */
+    public final void draw(final String string, final Position loc, final Font font) {
+        drawString(string, loc.x, loc.y, font);
+    }
+
+    /**
+     * Draws the specified String with the specified font with the the bottom
+     * left corner as the point of origin.
+     * @param string - String to be drawn
+     * @param x - x location that string will be drawn at
+     * @param y - y location that string will be drawn at
+     */
+    public final void draw(final String string, final int x, final int y) {
+        drawString(string, x, y, font);
+    }
+
+    /**
+     * Draws the specified String with the specified font with the the bottom
+     * left corner as the point of origin.
+     * @param string - String to be drawn
+     * @param loc - Position object with the coordinates string will be drawn at
+     */
+    public final void draw(final String string, final Position loc) {
         drawString(string, loc.x, loc.y, font);
     }
 
