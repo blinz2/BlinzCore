@@ -43,8 +43,8 @@ public class Position {
      * @param y
      */
     public Position(int x, int y) {
-        this.x = x;
-        this.y = y;
+	this.x = x;
+	this.y = y;
     }
 
     /**
@@ -52,8 +52,8 @@ public class Position {
      * @param position
      */
     public Position(Position position) {
-        x = position.x;
-        y = position.y;
+	x = position.x;
+	y = position.y;
     }
 
     /**
@@ -62,8 +62,8 @@ public class Position {
      * @param y
      */
     public final void setPosition(int x, int y) {
-        setX(x);
-        setY(y);
+	setX(x);
+	setY(y);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Position {
      * @param position
      */
     public final void setPosition(Position position) {
-        setPosition(position.x, position.y);
+	setPosition(position.x, position.y);
     }
 
     /**
@@ -79,7 +79,7 @@ public class Position {
      * @param x
      */
     public final void setX(int x) {
-        this.x = x;
+	this.x = x;
     }
 
     /**
@@ -87,7 +87,7 @@ public class Position {
      * @param y
      */
     public final void setY(int y) {
-        this.y = y;
+	this.y = y;
     }
 
     /**
@@ -95,7 +95,7 @@ public class Position {
      * @return x
      */
     public final int getX() {
-        return x;
+	return x;
     }
 
     /**
@@ -103,7 +103,7 @@ public class Position {
      * @return y
      */
     public final int getY() {
-        return y;
+	return y;
     }
 
     /**
@@ -111,7 +111,7 @@ public class Position {
      * @param mod
      */
     public final void modX(int mod) {
-        x += mod;
+	x += mod;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Position {
      * @param mod
      */
     public final void modY(int mod) {
-        y += mod;
+	y += mod;
     }
 
     /**
@@ -128,7 +128,16 @@ public class Position {
      * @param yMod
      */
     public final void modPosition(int xMod, int yMod) {
-        x += xMod;
-        y += yMod;
+	x += xMod;
+	y += yMod;
+    }
+
+    /**
+     * Gets this objects attributes formatted as "x, y".
+     * @return this objects attributes formatted as "x, y"
+     */
+    @Override
+    public String toString() {
+	return x + ", " + y;
     }
 }

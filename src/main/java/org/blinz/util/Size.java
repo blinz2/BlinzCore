@@ -22,7 +22,7 @@ package org.blinz.util;
  */
 public class Size {
 
-    public int width = 0,  height = 0;
+    public int width = 0, height = 0;
 
     /**
      * Creates a new Size with dimensions defaulting to 0.
@@ -35,8 +35,8 @@ public class Size {
      * @param size
      */
     public Size(Size size) {
-        width = size.width;
-        height = size.height;
+	width = size.width;
+	height = size.height;
     }
 
     /**
@@ -45,8 +45,8 @@ public class Size {
      * @param height
      */
     public Size(int width, int height) {
-        this.width = width;
-        this.height = height;
+	this.width = width;
+	this.height = height;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Size {
      * @return width
      */
     public int getWidth() {
-        return width;
+	return width;
     }
 
     /**
@@ -62,7 +62,7 @@ public class Size {
      * @return height
      */
     public int getHeight() {
-        return height;
+	return height;
     }
 
     /**
@@ -70,7 +70,7 @@ public class Size {
      * @param width
      */
     public final void setWidth(int width) {
-        this.width = width;
+	this.width = width;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Size {
      * @param height
      */
     public final void setHeight(int height) {
-        this.height = height;
+	this.height = height;
     }
 
     /**
@@ -87,8 +87,8 @@ public class Size {
      * @param height
      */
     public final void setSize(int width, int height) {
-        this.width = width;
-        this.height = height;
+	this.width = width;
+	this.height = height;
     }
 
     /**
@@ -96,8 +96,8 @@ public class Size {
      * @param size
      */
     public final void setSize(Size size) {
-        width = size.width;
-        height = size.height;
+	width = size.width;
+	height = size.height;
     }
 
     /**
@@ -105,7 +105,7 @@ public class Size {
      * @param mod
      */
     public final void modWidth(int mod) {
-        width += mod;
+	width += mod;
     }
 
     /**
@@ -113,6 +113,15 @@ public class Size {
      * @param mod
      */
     public final void modHeight(int mod) {
-        height += mod;
+	height += mod;
+    }
+
+    /**
+     * Gets this objects attributes formatted as "width, height".
+     * @return this objects attributes formatted as "width, height"
+     */
+    @Override
+    public String toString() {
+	return width + ", " + height;
     }
 }

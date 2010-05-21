@@ -112,4 +112,13 @@ public class Position3D extends Position {
     public final void modZ(final int mod) {
         z += mod;
     }
+
+    /**
+     * Gets this objects attributes formatted as "x, y, z".
+     * @return this objects attributes formatted as "x, y, z"
+     */
+    @Override
+    public String toString() {
+	return super.toString();
+    }
 }
