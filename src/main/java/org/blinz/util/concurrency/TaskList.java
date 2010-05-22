@@ -22,7 +22,6 @@ import java.util.Vector;
  * A Task that contains other Tasks for execution.
  * @author Blinz
  */
-@Deprecated
 public final class TaskList extends Task {
 
     private boolean tasksManaged = false;
