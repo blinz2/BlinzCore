@@ -21,7 +21,6 @@ package org.blinz.util.concurrency;
  * the extend.
  * @author Blinz
  */
-@Deprecated
 public final class TaskExecuter extends ParallelProcess {
 
     private TaskList list = new TaskList();
