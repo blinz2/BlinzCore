@@ -4,7 +4,7 @@
   <groupId>org.blinz</groupId>
   <artifactId>BlinzCore</artifactId>
   <packaging>jar</packaging>
-  <version>0.7.3</version>
+  <version>0.7.4</version>
   <name>BlinzCore</name>
   <url>http://68.234.174.40/blinz</url>
   <dependencies>
