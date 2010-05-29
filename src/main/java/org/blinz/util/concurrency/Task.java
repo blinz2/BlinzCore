@@ -27,19 +27,19 @@ public abstract class Task {
     private boolean prepared = false;
 
     /**
-     * Sets the move on flag for this Task telling all threads to skip over for
-     * the rest of the duration of this loop.
-     */
-    public final void setMoveOn() {
-        this.moveOn = true;
-        this.prepared = false;
-    }
-
-    /**
      * Tells the TaskExecuter that this is the last round.
      */
     public final void stop() {
         taskProcessor.stop();
+    }
+
+    /**
+     * Sets the move on flag for this Task telling all threads to skip over for
+     * the rest of the duration of this loop.
+     */
+    final void setMoveOn() {
+        this.moveOn = true;
+        this.prepared = false;
     }
 
     /**
@@ -63,15 +63,16 @@ public abstract class Task {
     }
 
     /**
-     * 
+     * Indicates whether or not a thread should process this Task or move on.
      * @return if true the TaskProcessor should move on, otherwise continue on this Task
      */
     boolean moveOn() {
         return moveOn;
     }
 
-    void enter() {
+    final void enter() {
         run();
+        setMoveOn();
     }
 
     /**
