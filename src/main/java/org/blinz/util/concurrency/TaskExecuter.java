@@ -49,7 +49,7 @@ public final class TaskExecuter extends ParallelProcess {
      * Adds the given Task to this TaskExecuter to be executed in the future.
      * @param task
      */
-    public final void addTask(Task task) {
+    public final void addTask(final Task task) {
         list.add(task);
     }
 
@@ -57,7 +57,7 @@ public final class TaskExecuter extends ParallelProcess {
      * Removes the given Task and it will no longer be executed in the future.
      * @param task
      */
-    public final void removeTask(Task task) {
+    public final void removeTask(final Task task) {
         list.remove(task);
     }
 
@@ -81,7 +81,11 @@ public final class TaskExecuter extends ParallelProcess {
 
     @Override
     protected final void update() {
-        list.prepare();
+        synchronized (this) {
+            if (!list.prepared()) {
+                list.prepare();
+            }
+        }
         list.enter();
     }
 }

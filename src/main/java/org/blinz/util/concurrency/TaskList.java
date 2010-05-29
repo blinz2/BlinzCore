@@ -30,8 +30,16 @@ public final class TaskList extends Task {
     private final Vector<Task> tasks = new Vector<Task>();
 
     /**
+     * Gets the number of Tasks managed by this TaskList.
+     * @return the number of Tasks managed by this TaskList
+     */
+    public final int size() {
+        return tasks.size() + tasksToAdd.size();
+    }
+
+    /**
      * Adds the given Task to this TaskExecuter to be executed in the future.
-     * @param task
+     * @param task the Task to add to this TaskList
      */
     public final void add(final Task task) {
         tasksToAdd.add(task);
@@ -67,7 +75,7 @@ public final class TaskList extends Task {
 
     /**
      * Removes the given Task and it will no longer be executed in the future.
-     * @param task
+     * @param task the Task to be removed
      */
     public final void remove(final Task task) {
         tasksToRemove.add(task);
@@ -93,8 +101,8 @@ public final class TaskList extends Task {
 
     @Override
     final void prepare() {
+        super.prepare();
         if (!tasksManaged()) {
-            super.prepare();
             manageTasks();
         }
 
@@ -103,16 +111,6 @@ public final class TaskList extends Task {
                 tasks.get(i).prepare();
             }
         }
-    }
-
-    @Override
-    void enter() {
-        synchronized (this) {
-            if (!moveOn() && !prepared()) {
-                prepare();
-            }
-        }
-        super.enter();
     }
 
     private final synchronized boolean tasksManaged() {
@@ -125,9 +123,12 @@ public final class TaskList extends Task {
     }
 
     private final void manageTasks() {
-        for (int i = tasksToRemove.size() - 1; i > -1; i--) {
-            tasksToRemove.get(i).drop();
-            tasks.remove(tasksToRemove.remove(i));
+        while (!tasksToRemove.isEmpty()) {
+            tasksToRemove.get(0).drop();
+            final Task t = tasksToRemove.remove(0);
+            if (!tasks.remove(t)) {
+                tasksToAdd.remove(t);
+            }
         }
 
         for (int i = tasksToAdd.size() - 1; i > -1; i--) {
