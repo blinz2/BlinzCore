@@ -123,17 +123,18 @@ public final class TaskList extends Task {
     }
 
     private final void manageTasks() {
-        while (!tasksToRemove.isEmpty()) {
-            tasksToRemove.get(0).drop();
-            final Task t = tasksToRemove.remove(0);
+        for (int i = tasksToRemove.size() - 1; i > -1; i--) {
+            final Task t = tasksToRemove.remove(i);
+            t.drop();
             if (!tasks.remove(t)) {
                 tasksToAdd.remove(t);
             }
         }
 
-        for (int i = tasksToAdd.size() - 1; i > -1; i--) {
-            tasksToAdd.get(i).init(taskProcessor);
-            tasks.add(tasksToAdd.remove(i));
+        while (!tasksToAdd.isEmpty()) {
+            final Task t = tasksToAdd.remove(0);
+            t.init(taskProcessor);
+            tasks.add(t);
         }
     }
 }
