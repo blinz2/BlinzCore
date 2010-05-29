@@ -33,16 +33,52 @@ public final class TaskList extends Task {
      * Adds the given Task to this TaskExecuter to be executed in the future.
      * @param task
      */
-    public final void add(Task task) {
+    public final void add(final Task task) {
         tasksToAdd.add(task);
+    }
+
+    /**
+     * Gets the Task at the given place in the order of execution.
+     * @param index the location of the desired Task in the order of execution
+     * @return the Task at the given place in the order of execution
+     */
+    public final Task get(final int index) {
+        try {
+            return tasks.get(index);
+        } catch (final ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Removes and gets the Task at the given place in the order of execution.
+     * @param index the location of the desired Task in the order of execution
+     * @return the Task at the given place in the order of execution
+     */
+    public final Task remove(final int index) {
+        try {
+            final Task t = tasks.get(index);
+            tasksToRemove.add(t);
+            return t;
+        } catch (final ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     /**
      * Removes the given Task and it will no longer be executed in the future.
      * @param task
      */
-    public final void remove(Task task) {
+    public final void remove(final Task task) {
         tasksToRemove.add(task);
+    }
+
+    /**
+     * Clears this TaskLists of all Tasks.
+     */
+    public final void clear() {
+        tasksToRemove.addAll(tasks);
+        tasksToRemove.addAll(tasksToAdd);
     }
 
     @Override

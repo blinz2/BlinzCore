@@ -23,14 +23,14 @@ package org.blinz.util.concurrency;
  */
 public final class TaskExecuter extends ParallelProcess {
 
-    private TaskList list = new TaskList();
-    private Barrier barrier = new Barrier();
+    private final TaskList list = new TaskList();
+    private final Barrier barrier = new Barrier();
 
     /**
-     *
+     * Constructor
      * @param threads number of threads used for this TaskExecuter
      */
-    public TaskExecuter(int threads) {
+    public TaskExecuter(final int threads) {
         this("TaskExecuter", threads);
     }
 
@@ -59,6 +59,24 @@ public final class TaskExecuter extends ParallelProcess {
      */
     public final void removeTask(Task task) {
         list.remove(task);
+    }
+
+    /**
+     * Gets the Task at the given place in the order of execution.
+     * @param index the location of the desired Task in the order of execution
+     * @return the Task at the given place in the order of execution
+     */
+    public final Task get(final int index) {
+        return list.get(index);
+    }
+
+    /**
+     * Removes and gets the Task at the given place in the order of execution.
+     * @param index the location of the desired Task in the order of execution
+     * @return the Task at the given place in the order of execution
+     */
+    public final Task remove(final int index) {
+       return list.remove(index);
     }
 
     @Override
