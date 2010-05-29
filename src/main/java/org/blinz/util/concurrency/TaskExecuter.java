@@ -39,7 +39,7 @@ public final class TaskExecuter extends ParallelProcess {
      * @param name the name of the thread group used for this TaskExecuter
      * @param threads number of threads used for this TaskExecuter
      */
-    public TaskExecuter(String name, int threads) {
+    public TaskExecuter(final String name, final int threads) {
         super(name, threads);
         list.init(this);
         barrier.init(this);
@@ -76,13 +76,12 @@ public final class TaskExecuter extends ParallelProcess {
      * @return the Task at the given place in the order of execution
      */
     public final Task remove(final int index) {
-       return list.remove(index);
+        return list.remove(index);
     }
 
     @Override
     protected final void update() {
         list.prepare();
-        barrier.enter();
         list.enter();
     }
 }

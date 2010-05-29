@@ -105,6 +105,16 @@ public final class TaskList extends Task {
         }
     }
 
+    @Override
+    void enter() {
+        synchronized (this) {
+            if (!moveOn() && !prepared()) {
+                prepare();
+            }
+        }
+        super.enter();
+    }
+
     private final synchronized boolean tasksManaged() {
         if (tasksManaged) {
             return true;

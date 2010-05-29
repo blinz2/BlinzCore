@@ -45,9 +45,9 @@ public abstract class Task {
     /**
      * Initializes this Task for the TaskProcessor
      * @param threadCount
-     * @return true if initialization suceeded, false otherwise.
+     * @return true if initialization succeeded, false otherwise.
      */
-    synchronized boolean init(TaskExecuter taskProcessor) {
+    synchronized boolean init(final TaskExecuter taskProcessor) {
         if (this.taskProcessor == null) {
             this.taskProcessor = taskProcessor;
             return true;
@@ -70,7 +70,7 @@ public abstract class Task {
         return moveOn;
     }
 
-    final void enter() {
+    void enter() {
         run();
     }
 
