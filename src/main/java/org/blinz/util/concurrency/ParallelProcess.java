@@ -34,7 +34,12 @@ public abstract class ParallelProcess {
     private boolean isRunning = true;
     private ThreadGroup group;
 
-    public ParallelProcess(String threadName, int threadCount) {
+    /**
+     * Constructor
+     * @param threadName the name of the threads that will work in this ParallelProcess
+     * @param threadCount the number of threads that will work in this ParallelProcess
+     */
+    public ParallelProcess(final String threadName, final int threadCount) {
         group = new ThreadGroup(threadName);
         threads = new ThreadRun[threadCount];
         for (int i = 0; i < threads.length; i++) {
@@ -42,12 +47,16 @@ public abstract class ParallelProcess {
         }
     }
 
-    public ParallelProcess(int threadCount) {
+    /**
+     * Constructor
+     * @param threadCount the number of threads that will work in this ParallelProcess
+     */
+    public ParallelProcess(final int threadCount) {
         this("Task", threadCount);
     }
 
     /**
-     *
+     * Gets the number of threads dedicated to processing this TaskProcessor.
      * @return the number of threads dedicated to processing this TaskProcessor
      */
     public final int getThreadCount() {
@@ -59,7 +68,7 @@ public abstract class ParallelProcess {
      */
     public final void start() {
         isRunning = true;
-        for (ThreadRun t : threads) {
+        for (final ThreadRun t : threads) {
             t.start();
         }
     }
@@ -72,7 +81,7 @@ public abstract class ParallelProcess {
     }
 
     /**
-     * 
+     * Indicates whether or not this ParallelProcess is currently running.
      * @return true if this ParallelProcess is running, false otherwise.
      */
     public boolean isRunning() {
@@ -83,7 +92,7 @@ public abstract class ParallelProcess {
      * Similar to Thread.join(), waits for all threads in this ParallelProcess to die.
      */
     public final void join() {
-        for (ThreadRun t : threads) {
+        for (final ThreadRun t : threads) {
             try {
                 t.join();
             } catch (InterruptedException ex) {
@@ -96,7 +105,7 @@ public abstract class ParallelProcess {
 
     private class ThreadRun extends Thread {
 
-        ThreadRun(ThreadGroup group) {
+        ThreadRun(final ThreadGroup group) {
             super(group, group.getName());
         }
 
