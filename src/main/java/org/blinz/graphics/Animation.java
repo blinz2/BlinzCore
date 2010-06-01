@@ -39,12 +39,8 @@ public class Animation {
     private final LinkedList<Image> toAdd = new LinkedList<Image>();
     private final LinkedList<Image> toRemove = new LinkedList<Image>();
     private final ArrayList<Image> images = new ArrayList<Image>();
-    private final static LinkedList<Animation> toAddToInstances = new LinkedList<Animation>();
-    private final static Vector<WeakReference<Animation>> instances =
-            new Vector<WeakReference<Animation>>();
 
     public Animation() {
-        toAddToInstances.add(this);
     }
 
     /**
