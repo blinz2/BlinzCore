@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010 BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -39,7 +39,10 @@ public class Animation {
     private final LinkedList<Image> toAdd = new LinkedList<Image>();
     private final LinkedList<Image> toRemove = new LinkedList<Image>();
     private final ArrayList<Image> images = new ArrayList<Image>();
-
+    
+    /**
+     * Constructor
+     */
     public Animation() {
     }
 
@@ -95,7 +98,7 @@ public class Animation {
     /**
      * Returns the current Image in this Animation.
      * Note: Returns null if this Animation is empty.
-     * @return
+     * @return the current Image in this Animation
      */
     final Image getImage() {
         manageImages();
@@ -134,7 +137,7 @@ public class Animation {
 
     /**
      * Returns the current slide index, updating it if necessary.
-     * @return - the current slide index.
+     * @return the current slide index.
      */
     private final synchronized int getSlide() {
         if (System.currentTimeMillis() - lastUpdateTime >= milliSecondsPerImage) {
