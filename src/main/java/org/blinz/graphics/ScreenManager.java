@@ -112,7 +112,6 @@ public class ScreenManager {
         runnable.canvas.setVisible(true);
         window.setVisible(true);
         window.setSize(size);
-        window.setVisible(true);
         window.add(runnable.canvas);
         window.addWindowListener(new WindowAdapter() {
 
