@@ -371,9 +371,8 @@ public class Graphics {
     }
 
     /**
-     * Draws a rectangle, with loc representing the top left corner of the
-     * rectangle.
-     * @param bounds - the bounds of the rectangle to be drawn
+     * Draws a rectangle, with the bounds of the given Bounds object.
+     * @param bounds the bounds of the rectangle to be drawn
      */
     public final void fillRect(final Bounds bounds) {
         fillRect(bounds.x, bounds.y, bounds.x2(), bounds.y2());
