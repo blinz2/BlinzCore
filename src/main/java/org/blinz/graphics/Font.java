@@ -57,6 +57,19 @@ public final class Font {
     }
 
     /**
+     * Gets the width of the given String when drawn on the screen with the current font.
+     * @param string the String to be measured
+     * @return the width of the given String when drawn on the screen with the current font
+     */
+    public final long getStringWidth(final String string) {
+        double total = 0;
+        for (int i = 0; i < string.length(); i++) {
+            total += stub.getRenderer().getCharWidth(string.charAt(i));
+        }
+        return Math.round(total);
+    }
+
+    /**
      * Returns this Font's shared font stub.
      * @return
      * @throws NullPointerException - likely means this font was not found.

@@ -506,13 +506,22 @@ public class Graphics {
     }
 
     /**
-     * Returns the width of the given char.
+     * Gets the width of the given char.
      * Note: this number is rounded from a floating point number.
      * @param character
      * @return int - width of the given char
      */
     public final int getCharWidth(final char character) {
         return font.getCharWidth(character);
+    }
+
+    /**
+     * Gets the width of the given String when drawn on the screen with the current font.
+     * @param string the String to be measured
+     * @return the width of the given String when drawn on the screen with the current font
+     */
+    public final long getStringWidth(final String string) {
+        return font.getStringWidth(string);
     }
 
     /**
