@@ -533,6 +533,22 @@ public class Graphics {
     }
 
     /**
+     * Gets the Font this currently uses.
+     * @return the Font this Graphics instance uses
+     */
+    public final Font getFont() {
+        return font;
+    }
+
+    /**
+     * Gets the size of this Graphics instances current Font.
+     * @return the size of this Graphics instances current Font 
+     */
+    public final int getFontSize() {
+        return font.getSize();
+    }
+
+    /**
      * Gets the width of the Screen and/or viewport in which this currently draws.
      * @return drawing area width
      */
