@@ -35,7 +35,7 @@ public final class Font {
      * Returns a String representing the name of this font.
      * @return String representing the name of this font
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
@@ -43,7 +43,7 @@ public final class Font {
      * Returns an int representing the size of this font.
      * @return in representing the size of this font.
      */
-    public int getSize() {
+    public final int getSize() {
         return stub.getSize();
     }
 
@@ -52,7 +52,7 @@ public final class Font {
      * @param character
      * @return int width of the specified char, rounded from floating point value
      */
-    public int getCharWidth(char character) {
+    public final int getCharWidth(final char character) {
         return Math.round(stub.getRenderer().getCharWidth(character));
     }
 
@@ -61,7 +61,7 @@ public final class Font {
      * @return
      * @throws NullPointerException - likely means this font was not found.
      */
-    FontStub getStub() throws NullPointerException {
+    final FontStub getStub() throws NullPointerException {
         return stub;
     }
 
