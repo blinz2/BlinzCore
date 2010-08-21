@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -40,14 +40,17 @@ public class Graphics {
     private Font font;
     private GL gl;
 
+    /**
+     * Constructor
+     */
     Graphics() {
     }
 
     //PUBLIC METHODS------------------------------------------------------------
     /**
      * Moves the point of origin for drawing over the specified amount.
-     * @param x
-     * @param y
+     * @param x the x coordinate of the translation
+     * @param y the y coordinate of the translation
      */
     public final void translate(final int x, final int y) {
         gl.glTranslated(x, y, 0);
@@ -56,10 +59,10 @@ public class Graphics {
     /**
      * Draws the rectangle with point (x1, y1) representing the top left corner,
      * and point (x2, y2) representing the bottom right corner.
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param x1 the x1 coordinate of the translation
+     * @param y1 the y1 coordinate of the translation
+     * @param x2 the x2 coordinate of the translation
+     * @param y2 the y2 coordinate of the translation
      */
     public final void fillRect(final int x1, final int y1, final int x2, final int y2) {
         gl.glRecti(x1, y1, x2, y2);
@@ -68,7 +71,7 @@ public class Graphics {
     /**
      * Draws the outline of the given Polygon with the first point in the Polygon
      * as the point of origin.
-     * @param polygon
+     * @param polygon the Polygon to be filled 
      */
     public final void fillPolygon(final Polygon polygon) {
         gl.glBegin(GL.GL_POLYGON);
@@ -82,10 +85,10 @@ public class Graphics {
 
     /**
      * Draws a line from point (x1, y1) to point (x2, y2).
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param x1 the x1 coordinate of the line 
+     * @param y1 the y1 coordinate of the line
+     * @param x2 the x2 coordinate of the line
+     * @param y2 the y2 coordinate of the line
      */
     public final void drawLine(final int x1, final int y1, final int x2, final int y2) {
         gl.glBegin(GL.GL_LINES);
@@ -98,8 +101,8 @@ public class Graphics {
 
     /**
      * Draws a line from loc1 to loc2.
-     * @param loc1 - a Position object representing the starting point of the line
-     * @param loc2 - a Position object representing the end of the line
+     * @param loc1 a Position object representing the starting point of the line
+     * @param loc2 a Position object representing the end of the line
      */
     public final void drawLine(final Position loc1, final Position loc2) {
         drawLine(loc1.x, loc1.y, loc2.x, loc2.y);
@@ -108,10 +111,10 @@ public class Graphics {
     /**
      * Draws the outline of a rectangle with point (x1, y1) representing the top
      * left corner, and point (x2, y2) representing the bottom right corner.
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param x1 the x1 coordinate of the rectangle
+     * @param y1 the y1 coordinate of the rectangle
+     * @param x2 the x2 coordinate of the rectangle
+     * @param y2 the y2 coordinate of the rectangle
      */
     public final void drawRect(final int x1, final int y1, final int x2, final int y2) {
         gl.glBegin(GL.GL_LINE_STRIP);
@@ -129,7 +132,7 @@ public class Graphics {
     /**
      * Draws the outline of the given Polygon with the first point in the Polygon
      * as the point of origin.
-     * @param polygon
+     * @param polygon the Polygon to be filled
      */
     public final void drawPolygon(final Polygon polygon) {
         gl.glBegin(GL.GL_LINE_STRIP);
@@ -141,7 +144,7 @@ public class Graphics {
 
     /**
      * Sets the drawing color to the color represented by the passed Color object.
-     * @param color
+     * @param color a Color object representing the color with which primites will be drawn
      */
     public final void setColor(final Color color) {
         setColor(color.red, color.green, color.blue);
@@ -149,9 +152,9 @@ public class Graphics {
 
     /**
      * Sets the drawing color to the mix of the provided RGB values.
-     * @param red
-     * @param green
-     * @param blue
+     * @param red the red in the RGB
+     * @param green the green in the RGB
+     * @param blue the blue in the RGB
      */
     public final void setColor(final int red, final int green, final int blue) {
         color.setColor(red, green, blue);
@@ -164,11 +167,11 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param animation
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param animation the Animation to be drawn
+     * @param x1 the x1 coordinate of the Animation
+     * @param y1 the y1 coordinate of the Animation
+     * @param x2 the x2 coordinate of the Animation
+     * @param y2 the y2 coordinate of the Animation
      */
     public final void drawAnimation(final Animation animation, final int x1, final int y1, final int x2, final int y2) {
         drawImage(animation.getImage(), x1, y1, x2, y2);
@@ -180,7 +183,7 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param animation
+     * @param animation the Animation to be drawn
      * @param bounds the bounds in which to draw the given animation
      */
     public final void drawAnimation(final Animation animation, final Bounds bounds) {
@@ -193,11 +196,11 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param animation
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param animation the Animation to be drawn
+     * @param x1 the x1 coordinate of the Animation
+     * @param y1 the y1 coordinate of the Animation
+     * @param x2 the x2 coordinate of the Animation
+     * @param y2 the y2 coordinate of the Animation
      */
     public final void draw(final Animation animation, final int x1, final int y1, final int x2, final int y2) {
         drawImage(animation.getImage(), x1, y1, x2, y2);
@@ -209,7 +212,7 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param animation
+     * @param animation the Animation to be drawn
      * @param bounds the bounds in which to draw the given animation
      */
     public final void draw(final Animation animation, final Bounds bounds) {
@@ -222,7 +225,7 @@ public class Graphics {
      *
      * Note: loc1 refers to the top left corner of the image and loc2
      * refers to the bottom right.
-     * @param animation
+     * @param animation the Animation to be drawn
      * @param loc1 top left coordinate of the draw space
      * @param loc2 bottom right coordinate of the draw space
      */
@@ -236,7 +239,7 @@ public class Graphics {
      *
      * Note: loc1 refers to the top left corner of the image and loc2
      * refers to the bottom right.
-     * @param animation
+     * @param animation the Animation to be drawn
      * @param loc1 top left coordinate of the draw space
      * @param loc2 bottom right coordinate of the draw space
      */
@@ -295,11 +298,11 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param image
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param image the Image to be drawn
+     * @param x1 the x1 coordinate of the Animation
+     * @param y1 the y1 coordinate of the Animation
+     * @param x2 the x2 coordinate of the Animation
+     * @param y2 the y2 coordinate of the Animation
      */
     public final void draw(final Image image, final int x1, final int y1, final int x2, final int y2) {
         drawImage(image, x1, y1, x2, y2);
@@ -310,11 +313,11 @@ public class Graphics {
      *
      * Note: x1 and y1 refer to the top left corner of the image, and x2 and y2
      * refer to the bottom right.
-     * @param image
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param image the Image to be drawn
+     * @param x1 the x1 coordinate of the Animation
+     * @param y1 the y1 coordinate of the Animation
+     * @param x2 the x2 coordinate of the Animation
+     * @param y2 the y2 coordinate of the Animation
      */
     public final void drawImage(final Image image, final int x1, final int y1, final int x2, final int y2) {
         final Texture texture = image.getImageStub().getTexture();
@@ -381,8 +384,8 @@ public class Graphics {
     /**
      * Fills a rectangle, with loc representing the top left corner of the
      * rectangle.
-     * @param loc - Position object representing the top left corner of the rectangle
-     * @param size - Size object specifying how far to the right and down the rectangle will extend
+     * @param loc Position object representing the top left corner of the rectangle
+     * @param size Size object specifying how far to the right and down the rectangle will extend
      */
     public final void drawRect(final Position loc, final Size size) {
         drawRect(loc.x, loc.y, loc.x + size.width, loc.y + size.height);
@@ -391,7 +394,7 @@ public class Graphics {
     /**
      * Draws a rectangle, with loc representing the top left corner of the
      * rectangle.
-     * @param bounds - the bounds of the rectangle to be drawn
+     * @param bounds the bounds of the rectangle to be drawn
      */
     public final void drawRect(final Bounds bounds) {
         drawRect(bounds.x, bounds.y, bounds.x2(), bounds.y2());
@@ -400,10 +403,10 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string
-     * @param x
-     * @param y
-     * @param font
+     * @param string the String to be drawn
+     * @param x the x coordinate of the String drawn
+     * @param y the x coordinate of the String drawn
+     * @param font the Font of the String when drawn
      */
     public final void drawString(final String string, int x, int y, final Font font) {
         TextRenderer r = font.stub.getRenderer();
@@ -422,9 +425,9 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string - String to be drawn
-     * @param loc - Position object with the coordinates string will be drawn at
-     * @param font - Font the String will be drawn with
+     * @param string String to be drawn
+     * @param loc Position object with the coordinates string will be drawn at
+     * @param font Font the String will be drawn with
      */
     public final void drawString(final String string, final Position loc, final Font font) {
         drawString(string, loc.x, loc.y, font);
@@ -433,9 +436,9 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string - String to be drawn
-     * @param x - x location that string will be drawn at
-     * @param y - y location that string will be drawn at
+     * @param string String to be drawn
+     * @param x x location that string will be drawn at
+     * @param y y location that string will be drawn at
      */
     public final void drawString(final String string, final int x, final int y) {
         drawString(string, x, y, font);
@@ -444,8 +447,8 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string - String to be drawn
-     * @param loc - Position object with the coordinates string will be drawn at
+     * @param string String to be drawn
+     * @param loc Position object with the coordinates string will be drawn at
      */
     public final void drawString(final String string, final Position loc) {
         drawString(string, loc.x, loc.y, font);
@@ -454,10 +457,10 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string
-     * @param x
-     * @param y
-     * @param font
+     * @param string String to be drawn
+     * @param x x location that string will be drawn at
+     * @param y y location that string will be drawn at
+     * @param font Font the String will be drawn with
      */
     public final void draw(final String string, int x, int y, final Font font) {
         TextRenderer r = font.stub.getRenderer();
@@ -476,9 +479,9 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string - String to be drawn
-     * @param loc - Position object with the coordinates string will be drawn at
-     * @param font - Font the String will be drawn with
+     * @param string String to be drawn
+     * @param loc Position object with the coordinates string will be drawn at
+     * @param font Font the String will be drawn with
      */
     public final void draw(final String string, final Position loc, final Font font) {
         drawString(string, loc.x, loc.y, font);
@@ -487,9 +490,9 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string - String to be drawn
-     * @param x - x location that string will be drawn at
-     * @param y - y location that string will be drawn at
+     * @param string String to be drawn
+     * @param x the x location that string will be drawn at
+     * @param y the y location that string will be drawn at
      */
     public final void draw(final String string, final int x, final int y) {
         drawString(string, x, y, font);
@@ -498,8 +501,8 @@ public class Graphics {
     /**
      * Draws the specified String with the specified font with the the bottom
      * left corner as the point of origin.
-     * @param string - String to be drawn
-     * @param loc - Position object with the coordinates string will be drawn at
+     * @param string String to be drawn
+     * @param loc Position object with the coordinates string will be drawn at
      */
     public final void draw(final String string, final Position loc) {
         drawString(string, loc.x, loc.y, font);
@@ -508,8 +511,8 @@ public class Graphics {
     /**
      * Gets the width of the given char.
      * Note: this number is rounded from a floating point number.
-     * @param character
-     * @return int - width of the given char
+     * @param character the char who's width the will be measured
+     * @return the width of the given char
      */
     public final int getCharWidth(final char character) {
         return font.getCharWidth(character);
@@ -526,9 +529,9 @@ public class Graphics {
 
     /**
      * Sets the Font to be used when drawing text.
-     * @param font
+     * @param font the Font this Graphics object will use to draw text
      */
-    public final void setFont(Font font) {
+    public final void setFont(final Font font) {
         this.font = font;
     }
 
@@ -550,7 +553,7 @@ public class Graphics {
 
     /**
      * Gets the width of the Screen and/or viewport in which this currently draws.
-     * @return drawing area width
+     * @return the width of the drawing
      */
     public final int getPaneWidth() {
         if (viewport != null) {
@@ -561,7 +564,7 @@ public class Graphics {
 
     /**
      * Gets the height of the Screen and/or viewport in which this currently draws.
-     * @return drawing area height
+     * @return the height of the drawing area
      */
     public final int getPaneHeight() {
         if (viewport != null) {
@@ -577,10 +580,10 @@ public class Graphics {
      * IMPORTANT: Nesting viewports is not currently supported but may be in the
      * future, please exit the viewport when you're done.
      *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x the x location of the viewport
+     * @param y the y location of the viewport
+     * @param width the width of the viewport
+     * @param height the height of the viewport
      */
     public final void enterViewport(final int x, final int y, final int width, final int height) {
         Viewport v = viewport;
@@ -617,7 +620,7 @@ public class Graphics {
 
     /**
      * Sets the bounds of the Screen this Graphics object belongs to and draws for.
-     * @param bounds
+     * @param bounds a Bounds object representing the bounds of this Screen within the window
      */
     final void setScreenBounds(final Bounds bounds) {
         screenBounds.setBounds(bounds);
@@ -625,7 +628,7 @@ public class Graphics {
 
     /**
      * Sets the GL context to be used for drawing.
-     * @param drawable
+     * @param drawable the GLAutoDrawable object used to get the lower level drawing utility
      */
     final void setContext(final GLAutoDrawable drawable) {
         gl = drawable.getGL();
@@ -661,8 +664,8 @@ public class Graphics {
     }
 
     /**
-     *
-     * @return a Viewport object, ` reuses old Position objects when possible
+     * Gets a recycled Viewport object.
+     * @return a Viewport object, reuses old Position objects when possible
      */
     private final Viewport fetchViewport() {
         if (excessViewports.isEmpty()) {

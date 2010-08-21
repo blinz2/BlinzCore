@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -34,21 +34,21 @@ public class Color {
 
     /**
      * Creates a Color object based on the values provided.
-     * @param red
-     * @param green
-     * @param blue
+     * @param red the red value in the RGB
+     * @param green the red value in the RGB
+     * @param blue the red value in the RGB
      */
-    public Color(int red, int green, int blue) {
+    public Color(final int red, final int green, final int blue) {
         setColor(red, green, blue);
     }
 
     /**
      * Sets the Color to the mix of the provided RGB values.
-     * @param red
-     * @param green
-     * @param blue
+     * @param red the red value in the RGB
+     * @param green the green value in the RGB
+     * @param blue the blue value in the RGB
      */
-    public void setColor(int red, int green, int blue) {
+    public void setColor(final int red, final int green, final int blue) {
         setRed(red);
         setGreen(green);
         setBlue(blue);
@@ -56,15 +56,15 @@ public class Color {
 
     /**
      * Sets the drawing color to the color represented by the passed Color object.
-     * @param color
+     * @param color a Color object representing the color for this Color objec to take
      */
-    public final void setColor(Color color) {
+    public final void setColor(final Color color) {
         setColor(color.red, color.green, color.blue);
     }
 
     /**
      * Sets the red value of the RGB values in this Color object to the given value.
-     * @param red - red value in this Color's RGB
+     * @param red red value in this Color's RGB
      */
     public void setRed(int red) {
         if (red > 127) {
@@ -75,7 +75,7 @@ public class Color {
 
     /**
      * Sets the green value of the RGB values in this Color object to the given value.
-     * @param green - green value in this Color's RGB
+     * @param green green value in this Color's RGB
      */
     public void setGreen(int green) {
         if (green > 127) {
@@ -86,7 +86,7 @@ public class Color {
 
     /**
      * Sets the blue value of the RGB values in this Color object to the given value.
-     * @param blue - blue value in this Color's RGB
+     * @param blue blue value in this Color's RGB
      */
     public void setBlue(int blue) {
         if (blue > 127) {

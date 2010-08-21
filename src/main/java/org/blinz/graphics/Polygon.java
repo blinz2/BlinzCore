@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -29,39 +29,39 @@ public final class Polygon {
     /**
      * List storing points on the polygon.
      */
-    private Vector<Position> points = new Vector<Position>();
+    private final Vector<Position> points = new Vector<Position>();
 
     /**
      * Adds a copy of the specified point to the last spot on the list.
      * @param loc
      */
-    public final void addPoint(Position loc) {
+    public final void addPoint(final Position loc) {
         points.add(new Position(loc));
     }
 
     /**
      * Adds the specified point to the last spot on the list.
-     * @param x
-     * @param y
+     * @param x the x coordinate of the point
+     * @param y the y coordinate of the point
      */
-    public final void addPoint(int x, int y) {
+    public final void addPoint(final int x, final int y) {
         points.add(new Position(x, y));
     }
 
     /**
      * Adds the specified point to the last spot on the list by reference.
-     * @param loc
+     * @param loc a reference tot he point to be added
      */
-    public final void addPointByReference(Position loc) {
+    public final void addPointByReference(final Position loc) {
         points.add(loc);
     }
 
     /**
-     * Gests the point at the specified index.
-     * @param index
+     * Gets the point at the specified index.
+     * @param index the index of the desired point
      * @return the point at index
      */
-    public final Position get(int index) {
+    public final Position get(final int index) {
         return points.get(index);
     }
 

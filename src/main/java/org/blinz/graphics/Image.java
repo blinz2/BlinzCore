@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -35,30 +35,30 @@ public final class Image {
      * Constructor for instances of Image.
      * @param stub takes the ImageStub and represents it.
      */
-    Image (ImageStub stub) {
+    Image (final ImageStub stub) {
         this.stub = stub;
     }
 
     /**
-     * Returns a new Size object representing the size of the image in the file
+     * Gets a new Size object representing the size of the image in the file
      * this was loaded from.
-     * @return Size
+     * @return a new Size object representing the size of this Image
      */
     public Size getSize() {
         return new Size(stub.getWidth(), stub.getHeight());
     }
 
     /**
-     * Returns the width of the image loaded.
-     * @return int
+     * Gets the width of the image loaded.
+     * @return the width of the image loaded
      */
     public int getWidth() {
         return stub.getWidth();
     }
 
     /**
-     * Returns the height of the image loaded.
-     * @return int
+     * Gets the height of the image loaded.
+     * @return the height of the image loaded
      */
     public int getHeight() {
         return stub.getHeight();

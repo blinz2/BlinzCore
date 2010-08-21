@@ -32,57 +32,66 @@ import javax.imageio.ImageIO;
  */
 final class ImageStub {
 
-    static final int LOCAL = 0;
-    static final int HTTP = 1;
+    enum SourceType {
+        LOCAL,
+        HTTP;
+    }
+
     /**
      * Denotes the type of source to be used for this stub, local or remote.
      */
-    int type = LOCAL;
+    SourceType type = SourceType.LOCAL;
     int dependentCount = 1;
     private String path;
     private Texture texture;
     private int width, height;
     private BufferedImage bufferedImage;
 
-    ImageStub(String path, int type) throws IOException {
+    /**
+     * Constructor
+     * @param path
+     * @param type the type of source this image will load from
+     * @throws IOException
+     */
+    ImageStub(final String path, final SourceType type) throws IOException {
         this.path = path;
         this.type = type;
         load();
     }
 
     /**
-     *
-     * @return the path to this image.
+     * Gets the path to this image.
+     * @return the path to this image
      */
     final String getPath() {
         return path;
     }
 
     /**
-     *
-     * @return the width of the image this ImageStub represents.
+     * Gets the width of the image this ImageStub represents.
+     * @return the width of the image this ImageStub represents
      */
     final int getWidth() {
         return width;
     }
 
     /**
-     *
-     * @return the height of the image this ImageStub represents.
+     * Gets the height of the image this ImageStub represents.
+     * @return the height of the image this ImageStub represents
      */
     final int getHeight() {
         return height;
     }
 
     /**
-     *
-     * @return the JOGL Texture representation of the image this ImageStub represents.
+     * Gets the JOGL Texture representation of the image this ImageStub represents.
+     * @return the JOGL Texture representation of the image this ImageStub represents
      */
     final Texture getTexture() {
         if (texture == null) {
             if (bufferedImage == null) {
                 try {
-                    if (type == LOCAL) {
+                    if (type == SourceType.LOCAL) {
                         bufferedImage = ImageIO.read(new File(path));
                     } else {
                         bufferedImage = ImageIO.read(new URL(path));
@@ -110,7 +119,7 @@ final class ImageStub {
      * @throws IOException
      */
     private final void load() throws IOException {
-        if (type == LOCAL) {
+        if (type == SourceType.LOCAL) {
             bufferedImage = ImageIO.read(new File(path));
         } else {
             bufferedImage = ImageIO.read(new URL(path));
