@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -30,6 +30,9 @@ import org.blinz.input.MouseWheelListener;
  */
 public abstract class Screen {
 
+    /**
+     * Used to gather input for input clients of this Screen
+     */
     private class InputListener implements MouseListener, MouseWheelListener, KeyListener {
 
         private final Vector<MouseListener> mouseListeners = new Vector<MouseListener>();
@@ -85,17 +88,24 @@ public abstract class Screen {
             }
         }
     }
-    public final static int FULL_SCREEN = 0;
-    public final static int LEFT_SCREEN = 1;
-    public final static int RIGHT_SCREEN = 2;
-    public final static int TOP_SCREEN = 3;
-    public final static int BOTTOM_SCREEN = 4;
-    public final static int TOP_LEFT_SCREEN = 5;
-    public final static int TOP_RIGHT_SCREEN = 6;
-    public final static int BOTTOM_LEFT_SCREEN = 7;
-    public final static int BOTTOM_RIGHT_SCREEN = 8;
+
+    /**
+     * Used to indicate the form of a Screen.
+     */
+    public enum ScreenType {
+
+        FULL_SCREEN,
+        LEFT_SCREEN,
+        RIGHT_SCREEN,
+        TOP_SCREEN,
+        BOTTOM_SCREEN,
+        TOP_LEFT_SCREEN,
+        TOP_RIGHT_SCREEN,
+        BOTTOM_LEFT_SCREEN,
+        BOTTOM_RIGHT_SCREEN;
+    }
     final InputListener inputListener = new InputListener();
-    private int screenType = FULL_SCREEN;
+    private ScreenType screenType = ScreenType.FULL_SCREEN;
     private final Bounds bounds = new Bounds();
     private final Graphics graphics = new Graphics();
 
@@ -104,16 +114,16 @@ public abstract class Screen {
      * right.
      *
      * Example:
-     *          screen.setScreenType(Screen.TOP_RIGHT_SCREEN);
+     *          screen.setScreenType(Screen.ScreenType.TOP_RIGHT_SCREEN);
      * 
-     * @param type int
+     * @param type the form the Screen will take
      */
-    public final void setScreenType(int type) {
+    public final void setScreenType(final ScreenType type) {
         screenType = type;
     }
 
     /**
-     * Returns the width of this Screen.
+     * Gets the width of this Screen.
      * @return width of this Screen.
      */
     public final int getWidth() {
@@ -121,7 +131,7 @@ public abstract class Screen {
     }
 
     /**
-     * Returns the height of this Screen.
+     * Gets the height of this Screen.
      * @return height of this Screen.
      */
     public final int getHeight() {
@@ -131,27 +141,27 @@ public abstract class Screen {
     /**
      * Adds the given Blinz MouseListener to the Screen to be updated about
      * the activities of the mouse while the Screen is being displayed.
-     * @param listener
+     * @param listener the MouseWheelListener to be added
      */
-    public final void addMouseWheelListener(org.blinz.input.MouseWheelListener listener) {
+    public final void addMouseWheelListener(final org.blinz.input.MouseWheelListener listener) {
         inputListener.mouseWheelListeners.add(listener);
     }
 
     /**
      * Adds the given Blinz MouseWheelListener to the Screen to be updated about
      * the activities of the mouse while the Screen is being displayed.
-     * @param listener
+     * @param listener the MouseListener to be added
      */
-    public final void addMouseListener(org.blinz.input.MouseListener listener) {
+    public final void addMouseListener(final org.blinz.input.MouseListener listener) {
         inputListener.mouseListeners.add(listener);
     }
 
     /**
      * Adds the given Blinz KeyListener to the Screen to be updated about
      * activity on the keyboard while the Screen is being displayed.
-     * @param listener
+     * @param listener the KeyListener to be added
      */
-    public final void addKeyListener(org.blinz.input.KeyListener listener) {
+    public final void addKeyListener(final org.blinz.input.KeyListener listener) {
         inputListener.keyListeners.add(listener);
     }
 
@@ -165,7 +175,7 @@ public abstract class Screen {
      *
      * @param listener
      */
-    public final void addInputListener(Object listener) {
+    public final void addInputListener(final Object listener) {
         if (listener instanceof org.blinz.input.KeyListener) {
             addKeyListener((org.blinz.input.KeyListener) listener);
         }
@@ -187,7 +197,7 @@ public abstract class Screen {
      *
      * @param listener
      */
-    public final void removeInputListener(Object listener) {
+    public final void removeInputListener(final Object listener) {
         if (listener instanceof org.blinz.input.KeyListener) {
             removeKeyListener((org.blinz.input.KeyListener) listener);
         }
@@ -202,27 +212,27 @@ public abstract class Screen {
     /**
      * Removes the specified Blinz MouseListener from this Screen so that
      * it will no longer be updated by this Screen.
-     * @param listener
+     * @param listener the MouseListener to be removed
      */
-    public final void removeMouseListener(org.blinz.input.MouseListener listener) {
+    public final void removeMouseListener(final org.blinz.input.MouseListener listener) {
         inputListener.mouseListeners.remove(listener);
     }
 
     /**
      * Removes the specified Blinz MouseListener from this Screen so that
      * it will no longer be updated by this Screen.
-     * @param listener
+     * @param listener the MouseWheelListener to be removed
      */
-    public final void removeMouseWheelListener(org.blinz.input.MouseWheelListener listener) {
+    public final void removeMouseWheelListener(final org.blinz.input.MouseWheelListener listener) {
         inputListener.mouseWheelListeners.remove(listener);
     }
 
     /**
      * Removes the specified Blinz KeyListener from this Screen so that
      * it will no longer be updated by this Screen.
-     * @param listener
+     * @param listener the KeyListener to be added
      */
-    public final void removeKeyListener(org.blinz.input.KeyListener listener) {
+    public final void removeKeyListener(final org.blinz.input.KeyListener listener) {
         inputListener.keyListeners.remove(listener);
     }
 
@@ -230,7 +240,7 @@ public abstract class Screen {
      * Draw this Screen.
      * @param gl context for this Screen.
      */
-    final void draw(GLAutoDrawable gl) {
+    final void draw(final GLAutoDrawable gl) {
         computeBounds();
         graphics.setContext(gl);
         graphics.setScreenBounds(bounds);
@@ -278,5 +288,5 @@ public abstract class Screen {
      * Draw the desired screen.
      * @param graphics
      */
-    protected abstract void draw(Graphics graphics);
+    protected abstract void draw(final Graphics graphics);
 }

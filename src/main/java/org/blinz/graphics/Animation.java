@@ -18,10 +18,8 @@ package org.blinz.graphics;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,28 +46,28 @@ public class Animation {
 
     /**
      * Adds the image associated with the path provided.
-     * @param imagePath
+     * @param imagePath the path to the image
      * @throws FileNotFoundException
      */
-    public final void addImage(String imagePath) throws IOException {
+    public final void addImage(final String imagePath) throws IOException {
         Image image = ImageLoader.loadImage(imagePath);
         toAdd.add(image);
     }
 
     /**
      * Adds the given Image object to this Animation.
-     * @param image
+     * @param image a reference to the Image to add
      * @throws FileNotFoundException
      */
-    public final void addImage(Image image) {
+    public final void addImage(final Image image) {
         toAdd.add(image);
     }
 
     /**
      * Removes the image associated with the path provided.
-     * @param imagePath
+     * @param imagePath the path to the image
      */
-    public final void removeImage(String imagePath) {
+    public final void removeImage(final String imagePath) {
         for (int i = 0; i < images.size(); i++) {
             if (images.get(i).getImageStub().getPath().equals(imagePath)) {
                 images.remove(i);
@@ -79,20 +77,19 @@ public class Animation {
 
     /**
      * Removes the specified Image object from this Animation.
-     * @param image
+     * @param image a reference to the Image object to add
      */
-    public final void removeImage(Image image) {
+    public final void removeImage(final Image image) {
         toRemove.add(image);
     }
 
     /**
      * Sets the number milli-seconds that will pass before the animation flips
      * to the next image.
-     * Note: This is based on System time.
-     * @param number
+     * @param milli time to elapse between fliping to a different slide
      */
-    public final void milliSecondsPerImage(int number) {
-        this.milliSecondsPerImage = number;
+    public final void milliSecondsPerImage(final int milli) {
+        this.milliSecondsPerImage = milli;
     }
 
     /**

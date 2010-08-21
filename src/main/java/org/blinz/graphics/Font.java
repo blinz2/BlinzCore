@@ -26,6 +26,9 @@ public final class Font {
     FontStub stub;
     private String name;
 
+    /**
+     * Constructor
+     */
     Font() {
     }
 

@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -68,7 +68,7 @@ public class ScreenManager {
     /**
      * Adds the given ScreenManagerListener to the ScreenManager to be notified at
      * certain events.
-     * @param listener
+     * @param listener the ScreenManagerListener to be added
      */
     public final static void addListener(final ScreenManagerListener listener) {
         listeners.add(listener);
@@ -77,7 +77,7 @@ public class ScreenManager {
     /**
      * Removes the given ScreenManagerListener from the ScreenManager to be notified 
      * at certain events.
-     * @param listener
+     * @param listener the ScreenManagerListener to be removed
      */
     public final static void removeListener(final ScreenManagerListener listener) {
         listeners.remove(listener);
@@ -137,7 +137,7 @@ public class ScreenManager {
 
     /**
      * Indicates whether or not the screen has been initialized.
-     * @return - true if the screen is active, false if it is not.
+     * @return true if the screen is active, false if it is not.
      */
     public final static boolean isInitialized() {
         return isInitialized;
@@ -146,7 +146,7 @@ public class ScreenManager {
     /**
      * Adds the specified Screen to the screen to be drawn until the screen stops
      * or the Screen is removed.
-     * @param screen
+     * @param screen the Screen to be added
      */
     public final static void addScreen(final Screen screen) {
         canvasListener.screens.add(screen);
@@ -158,7 +158,7 @@ public class ScreenManager {
     /**
      * Removes the specified Screen from the screen, the Screen will no longer be
      * drawn.
-     * @param screen
+     * @param screen the Screen to be removed
      */
     public final static void removeScreen(final Screen screen) {
         canvasListener.screens.remove(screen);
@@ -168,8 +168,8 @@ public class ScreenManager {
     }
 
     /**
-     * Returns the width of the screen.
-     * @return - width of screen
+     * Gets the width of the screen.
+     * @return the width of screen
      */
     public final static int getWidth() {
         if (window == null) {
@@ -179,8 +179,8 @@ public class ScreenManager {
     }
 
     /**
-     * Returns the height of the screen.
-     * @return - height of screen
+     * Gets the height of the screen.
+     * @return height of screen
      */
     public final static int getHeight() {
         if (window == null) {
@@ -208,7 +208,7 @@ public class ScreenManager {
     }
 
     /**
-     * Returns a Size object representing the size of the screen.
+     * Gets a Size object representing the size of the screen.
      * @return a new Size object representing the size of the screen.
      */
     public final static Size getSize() {
@@ -220,7 +220,7 @@ public class ScreenManager {
 
     /**
      * Sets the width of screen to the given value.
-     * @param width
+     * @param width the new number of column of the window
      */
     public final static void setWidth(final int width) {
         size.width = width;
@@ -232,7 +232,7 @@ public class ScreenManager {
 
     /**
      * Sets the height of screen to the given value.
-     * @param height
+     * @param height the new number of rows of the window
      */
     public final static void setHeight(final int height) {
         size.height = height;
@@ -244,8 +244,8 @@ public class ScreenManager {
 
     /**
      * Sets the width and height of screen to the given values.
-     * @param width 
-     * @param height
+     * @param width the new number of column ofthe window
+     * @param height the new number of rows ofthe window
      */
     public final static void setSize(final int width, final int height) {
         size.setSize(width, height);
@@ -258,7 +258,7 @@ public class ScreenManager {
     /**
      * Sets the title that will appear at the top of the window and on the taskbar
      * for this application.
-     * @param title
+     * @param title the title for the window
      */
     public final static void setTitle(String title) {
         ScreenManager.title = title;
@@ -280,7 +280,7 @@ public class ScreenManager {
     }
 
     /**
-     * Returns wheter or not a request to close the application has been submited
+     * Gets wheter or not a request to close the application has been submited
      * by closing the display.
      * @return true if a request to close the application has been submitted, false
      * otherwise.
@@ -292,9 +292,9 @@ public class ScreenManager {
     /**
      * Sets the image that will appear on the taskbar representation of this application
      * and at the top left corner of the window in window mode.
-     * @param path - location of the desired image
+     * @param path location of the desired image
      */
-    public final static void setIcon(String path) {
+    public final static void setIcon(final String path) {
         java.awt.Image i = null;
         try {
             i = ImageIO.read(new File(path));
@@ -371,7 +371,7 @@ class CanvasListener implements GLEventListener {
 
     @Override
     public void init(GLAutoDrawable drawable) {
-        GL gl = drawable.getGL();
+        final GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);
         gl.glPointSize(4.0f);
@@ -391,7 +391,7 @@ class CanvasListener implements GLEventListener {
 
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-        GL gl = drawable.getGL();
+        final GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);
         gl.glPointSize(4.0f);
@@ -404,7 +404,7 @@ class CanvasListener implements GLEventListener {
 
     @Override
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
-        GL gl = drawable.getGL();
+        final GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);
         gl.glPointSize(4.0f);

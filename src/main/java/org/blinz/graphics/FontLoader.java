@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -30,30 +30,30 @@ public class FontLoader {
     private static final Vector<FontStub> fontStubs = new Vector<FontStub>();
 
     /**
-     * Returns a Font object representing the specified font.
-     * @param name - the name of the font
-     * @param size - the size of the font
-     * @return - a new Font object representing the specified font.
+     * Gets a Font object representing the specified font.
+     * @param name the name of the font
+     * @param size the size of the font
+     * @return a new Font object representing the specified font.
      * @throws FontNotFoundException
      */
-    public static Font getFont(String name, int size) throws FontNotFoundException {
-        for (FontStub stub : fontStubs) {
+    public static Font getFont(final String name, final int size) throws FontNotFoundException {
+        for (final FontStub stub : fontStubs) {
             if (stub.getName().equals(name) && stub.getSize() == size) {
-                Font retval = new Font();
+                final Font retval = new Font();
                 retval.stub = stub;
                 return retval;
             }
         }
 
-        java.awt.Font font = new java.awt.Font(name, java.awt.Font.PLAIN, size);
+        final java.awt.Font font = new java.awt.Font(name, java.awt.Font.PLAIN, size);
 
         if (!font.getFamily().equalsIgnoreCase(name)) {
             throw new FontNotFoundException("Font: " + name + " not found.");
         }
 
-        FontStub stub = new FontStub(name, size, font);
+        final FontStub stub = new FontStub(name, size, font);
         fontStubs.add(stub);
-        Font retval = new Font();
+        final Font retval = new Font();
         retval.stub = stub;
         return retval;
     }

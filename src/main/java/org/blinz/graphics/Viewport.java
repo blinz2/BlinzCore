@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -31,10 +31,10 @@ class Viewport extends Bounds {
 
     /**
      * Sets the bounds of this Viewport.
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x the x coordinate of this Viewport
+     * @param y the y coordinate of this Viewport
+     * @param width the width of this Viewport
+     * @param height the height of this Viewport
      */
     final void setViewport(int x, int y, int width, int height) {
         bounds.setBounds(x, y, width, height);
@@ -55,7 +55,7 @@ class Viewport extends Bounds {
         }
 
         this.setBounds(bounds);
-        Bounds i = this;
+        final Bounds i = this;
         //reset view port translation mod
 
         //handle x and width of the view port
@@ -117,7 +117,7 @@ class Viewport extends Bounds {
     }
 
     /**
-     * Returns the x translation of this viewport.
+     * Gets the x translation of this viewport.
      * @return x translation of this viewport
      */
     final int getXTranslation() {
@@ -125,7 +125,7 @@ class Viewport extends Bounds {
     }
 
     /**
-     * Returns the y translation of this viewport.
+     * Gets the y translation of this viewport.
      * @return y translation of this viewport
      */
     final int getYTranslation() {

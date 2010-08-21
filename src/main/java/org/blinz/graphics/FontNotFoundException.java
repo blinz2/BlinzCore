@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -33,7 +33,7 @@ public class FontNotFoundException extends Exception {
      * Constructs an instance of FontNotFoundException with the specified detail message.
      * @param msg the detail message.
      */
-    public FontNotFoundException(String msg) {
+    public FontNotFoundException(final String msg) {
         super(msg);
     }
 }

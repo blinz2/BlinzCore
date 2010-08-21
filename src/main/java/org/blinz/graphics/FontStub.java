@@ -30,7 +30,7 @@ final class FontStub {
     private int size;
 
     /**
-     *
+     * Constructor
      * @param name - name of font
      * @param size - font size
      * @param font - awt form of this font

@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 /**
- * 
+ * Has static methods used for loading Images. 
  * @author Blinz Project
  */
 public final class ImageLoader {
@@ -32,43 +32,42 @@ public final class ImageLoader {
 
     /**
      * Returns an image object associated with the given path.
-     * @param path
+     * @param path the path to the image
      * @return Image
      */
-    public final static Image loadImage(String path) throws IOException {
+    public final static Image loadImage(final String path) throws IOException {
 
-        for (ImageStub s : stubs) {
-            if (s.getPath().equals(path) && s.type == ImageStub.LOCAL) {
+        for (final ImageStub s : stubs) {
+            if (s.getPath().equals(path) && s.type == ImageStub.SourceType.LOCAL) {
                 s.dependentCount++;
                 Image image = new Image(s);
                 return image;
             }
         }
 
-        ImageStub stub = new ImageStub(path, ImageStub.LOCAL);
+        final ImageStub stub = new ImageStub(path, ImageStub.SourceType.LOCAL);
         stubs.add(stub);
 
-        Image image = new Image(stub);
+        final Image image = new Image(stub);
 
         return image;
     }
 
     /**
      * Returns an image object associated with the given url.
-     * @param url
+     * @param url the URL of the image
      * @return Image
      */
-    public final static Image loadImageHTTP(String url) throws IOException {
-
-        for (ImageStub s : stubs) {
-            if (s.getPath().equals(url) && s.type == ImageStub.HTTP) {
+    public final static Image loadImageHTTP(final String url) throws IOException {
+        for (final ImageStub s : stubs) {
+            if (s.getPath().equals(url) && s.type == ImageStub.SourceType.HTTP) {
                 s.dependentCount++;
                 Image image = new Image(s);
                 return image;
             }
         }
 
-        ImageStub stub = new ImageStub(url, ImageStub.HTTP);
+        final ImageStub stub = new ImageStub(url, ImageStub.SourceType.HTTP);
         stubs.add(stub);
 
         Image image = new Image(stub);
