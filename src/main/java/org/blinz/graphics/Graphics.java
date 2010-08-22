@@ -553,7 +553,7 @@ public class Graphics {
 
     /**
      * Gets the width of the Screen and/or viewport in which this currently draws.
-     * @return the width of the drawing
+     * @return the width of the drawing area
      */
     public final int getPaneWidth() {
         if (viewport != null) {
