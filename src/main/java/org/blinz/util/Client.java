@@ -29,6 +29,14 @@ public final class Client {
     private int port;
 
     /**
+     * Gets the port communication with this Client takes place on.
+     * @return the port communication with this Client takes place on
+     */
+    public final int getPort() {
+        return port;
+    }
+
+    /**
      * Ends the process of this Client.
      */
     final void kill() {
