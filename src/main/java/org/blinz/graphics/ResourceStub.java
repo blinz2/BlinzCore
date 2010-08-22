@@ -23,7 +23,7 @@ import org.blinz.util.Client;
  * Super-class for resource stub.
  * @author Blinz Project
  */
-abstract class ServerResourceStub {
+abstract class ResourceStub {
 
     private final class ProcessDependents {
 
@@ -52,7 +52,7 @@ abstract class ServerResourceStub {
     /**
      * Constructor
      */
-    ServerResourceStub() {
+    ResourceStub() {
     }
 
     /**

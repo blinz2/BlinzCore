@@ -22,7 +22,7 @@ import com.sun.opengl.util.j2d.TextRenderer;
  * Contains internal implementation of the font.
  * @author Blinz Project
  */
-final class FontStub extends ServerResourceStub {
+final class FontStub extends ResourceStub {
 
     private TextRenderer renderer;
     private String name;

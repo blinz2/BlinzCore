@@ -30,7 +30,7 @@ import javax.imageio.ImageIO;
  * Contains the objects used to implement image support.
  * @author Blinz Project
  */
-final class ImageStub extends ServerResourceStub {
+final class ImageStub extends ResourceStub {
 
     enum SourceType {
         LOCAL,
