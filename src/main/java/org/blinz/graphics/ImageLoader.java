@@ -32,7 +32,7 @@ public final class ImageLoader {
     private static final Vector<ImageStub> stubs = new Vector<ImageStub>();
 
     /**
-     * Returns an image object associated with the given path.
+     * Loads an image object associated from the given path.
      * @param path the path to the image
      * @return an Image object representing the file at the given path
      */
@@ -55,9 +55,9 @@ public final class ImageLoader {
     }
 
     /**
-     * Returns an image object associated with the given url.
+     * Loads an image object associated from the given URL.
      * @param url the URL of the image
-     * @return Image
+     * @return an Image object representing the file at the given path
      */
     public final static Image loadImageHTTP(final String url) throws IOException {
         for (final ImageStub s : stubs) {
