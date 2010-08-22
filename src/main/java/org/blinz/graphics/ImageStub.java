@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -30,7 +30,7 @@ import javax.imageio.ImageIO;
  * Contains the objects used to implement image support.
  * @author Blinz Project
  */
-final class ImageStub {
+final class ImageStub extends ServerResourceStub {
 
     enum SourceType {
         LOCAL,
@@ -41,7 +41,6 @@ final class ImageStub {
      * Denotes the type of source to be used for this stub, local or remote.
      */
     SourceType type = SourceType.LOCAL;
-    int dependentCount = 1;
     private String path;
     private Texture texture;
     private int width, height;

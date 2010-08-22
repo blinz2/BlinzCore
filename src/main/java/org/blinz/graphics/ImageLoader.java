@@ -18,6 +18,7 @@ package org.blinz.graphics;
 
 import java.io.IOException;
 import java.util.Vector;
+import org.blinz.util.Clients;
 
 /**
  * Has static methods used for loading Images. 
@@ -39,7 +40,7 @@ public final class ImageLoader {
 
         for (final ImageStub s : stubs) {
             if (s.getPath().equals(path) && s.type == ImageStub.SourceType.LOCAL) {
-                s.dependentCount++;
+                s.incrementClient(Clients.localProcess());
                 Image image = new Image(s);
                 return image;
             }
@@ -61,7 +62,7 @@ public final class ImageLoader {
     public final static Image loadImageHTTP(final String url) throws IOException {
         for (final ImageStub s : stubs) {
             if (s.getPath().equals(url) && s.type == ImageStub.SourceType.HTTP) {
-                s.dependentCount++;
+                s.incrementClient(Clients.localProcess());
                 Image image = new Image(s);
                 return image;
             }
@@ -80,7 +81,7 @@ public final class ImageLoader {
      */
     static final void clearImages() {
         for (int i = 0; i < stubs.size();) {
-            if (stubs.get(i).dependentCount == 0) {
+            if (stubs.get(i).dependencies() == 0) {
                 stubs.remove(i);
             } else {
                 i++;
