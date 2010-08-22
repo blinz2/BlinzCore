@@ -66,7 +66,7 @@ public final class Color {
      * Sets the red value of the RGB values in this Color object to the given value.
      * @param red red value in this Color's RGB
      */
-    public void setRed(int red) {
+    public final void setRed(int red) {
         if (red > 127) {
             red = 127;
         }
@@ -77,7 +77,7 @@ public final class Color {
      * Sets the green value of the RGB values in this Color object to the given value.
      * @param green green value in this Color's RGB
      */
-    public void setGreen(int green) {
+    public final void setGreen(int green) {
         if (green > 127) {
             green = 127;
         }
@@ -88,7 +88,7 @@ public final class Color {
      * Sets the blue value of the RGB values in this Color object to the given value.
      * @param blue blue value in this Color's RGB
      */
-    public void setBlue(int blue) {
+    public final void setBlue(int blue) {
         if (blue > 127) {
             blue = 127;
         }
@@ -96,48 +96,48 @@ public final class Color {
     }
 
     /**
-     *
-     * @return the red value in this Color's RGB.
+     * Gets the blue value in this Color's RGB.
+     * @return the red value in this Color's RGB
      */
-    public byte getRed() {
+    public final byte getRed() {
         return red;
     }
 
     /**
-     *
-     * @return the blue value in this Color's RGB.
+     * Gets the blue value in this Color's RGB.
+     * @return the blue value in this Color's RGB
      */
-    public byte getGreen() {
+    public final byte getGreen() {
         return green;
     }
 
     /**
-     *
-     * @return the blue value in this Color's RGB.
+     * Gets the blue value in this Color's RGB.
+     * @return the blue value in this Color's RGB
      */
-    public byte getBlue() {
+    public final byte getBlue() {
         return blue;
     }
 
     /**
-     *
-     * @return returns a float representing the red value in a scale of  0 to 1.
+     * Gets a float representing the red value in a scale of 0 to 1.
+     * @return a float representing the red value in a scale of  0 to 1.
      */
     float getRedf() {
         return (float) ((red * 100 / 128) * .01);
     }
 
     /**
-     *
-     * @return returns a float representing the green value in a scale of  0 to 1.
+     * Gets a float representing the green value in a scale of 0 to 1.
+     * @return a float representing the green value in a scale of  0 to 1.
      */
     float getGreenf() {
         return (float) ((green * 100 / 128) * .01);
     }
 
     /**
-     *
-     * @return returns a float representing the blue value in a scale of  0 to 1.
+     * Gets a float representing the blue value in a scale of 0 to 1.
+     * @return a float representing the blue value in a scale of 0 to 1.
      */
     float getBluef() {
         return (float) ((blue * 100 / 128) * .01);
