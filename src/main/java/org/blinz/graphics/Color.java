@@ -20,7 +20,7 @@ package org.blinz.graphics;
  * Color class used to represent various colors using RGB values.
  * @author Blinz Project
  */
-public class Color {
+public final class Color {
 
     byte red = 0;
     byte green = 0;
@@ -48,7 +48,7 @@ public class Color {
      * @param green the green value in the RGB
      * @param blue the blue value in the RGB
      */
-    public void setColor(final int red, final int green, final int blue) {
+    public final void setColor(final int red, final int green, final int blue) {
         setRed(red);
         setGreen(green);
         setBlue(blue);
