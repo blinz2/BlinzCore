@@ -58,7 +58,7 @@ final class ImageStub {
         this.type = type;
         load();
     }
-
+    
     /**
      * Gets the path to this image.
      * @return the path to this image
@@ -110,6 +110,7 @@ final class ImageStub {
      * Dumps the object representing the image.
      */
     final void dumpImage() {
+        texture.dispose();
         texture = null;
         bufferedImage = null;
     }

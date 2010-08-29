@@ -54,9 +54,9 @@ public final class ImageLoader {
     }
 
     /**
-     * Returns an image object associated with the given url.
+     * Loads an image object associated with the given url.
      * @param url the URL of the image
-     * @return Image
+     * @return  an image object associated with the given url
      */
     public final static Image loadImageHTTP(final String url) throws IOException {
         for (final ImageStub s : stubs) {
@@ -70,7 +70,7 @@ public final class ImageLoader {
         final ImageStub stub = new ImageStub(url, ImageStub.SourceType.HTTP);
         stubs.add(stub);
 
-        Image image = new Image(stub);
+        final Image image = new Image(stub);
 
         return image;
     }
@@ -81,7 +81,7 @@ public final class ImageLoader {
     static final void clearImages() {
         for (int i = 0; i < stubs.size();) {
             if (stubs.get(i).dependentCount == 0) {
-                stubs.remove(i);
+                stubs.remove(i).dumpImage();
             } else {
                 i++;
             }
