@@ -102,7 +102,7 @@ public class ScreenManager {
             ((Frame) window).setTitle(title);
         }
 
-        GLCapabilities c = new GLCapabilities();
+        final GLCapabilities c = new GLCapabilities();
         c.setHardwareAccelerated(true);
         c.setDoubleBuffered(true);
         runnable.window = window;
@@ -244,8 +244,8 @@ public class ScreenManager {
 
     /**
      * Sets the width and height of screen to the given values.
-     * @param width the new number of column ofthe window
-     * @param height the new number of rows ofthe window
+     * @param width the new number of column of the window
+     * @param height the new number of rows of the window
      */
     public final static void setSize(final int width, final int height) {
         size.setSize(width, height);
@@ -260,7 +260,7 @@ public class ScreenManager {
      * for this application.
      * @param title the title for the window
      */
-    public final static void setTitle(String title) {
+    public final static void setTitle(final String title) {
         ScreenManager.title = title;
         if (window instanceof Frame) {
             ((Frame) window).setTitle(title);
@@ -308,7 +308,7 @@ public class ScreenManager {
     /**
      * This method is of no interest to users of this API, it exist only for
      * passing an internal object from one package to another. Ideally this would
-     * not be publically accessable and hopefully will not be in future releases.
+     * not be publicly accessible and hopefully will not be in future releases.
      */
     @Deprecated
     public final static void setInputContext(Object o) {
@@ -351,7 +351,7 @@ class GraphicsThread implements Runnable {
                 Logger.getLogger(GraphicsThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        ImageLoader.dumpImageData();
+        canvas.getContext().destroy();
         window.dispose();
     }
 }
@@ -370,7 +370,7 @@ class CanvasListener implements GLEventListener {
     final Vector<Screen> screens = new Vector<Screen>();
 
     @Override
-    public void init(GLAutoDrawable drawable) {
+    public void init(final GLAutoDrawable drawable) {
         final GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);
@@ -382,15 +382,15 @@ class CanvasListener implements GLEventListener {
     }
 
     @Override
-    public void display(GLAutoDrawable drawable) {
+    public void display(final GLAutoDrawable drawable) {
         drawable.getGL().glClear(GL.GL_COLOR_BUFFER_BIT);
-        for (Screen screen : screens) {
+        for (final Screen screen : screens) {
             screen.draw(drawable);
         }
     }
 
     @Override
-    public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+    public void reshape(final GLAutoDrawable drawable, int x, int y, int width, int height) {
         final GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);
@@ -403,7 +403,7 @@ class CanvasListener implements GLEventListener {
     }
 
     @Override
-    public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
+    public void displayChanged(final GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
         final GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glColor3f(0.0f, 0.0f, 0.0f);
