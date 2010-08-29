@@ -273,7 +273,6 @@ public class ScreenManager {
     public final static void close() {
         runnable.isRunning = false;
         window = null;
-        ImageLoader.dumpImageData();
         for (int i = 0; i < listeners.size(); i++) {
             listeners.get(i).close();
         }
@@ -352,6 +351,7 @@ class GraphicsThread implements Runnable {
                 Logger.getLogger(GraphicsThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        ImageLoader.dumpImageData();
         window.dispose();
     }
 }
