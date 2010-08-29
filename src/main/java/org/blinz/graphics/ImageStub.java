@@ -33,10 +33,10 @@ import javax.imageio.ImageIO;
 final class ImageStub {
 
     enum SourceType {
+
         LOCAL,
         HTTP;
     }
-
     /**
      * Denotes the type of source to be used for this stub, local or remote.
      */
@@ -58,7 +58,7 @@ final class ImageStub {
         this.type = type;
         load();
     }
-    
+
     /**
      * Gets the path to this image.
      * @return the path to this image

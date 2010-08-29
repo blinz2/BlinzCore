@@ -47,10 +47,7 @@ public final class ImageLoader {
 
         final ImageStub stub = new ImageStub(path, ImageStub.SourceType.LOCAL);
         stubs.add(stub);
-
-        final Image image = new Image(stub);
-
-        return image;
+        return new Image(stub);
     }
 
     /**
@@ -69,10 +66,7 @@ public final class ImageLoader {
 
         final ImageStub stub = new ImageStub(url, ImageStub.SourceType.HTTP);
         stubs.add(stub);
-
-        final Image image = new Image(stub);
-
-        return image;
+        return new Image(stub);
     }
 
     /**
@@ -92,7 +86,7 @@ public final class ImageLoader {
      * Dumps the image data stored in memory.
      */
     static final void dumpImageData() {
-        for (ImageStub stub : stubs) {
+        for (final ImageStub stub : stubs) {
             stub.dumpImage();
         }
     }
