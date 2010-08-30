@@ -41,39 +41,31 @@ public final class ImageLoader {
         for (final ImageStub s : stubs) {
             if (s.getPath().equals(path) && s.type == ImageStub.SourceType.LOCAL) {
                 s.incrementClient(Clients.localProcess());
-                Image image = new Image(s);
-                return image;
+                return new Image(s);
             }
         }
 
         final ImageStub stub = new ImageStub(path, ImageStub.SourceType.LOCAL);
         stubs.add(stub);
-
-        final Image image = new Image(stub);
-
-        return image;
+        return new Image(stub);
     }
 
     /**
      * Loads an image object associated from the given URL.
      * @param url the URL of the image
-     * @return an Image object representing the file at the given path
+     * @return  an image object associated with the given URL 
      */
     public final static Image loadImageHTTP(final String url) throws IOException {
         for (final ImageStub s : stubs) {
             if (s.getPath().equals(url) && s.type == ImageStub.SourceType.HTTP) {
                 s.incrementClient(Clients.localProcess());
-                Image image = new Image(s);
-                return image;
+                return new Image(s);
             }
         }
 
         final ImageStub stub = new ImageStub(url, ImageStub.SourceType.HTTP);
         stubs.add(stub);
-
-        Image image = new Image(stub);
-
-        return image;
+        return new Image(stub);
     }
 
     /**
@@ -81,8 +73,8 @@ public final class ImageLoader {
      */
     static final void clearImages() {
         for (int i = 0; i < stubs.size();) {
-            if (stubs.get(i).dependencies() == 0) {
-                stubs.remove(i);
+            if (stubs.get(i).dependentCount == 0) {
+                stubs.remove(i).dumpImage();
             } else {
                 i++;
             }
@@ -93,7 +85,7 @@ public final class ImageLoader {
      * Dumps the image data stored in memory.
      */
     static final void dumpImageData() {
-        for (ImageStub stub : stubs) {
+        for (final ImageStub stub : stubs) {
             stub.dumpImage();
         }
     }
