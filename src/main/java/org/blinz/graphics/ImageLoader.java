@@ -73,7 +73,7 @@ public final class ImageLoader {
      */
     static final void clearImages() {
         for (int i = 0; i < stubs.size();) {
-            if (stubs.get(i).dependentCount == 0) {
+            if (stubs.get(i).dependents() == 0) {
                 stubs.remove(i).dumpImage();
             } else {
                 i++;
