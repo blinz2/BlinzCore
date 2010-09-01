@@ -88,17 +88,23 @@ public abstract class Screen {
             }
         }
     }
-    public final static int FULL_SCREEN = 0;
-    public final static int LEFT_SCREEN = 1;
-    public final static int RIGHT_SCREEN = 2;
-    public final static int TOP_SCREEN = 3;
-    public final static int BOTTOM_SCREEN = 4;
-    public final static int TOP_LEFT_SCREEN = 5;
-    public final static int TOP_RIGHT_SCREEN = 6;
-    public final static int BOTTOM_LEFT_SCREEN = 7;
-    public final static int BOTTOM_RIGHT_SCREEN = 8;
+
+    /**
+     * Used to indicate the size and location of a Screen.
+     */
+    enum ScreenType {
+        FULL_SCREEN,
+        LEFT_SCREEN,
+        RIGHT_SCREEN,
+        TOP_SCREEN,
+        BOTTOM_SCREEN,
+        TOP_LEFT_SCREEN,
+        TOP_RIGHT_SCREEN,
+        BOTTOM_LEFT_SCREEN,
+        BOTTOM_RIGHT_SCREEN;
+    }   
     final InputListener inputListener = new InputListener();
-    private int screenType = FULL_SCREEN;
+    private ScreenType screenType = ScreenType.FULL_SCREEN;
     private final Bounds bounds = new Bounds();
     private final Graphics graphics = new Graphics();
 
@@ -111,7 +117,7 @@ public abstract class Screen {
      * 
      * @param type the form the Screen will take
      */
-    public final void setScreenType(final int type) {
+    public final void setScreenType(final ScreenType type) {
         screenType = type;
     }
 

@@ -16,6 +16,7 @@
  */
 package org.blinz.graphics;
 
+import org.blinz.util.Clients;
 import org.blinz.util.Size;
 
 /**
@@ -77,7 +78,7 @@ public final class Image {
      * useless.
      */
     public final void dumpImage() {
-        stub.decrementDependents();
+        stub.decrementClient(Clients.localProcess());
         stub = null;
     }
 
@@ -93,7 +94,7 @@ public final class Image {
     @Override
     protected void finalize() throws Throwable {
         if (stub != null) {
-            stub.decrementDependents();
+            stub.decrementClient(Clients.localProcess());
         }
         super.finalize();
     }

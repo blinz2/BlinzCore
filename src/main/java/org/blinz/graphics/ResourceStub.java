@@ -16,13 +16,38 @@
  */
 package org.blinz.graphics;
 
+import java.util.ArrayList;
+import org.blinz.util.Client;
+
 /**
  * Super-class for resource stub.
  * @author Blinz Project
  */
 abstract class ResourceStub {
 
+    private final class ProcessDependents {
+
+        private Client client;
+        private int dependents = 0;
+
+        /**
+         * Constructor
+         * @param client the Client to add
+         * @param usages the number of references the Client currently has the this ServerResourceStub
+         */
+        private ProcessDependents(final Client client, final int dependents) {
+            this.client = client;
+            this.dependents = dependents;
+        }
+
+        /**
+         * Constructor
+         */
+        private ProcessDependents() {
+        }
+    }
     private int totalDeps = 1;
+    private final ArrayList<ProcessDependents> dependents = new ArrayList<ProcessDependents>();
 
     /**
      * Constructor
@@ -39,16 +64,55 @@ abstract class ResourceStub {
     }
 
     /**
-     * Increments the number of references the given Client has to this Stub.
+     * Adds a Client for dependent tracking.
+     * @param client the Client to add
+     * @param usages the number of references the Client currently has the this ServerResourceStub
      */
-    final void incrementDependents() {
-        totalDeps++;
+    final void addClient(final Client client, final int usages) {
+        this.dependents.add(new ProcessDependents(client, usages));
+    }
+
+    /**
+     * Increments the number of references the given Client has to this Stub.
+     * @param client the Client who's reference count is to be incremented
+     */
+    final void incrementClient(final Client client) {
+        synchronized (dependents) {
+            for (int i = 0; i < dependents.size(); i++) {
+                if (dependents.get(i).client == client) {
+                    totalDeps++;
+                    dependents.remove(i).dependents++;
+                }
+            }
+        }
     }
 
     /**
      * Decrements the number of references the given Client has to this Stub.
+     * @param client the Client who's reference count is to be decremented
      */
-    final void decrementDependents() {
-        totalDeps--;
+    final void decrementClient(final Client client) {
+        synchronized (dependents) {
+            for (int i = 0; i < dependents.size(); i++) {
+                if (dependents.get(i).client == client) {
+                    totalDeps--;
+                    dependents.remove(i).dependents--;
+                }
+            }
+        }
+    }
+
+    /**
+     * Removes the given client as a dependent.
+     * @param client the Client to be removed
+     */
+    final void removeClient(final Client client) {
+        synchronized (dependents) {
+            for (int i = 0; i < dependents.size(); i++) {
+                if (dependents.get(i).client == client) {
+                    totalDeps -= dependents.remove(i).dependents;
+                }
+            }
+        }
     }
 }

@@ -321,7 +321,7 @@ public class Graphics {
      */
     public final void drawImage(final Image image, final int x1, final int y1, final int x2, final int y2) {
         final Texture texture = image.getImageStub().getTexture();
-        TextureCoords t = texture.getImageTexCoords();
+        final TextureCoords t = texture.getImageTexCoords();
         gl.glPushMatrix();
         gl.glEnable(GL.GL_BLEND);
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
@@ -332,7 +332,7 @@ public class Graphics {
         gl.glEnable(GL.GL_TEXTURE_2D);
         gl.glTexEnvf(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_ENV_MODE, GL.GL_REPLACE);
         gl.glColor3d(1, 1, 1);
-        texture.bind();
+        gl.glBindTexture(GL.GL_TEXTURE_2D, texture.getTextureObject());
 
         gl.glBegin(GL.GL_QUADS);
         {
@@ -553,7 +553,7 @@ public class Graphics {
 
     /**
      * Gets the width of the Screen and/or viewport in which this currently draws.
-     * @return the width of the drawing
+     * @return the width of the drawing area
      */
     public final int getPaneWidth() {
         if (viewport != null) {
@@ -586,7 +586,7 @@ public class Graphics {
      * @param height the height of the viewport
      */
     public final void enterViewport(final int x, final int y, final int width, final int height) {
-        Viewport v = viewport;
+        final Viewport v = viewport;
         viewport = fetchViewport();
         if (v == null) {
             viewport.parent = screenBounds;
@@ -667,7 +667,7 @@ public class Graphics {
      * Gets a recycled Viewport object.
      * @return a Viewport object, reuses old Position objects when possible
      */
-    private final Viewport fetchViewport() {
+    private Viewport fetchViewport() {
         if (excessViewports.isEmpty()) {
             return new Viewport();
         } else {

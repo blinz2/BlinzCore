@@ -1,6 +1,6 @@
 /*
  *  BlinzCore - core library of audio, video, and other essential classes.
- *  Copyright (C) 2009  BlinzProject <gtalent2@gmail.com>
+ *  Copyright (C) 2009-2010  BlinzProject <gtalent2@gmail.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as
@@ -18,6 +18,7 @@ package org.blinz.graphics;
 
 import java.io.IOException;
 import java.util.Vector;
+import org.blinz.util.Clients;
 
 /**
  * Has static methods used for loading Images. 
@@ -31,17 +32,16 @@ public final class ImageLoader {
     private static final Vector<ImageStub> stubs = new Vector<ImageStub>();
 
     /**
-     * Returns an image object associated with the given path.
+     * Loads an image object associated from the given path.
      * @param path the path to the image
-     * @return Image
+     * @return an Image object representing the file at the given path
      */
     public final static Image loadImage(final String path) throws IOException {
 
         for (final ImageStub s : stubs) {
             if (s.getPath().equals(path) && s.type == ImageStub.SourceType.LOCAL) {
-                s.incrementDependents();
-                final Image image = new Image(s);
-                return image;
+                s.incrementClient(Clients.localProcess());
+                return new Image(s);
             }
         }
 
@@ -51,16 +51,15 @@ public final class ImageLoader {
     }
 
     /**
-     * Loads an image object associated with the given url.
+     * Loads an image object associated from the given URL.
      * @param url the URL of the image
-     * @return  an image object associated with the given url
+     * @return  an image object associated with the given URL 
      */
     public final static Image loadImageHTTP(final String url) throws IOException {
         for (final ImageStub s : stubs) {
             if (s.getPath().equals(url) && s.type == ImageStub.SourceType.HTTP) {
-                s.incrementDependents();
-                final Image image = new Image(s);
-                return image;
+                s.incrementClient(Clients.localProcess());
+                return new Image(s);
             }
         }
 

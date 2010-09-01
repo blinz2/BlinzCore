@@ -16,6 +16,8 @@
  */
 package org.blinz.graphics;
 
+import org.blinz.util.Clients;
+
 /**
  * Instances of this class representing various desired fonts are given to the Graphics
  * class to determine how to draw text.
@@ -81,7 +83,7 @@ public final class Font {
 
     @Override
     protected void finalize() throws Throwable {
-        stub.decrementDependents();
+        stub.decrementClient(Clients.localProcess());
         super.finalize();
     }
 }
