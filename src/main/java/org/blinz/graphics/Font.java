@@ -81,7 +81,7 @@ public final class Font {
 
     @Override
     protected void finalize() throws Throwable {
-        stub.dependentCount--;
+        stub.decrementDependents();
         super.finalize();
     }
 }

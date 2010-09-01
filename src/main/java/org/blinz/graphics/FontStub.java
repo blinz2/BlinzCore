@@ -22,9 +22,8 @@ import com.sun.opengl.util.j2d.TextRenderer;
  * Contains internal implementation of the font.
  * @author Blinz Project
  */
-final class FontStub {
+final class FontStub extends ResourceStub {
 
-    int dependentCount = 1;
     private TextRenderer renderer;
     private String name;
     private int size;
@@ -42,7 +41,7 @@ final class FontStub {
     }
 
     /**
-     *
+     * Gets the name of the font.
      * @return a String represting the name of the font this FontStub represents.
      */
     final String getName() {
@@ -50,7 +49,7 @@ final class FontStub {
     }
 
     /**
-     *
+     * Gets the size of the font.
      * @return an int representing the size of the font this FontStub represents.
      */
     final int getSize() {
@@ -58,7 +57,7 @@ final class FontStub {
     }
 
     /**
-     *
+     * Gets a JOGL TextRender for this font.
      * @return the JOGL TextRender for the font this FontStub represents.
      */
     final TextRenderer getRenderer() {
