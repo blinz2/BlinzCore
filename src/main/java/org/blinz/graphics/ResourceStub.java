@@ -56,8 +56,8 @@ abstract class ResourceStub {
     }
 
     /**
-     * Gets the number of dependencies of this stub.
-     * @return the number of dependencies of this stub
+     * Gets the number of dependents of this stub.
+     * @return the number of dependents of this stub
      */
     final int dependents() {
         return totalDeps;

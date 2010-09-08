@@ -45,7 +45,7 @@ public final class Image {
      * this was loaded from.
      * @return a new Size object representing the size of this Image
      */
-    public Size getSize() {
+    public final Size getSize() {
         return new Size(stub.getWidth(), stub.getHeight());
     }
 
@@ -53,7 +53,7 @@ public final class Image {
      * Gets the width of the image loaded.
      * @return the width of the image loaded
      */
-    public int getWidth() {
+    public final int getWidth() {
         return stub.getWidth();
     }
 
@@ -61,7 +61,7 @@ public final class Image {
      * Gets the height of the image loaded.
      * @return the height of the image loaded
      */
-    public int getHeight() {
+    public final int getHeight() {
         return stub.getHeight();
     }
 
@@ -69,8 +69,26 @@ public final class Image {
      * Gets the path to this Image in storage.
      * @return path to this Images location in storage.
      */
-    public String getPath() {
+    public final String getPath() {
         return stub.getPath();
+    }
+
+    /**
+     * Dumps the image data associated with this Image object, making this object
+     * useless.
+     */
+    public final void dumpImage() {
+        stub.decrementClient(Clients.localProcess());
+        stub = null;
+    }
+
+    /**
+     * Indicates whether or not the image data associated with this image has been
+     * dumped.
+     * @return true if the image data has been dumped, false otherwise
+     */
+    public final boolean imageDumped() {
+        return stub == null;
     }
 
     @Override
