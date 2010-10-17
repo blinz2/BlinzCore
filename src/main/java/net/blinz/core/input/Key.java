@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * Class contains the index of all possible keys in this API.
+ * Note: the Key values are subject to change from release to release and implementation to implementation.
  * @author Blinz Project
  */
 public final class Key {
