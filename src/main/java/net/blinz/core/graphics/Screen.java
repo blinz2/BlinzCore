@@ -92,7 +92,7 @@ public abstract class Screen {
     /**
      * Used to indicate the size and location of a Screen.
      */
-    enum ScreenType {
+    public enum ScreenType {
         FULL_SCREEN,
         LEFT_SCREEN,
         RIGHT_SCREEN,
