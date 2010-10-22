@@ -125,7 +125,7 @@ final class ImageStub extends ResourceStub {
         }
         width = bufferedImage.getWidth();
         height = bufferedImage.getHeight();
-        if (ScreenManager.isInitialized()) {
+        if (Display.isInitialized()) {
             bufferedImage = null;
         }
     }

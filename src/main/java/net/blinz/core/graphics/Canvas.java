@@ -17,21 +17,21 @@
 package net.blinz.core.graphics;
 
 import java.util.Vector;
-import net.blinz.core.util.Bounds;
 import javax.media.opengl.GLAutoDrawable;
+import net.blinz.core.util.Bounds;
 import net.blinz.core.input.KeyListener;
 import net.blinz.core.input.MouseListener;
 import net.blinz.core.input.MouseWheelListener;
 
 /**
- * Screen class is necessary to draw to the Display. Screen class allows dividing 
+ * Canvas class is necessary to draw to the Display. Canvas class allows dividing
  * the display into section such as top right or bottom left.
  * @author Blinz Project
  */
-public abstract class Screen {
+public abstract class Canvas {
 
     /**
-     * Used to gather input for input clients of this Screen
+     * Used to gather input for input clients of this Canvas
      */
     private class InputListener implements MouseListener, MouseWheelListener, KeyListener {
 
@@ -88,58 +88,29 @@ public abstract class Screen {
             }
         }
     }
-
-    /**
-     * Used to indicate the size and location of a Screen.
-     */
-    public enum ScreenType {
-        FULL_SCREEN,
-        LEFT_SCREEN,
-        RIGHT_SCREEN,
-        TOP_SCREEN,
-        BOTTOM_SCREEN,
-        TOP_LEFT_SCREEN,
-        TOP_RIGHT_SCREEN,
-        BOTTOM_LEFT_SCREEN,
-        BOTTOM_RIGHT_SCREEN;
-    }   
     final InputListener inputListener = new InputListener();
-    private ScreenType screenType = ScreenType.FULL_SCREEN;
     private final Bounds bounds = new Bounds();
     private final Graphics graphics = new Graphics();
 
     /**
-     * Sets the screen type out of a variety of types such as top left or bottom
-     * right.
-     *
-     * Example:
-     *          screen.setScreenType(Screen.ScreenType.TOP_RIGHT_SCREEN);
-     * 
-     * @param type the form the Screen will take
-     */
-    public final void setScreenType(final ScreenType type) {
-        screenType = type;
-    }
-
-    /**
-     * Gets the width of this Screen.
-     * @return width of this Screen.
+     * Gets the width of this Canvas.
+     * @return width of this Canvas.
      */
     public final int getWidth() {
         return bounds.getWidth();
     }
 
     /**
-     * Gets the height of this Screen.
-     * @return height of this Screen.
+     * Gets the height of this Canvas.
+     * @return height of this Canvas.
      */
     public final int getHeight() {
         return bounds.getHeight();
     }
 
     /**
-     * Adds the given Blinz MouseListener to the Screen to be updated about
-     * the activities of the mouse while the Screen is being displayed.
+     * Adds the given Blinz MouseListener to the Canvas to be updated about
+     * the activities of the mouse while the Canvas is being displayed.
      * @param listener the MouseWheelListener to be added
      */
     public final void addMouseWheelListener(final net.blinz.core.input.MouseWheelListener listener) {
@@ -147,8 +118,8 @@ public abstract class Screen {
     }
 
     /**
-     * Adds the given Blinz MouseWheelListener to the Screen to be updated about
-     * the activities of the mouse while the Screen is being displayed.
+     * Adds the given Blinz MouseWheelListener to the Canvas to be updated about
+     * the activities of the mouse while the Canvas is being displayed.
      * @param listener the MouseListener to be added
      */
     public final void addMouseListener(final net.blinz.core.input.MouseListener listener) {
@@ -156,8 +127,8 @@ public abstract class Screen {
     }
 
     /**
-     * Adds the given Blinz KeyListener to the Screen to be updated about
-     * activity on the keyboard while the Screen is being displayed.
+     * Adds the given Blinz KeyListener to the Canvas to be updated about
+     * activity on the keyboard while the Canvas is being displayed.
      * @param listener the KeyListener to be added
      */
     public final void addKeyListener(final net.blinz.core.input.KeyListener listener) {
@@ -209,8 +180,8 @@ public abstract class Screen {
     }
 
     /**
-     * Removes the specified Blinz MouseListener from this Screen so that
-     * it will no longer be updated by this Screen.
+     * Removes the specified Blinz MouseListener from this Canvas so that
+     * it will no longer be updated by this Canvas.
      * @param listener the MouseListener to be removed
      */
     public final void removeMouseListener(final net.blinz.core.input.MouseListener listener) {
@@ -218,8 +189,8 @@ public abstract class Screen {
     }
 
     /**
-     * Removes the specified Blinz MouseListener from this Screen so that
-     * it will no longer be updated by this Screen.
+     * Removes the specified Blinz MouseListener from this Canvas so that
+     * it will no longer be updated by this Canvas.
      * @param listener the MouseWheelListener to be removed
      */
     public final void removeMouseWheelListener(final net.blinz.core.input.MouseWheelListener listener) {
@@ -227,8 +198,8 @@ public abstract class Screen {
     }
 
     /**
-     * Removes the specified Blinz KeyListener from this Screen so that
-     * it will no longer be updated by this Screen.
+     * Removes the specified Blinz KeyListener from this Canvas so that
+     * it will no longer be updated by this Canvas.
      * @param listener the KeyListener to be added
      */
     public final void removeKeyListener(final net.blinz.core.input.KeyListener listener) {
@@ -236,51 +207,42 @@ public abstract class Screen {
     }
 
     /**
-     * Draw this Screen.
-     * @param gl context for this Screen.
+     * Sets the size of this Canvas.
+     * @param width the new width of this Canvas
+     * @param height the new height of this Canvas
      */
-    final void draw(final GLAutoDrawable gl) {
-        computeBounds();
-        graphics.setContext(gl);
-        graphics.setScreenBounds(bounds);
-        graphics.load();
-        draw(graphics);
+    public final void setSize(final int width, final int height) {
+        bounds.setSize(width, height);
+        graphics.setContextBounds(bounds);
     }
 
     /**
-     * Calculates the bounds of this Screen according to its screen type.
+     * Sets the width of this Canvas.
+     * @param width the new width of this Canvas
      */
-    private final void computeBounds() {
-        switch (screenType) {
-            case FULL_SCREEN:
-                bounds.setBounds(0, 0, ScreenManager.getPaneWidth(), ScreenManager.getPaneHeight());
-                break;
-            case TOP_SCREEN:
-                bounds.setBounds(0, ScreenManager.getPaneHeight() / 2,
-                        ScreenManager.getPaneWidth(), ScreenManager.getPaneHeight() / 2);
-                break;
-            case BOTTOM_SCREEN:
-                bounds.setBounds(0, 0, ScreenManager.getPaneWidth(), ScreenManager.getPaneHeight() / 2);
-                break;
-            case LEFT_SCREEN:
-                bounds.setBounds(0, 0, ScreenManager.getPaneWidth() / 2, ScreenManager.getPaneHeight());
-                break;
-            case TOP_LEFT_SCREEN:
-                bounds.setBounds(0, ScreenManager.getPaneHeight() / 2,
-                        ScreenManager.getPaneWidth() / 2, ScreenManager.getPaneHeight() / 2);
-                break;
-            case TOP_RIGHT_SCREEN:
-                bounds.setBounds(ScreenManager.getPaneWidth() / 2, ScreenManager.getPaneHeight() / 2,
-                        ScreenManager.getPaneWidth() / 2, ScreenManager.getPaneHeight() / 2);
-                break;
-            case BOTTOM_LEFT_SCREEN:
-                bounds.setBounds(0, 0, ScreenManager.getPaneWidth() / 2, ScreenManager.getPaneHeight() / 2);
-                break;
-            case BOTTOM_RIGHT_SCREEN:
-                bounds.setBounds(ScreenManager.getPaneWidth() / 2, 0,
-                        ScreenManager.getPaneWidth() / 2, ScreenManager.getPaneHeight() / 2);
-                break;
-        }
+    public final void setWidth(final int width) {
+        bounds.setWidth(width);
+        graphics.setContextBounds(bounds);
+    }
+
+    /**
+     * Sets the height of this Canvas.
+     * @param height the new height of this Canvas
+     */
+    public final void setHeight(final int height) {
+        bounds.setHeight(height);
+        graphics.setContextBounds(bounds);
+    }
+
+    /**
+     * Draw this Canvas.
+     * @param gl context for this Canvas.
+     */
+    final void draw(final GLAutoDrawable gl) {
+        graphics.setContext(gl);
+        graphics.setContextBounds(bounds);
+        graphics.load();
+        draw(graphics);
     }
 
     /**

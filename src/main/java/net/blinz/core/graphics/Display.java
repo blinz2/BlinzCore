@@ -43,7 +43,7 @@ import net.blinz.core.input.UserInput;
  * Class for cleating and manipulating a window for drawing to the screen.
  * @author Blinz Project
  */
-public class ScreenManager {
+public class Display {
 
     private static Window window;
     private static final Dimension size = new Dimension(800, 600);
@@ -63,23 +63,23 @@ public class ScreenManager {
      * application.
      */
     private static String title = "";
-    private static final Vector<ScreenManagerListener> listeners = new Vector<ScreenManagerListener>();
+    private static final Vector<DisplayListener> listeners = new Vector<DisplayListener>();
 
     /**
-     * Adds the given ScreenManagerListener to the ScreenManager to be notified at
+     * Adds the given DisplayListener to the DisplayListener to be notified at
      * certain events.
-     * @param listener the ScreenManagerListener to be added
+     * @param listener the DisplayListener to be added
      */
-    public final static void addListener(final ScreenManagerListener listener) {
+    public final static void addListener(final DisplayListener listener) {
         listeners.add(listener);
     }
 
     /**
-     * Removes the given ScreenManagerListener from the ScreenManager to be notified 
+     * Removes the given DisplayListener from the DisplayListener to be notified
      * at certain events.
-     * @param listener the ScreenManagerListener to be removed
+     * @param listener the DisplayListener to be removed
      */
-    public final static void removeListener(final ScreenManagerListener listener) {
+    public final static void removeListener(final DisplayListener listener) {
         listeners.remove(listener);
     }
 
@@ -117,7 +117,7 @@ public class ScreenManager {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                ScreenManager.close();
+                Display.close();
             }
         });
         if (UserInput.isInitialized()) {
@@ -144,24 +144,24 @@ public class ScreenManager {
     }
 
     /**
-     * Adds the specified Screen to the screen to be drawn until the screen stops
-     * or the Screen is removed.
-     * @param screen the Screen to be added
+     * Adds the specified Canvas to the screen to be drawn until the screen stops
+     * or the Canvas is removed.
+     * @param screen the Canvas to be added
      */
-    public final static void addScreen(final Screen screen) {
-        canvasListener.screens.add(screen);
+    public final static void addCanvas(final Canvas screen) {
+        canvasListener.canvas.add(screen);
         UserInput.addKeyListener(screen.inputListener);
         UserInput.addMouseListener(screen.inputListener);
         UserInput.addMouseWheelListener(screen.inputListener);
     }
 
     /**
-     * Removes the specified Screen from the screen, the Screen will no longer be
+     * Removes the specified Canvas from the screen, the Canvas will no longer be
      * drawn.
-     * @param screen the Screen to be removed
+     * @param screen the Canvas to be removed
      */
-    public final static void removeScreen(final Screen screen) {
-        canvasListener.screens.remove(screen);
+    public final static void removeCanvas(final Canvas screen) {
+        canvasListener.canvas.remove(screen);
         UserInput.removeKeyListener(screen.inputListener);
         UserInput.removeMouseListener(screen.inputListener);
         UserInput.removeMouseWheelListener(screen.inputListener);
@@ -261,7 +261,7 @@ public class ScreenManager {
      * @param title the title for the window
      */
     public final static void setTitle(final String title) {
-        ScreenManager.title = title;
+        Display.title = title;
         if (window instanceof Frame) {
             ((Frame) window).setTitle(title);
         }
@@ -298,7 +298,7 @@ public class ScreenManager {
         try {
             i = ImageIO.read(new File(path));
         } catch (IOException ex) {
-            Logger.getLogger(ScreenManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         window.setIconImage(i);
@@ -367,7 +367,7 @@ class CanvasListener implements GLEventListener {
      * around the window if in window mode. Still accurate in full screen mode.
      */
     final Size drawingArea = new Size();
-    final Vector<Screen> screens = new Vector<Screen>();
+    final Vector<Canvas> canvas = new Vector<Canvas>();
 
     @Override
     public void init(final GLAutoDrawable drawable) {
@@ -384,7 +384,7 @@ class CanvasListener implements GLEventListener {
     @Override
     public void display(final GLAutoDrawable drawable) {
         drawable.getGL().glClear(GL.GL_COLOR_BUFFER_BIT);
-        for (final Screen screen : screens) {
+        for (final Canvas screen : canvas) {
             screen.draw(drawable);
         }
     }

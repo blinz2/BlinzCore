@@ -21,7 +21,7 @@ package net.blinz.core.graphics;
  * 
  * @author Blinz Project
  */
-public interface ScreenManagerListener {
+public interface DisplayListener {
 
     /**
      * Called when the ScreenManager closes.

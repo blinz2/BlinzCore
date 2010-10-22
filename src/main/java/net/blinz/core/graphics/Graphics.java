@@ -552,7 +552,7 @@ public class Graphics {
     }
 
     /**
-     * Gets the width of the Screen and/or viewport in which this currently draws.
+     * Gets the width of the context and/or viewport in which this currently draws.
      * @return the width of the drawing area
      */
     public final int getPaneWidth() {
@@ -563,7 +563,7 @@ public class Graphics {
     }
 
     /**
-     * Gets the height of the Screen and/or viewport in which this currently draws.
+     * Gets the height of the context and/or viewport in which this currently draws.
      * @return the height of the drawing area
      */
     public final int getPaneHeight() {
@@ -619,11 +619,14 @@ public class Graphics {
     }
 
     /**
-     * Sets the bounds of the Screen this Graphics object belongs to and draws for.
-     * @param bounds a Bounds object representing the bounds of this Screen within the window
+     * Sets the bounds of the context this Graphics object belongs to and draws for.
+     * @param bounds a Bounds object representing the bounds of this context within the window
      */
-    final void setScreenBounds(final Bounds bounds) {
+    final void setContextBounds(final Bounds bounds) {
         screenBounds.setBounds(bounds);
+        if (gl != null) {
+            load();
+        }
     }
 
     /**
