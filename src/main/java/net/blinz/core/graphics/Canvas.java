@@ -205,6 +205,41 @@ public abstract class Canvas {
     public final void removeKeyListener(final net.blinz.core.input.KeyListener listener) {
         inputListener.keyListeners.remove(listener);
     }
+    /**
+     * Sets the location and size of this Canvas.
+     * @param x the x coordinate of this Canvas
+     * @param y the y coordinate of this Canvas
+     * @param width the new width of this Canvas
+     * @param height the new height of this Canvas
+     */
+    public final void setBounds(final int x, final int y, final int width, final int height) {
+        bounds.setBounds(x, y, width, height);
+    }
+
+    /**
+     * Sets the location of this Canvas in the Display.
+     * @param x the x coordinate of this Canvas
+     * @param y the y coordinate of this Canvas
+     */
+    public final void setPosition(final int x, final int y) {
+	bounds.setPosition(x, y);
+    }
+
+    /**
+     * Sets the x coordinate of this Canvas in the Display.
+     * @param x the x coordinate of this Canvas
+     */
+    public final void setX(final int x) {
+	bounds.x = x;
+    }
+
+    /**
+     * Sets the y coordinate of this Canvas in the Display.
+     * @param y the y coordinate of this Canvas
+     */
+    public final void setY(final int y) {
+	bounds.y = y;
+    }
 
     /**
      * Sets the size of this Canvas.
